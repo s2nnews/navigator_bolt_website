@@ -34,10 +34,13 @@ function App() {
   };
 
   const handleNavigate = (page: string) => {
+    console.log('handleNavigate called with:', page);
     const validPage = page.split('/')[0] as Page;
     if (validPage === 'learn' || validPage === 'docs' || validPage === 'strategies' || validPage === 'videos' || validPage === 'blog') {
       const subpath = page.split('/').slice(1).join('/');
-      window.location.hash = `${validPage}${subpath ? '/' + subpath : ''}`;
+      const newHash = `${validPage}${subpath ? '/' + subpath : ''}`;
+      console.log('Setting hash to:', newHash, 'subpath:', subpath);
+      window.location.hash = newHash;
       setCurrentPage(validPage);
     } else {
       window.location.hash = page;
@@ -69,6 +72,7 @@ function App() {
     const hash = window.location.hash.slice(1);
     const [mainPage, ...subPaths] = hash.split('/');
     const fullPath = subPaths.join('/');
+    console.log('renderPage - hash:', hash, 'mainPage:', mainPage, 'fullPath:', fullPath, 'currentPage:', currentPage);
 
     switch (currentPage) {
       case 'pricing':

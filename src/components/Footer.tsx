@@ -73,7 +73,7 @@ export function Footer({ setCurrentPage }: FooterProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-8 md:col-span-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:col-span-2">
             <div>
               <h3 className="font-semibold mb-4 text-white">Product</h3>
               <ul className="space-y-2 text-sm text-gray-400">
