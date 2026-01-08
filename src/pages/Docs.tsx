@@ -22,8 +22,8 @@ const docSections = [
   {
     title: 'Getting Started',
     items: [
-      { id: 'getting-started', label: 'Introduction' },
       { id: 'installation', label: 'Installation' },
+      { id: 'overview', label: 'Overview' },
       { id: 'first-backtest', label: 'Your First Backtest' },
       { id: 'understanding-results', label: 'Understanding Results' },
     ],
@@ -258,6 +258,412 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
         </ul>
         <Callout type="tip" title="Your Journey Starts Here">
           You're all set! Explore the documentation to learn how to build strategies, run backtests, and deploy live.
+        </Callout>
+      </div>
+    ),
+  },
+  'installation': {
+    title: 'Installation',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          This guide walks you through installing S2N Navigator for the first time and getting the application running successfully.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 1: Choose Your Access Option</h2>
+        <p className="text-gray-300 mb-4">
+          The first step is to obtain S2N Navigator from the website.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Navigate to the <strong>Pricing</strong> page and choose one of the three available options:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li><strong>Free Trial</strong></li>
+          <li><strong>Launch Special Price</strong></li>
+          <li><strong>Pro License</strong></li>
+        </ul>
+        <p className="text-gray-300 mb-4">
+          Most users will begin with the <strong>Free Trial</strong>.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_01.png"
+            alt="Registering a License popup"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 2: Get Your License Code and Download Link</h2>
+        <p className="text-gray-300 mb-4">
+          After completing your selection, you will see a confirmation popup showing:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
+          <li>Your <strong>license code</strong></li>
+          <li>A <strong>download link</strong> for S2N Navigator</li>
+        </ul>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_02.jpg"
+            alt="License and download popup"
+            className="rounded-lg w-full"
+          />
+        </div>
+        <p className="text-gray-300 mb-4">
+          You will also receive an email with the same details.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_03.png"
+            alt="Confirmation email"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 3: Manage Your Subscription (If Applicable)</h2>
+        <p className="text-gray-300 mb-4">
+          If you purchased a subscription, you can manage it at any time by clicking <strong>"Manage Subscription"</strong> in the website footer.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_05.png"
+            alt="Manage Subscription location"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 4: Download the Installer ZIP</h2>
+        <p className="text-gray-300 mb-4">
+          Download the ZIP file from the link provided.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_11.png"
+            alt="Downloaded ZIP file"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 5: Extract the ZIP</h2>
+        <ol className="list-decimal list-inside space-y-2 text-gray-300 mb-4">
+          <li>Double-click the ZIP file — it will open like a folder</li>
+          <li>Click <strong>"Extract All"</strong></li>
+        </ol>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_10.png"
+            alt="Extract All button"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 6: Choose the Installation Location</h2>
+        <p className="text-gray-300 mb-4">
+          A window will pop up asking where you want to extract/install S2N Navigator.
+        </p>
+        <ol className="list-decimal list-inside space-y-2 text-gray-300 mb-4">
+          <li>Click <strong>"Browse"</strong></li>
+        </ol>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_04.png"
+            alt="Browse button"
+            className="rounded-lg w-full"
+          />
+        </div>
+        <ol start={2} className="list-decimal list-inside space-y-2 text-gray-300 mb-4">
+          <li>Select the <strong>C: drive</strong> (recommended)</li>
+        </ol>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_03_B.png"
+            alt="Choose C drive"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 7: Confirm the Folder Exists on C:\</h2>
+        <p className="text-gray-300 mb-4">
+          If everything worked as it should, you will see the <strong>S2N Navigator</strong> folder on the <strong>C:</strong> drive. Double-click the folder.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_07.png"
+            alt="S2N Navigator folder on C drive"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 8: Launch the Application</h2>
+        <p className="text-gray-300 mb-4">
+          Inside the folder, locate the <strong>S2N Navigator</strong> application (the executable) and double-click it.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_06.png"
+            alt="Launch the Executable File"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 9: Enter Your License and Activate</h2>
+        <p className="text-gray-300 mb-4">
+          You will be prompted to enter your license code. Enter it and activate.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_09.png"
+            alt="License entry prompt"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 10: Success — Navigator Opens</h2>
+        <p className="text-gray-300 mb-4">
+          If you reach the main application screen, the install was successful.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_08.png"
+            alt="Navigator running successfully"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">You're Ready</h2>
+        <p className="text-gray-300 mb-4">
+          At this point:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>S2N Navigator is installed</li>
+          <li>Your license is active</li>
+          <li>The application is running</li>
+        </ul>
+        <Callout type="tip" title="Next: First-Time Orientation">
+          Now head to the Overview section to learn about Navigator's key features before running your first backtest.
+        </Callout>
+      </div>
+    ),
+  },
+  'overview': {
+    title: 'First-Time Orientation',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          Before you do anything else, we recommend opening the Settings panel in the Navigator cockpit.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          This is where you configure your preferred:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>AI provider</li>
+          <li>Broker</li>
+          <li>Market data vendor</li>
+        </ul>
+        <p className="text-gray-300 mb-4">
+          Entering your API credentials upfront ensures the rest of the system behaves exactly as you expect. You can always return to this later, but setting it once at the start avoids unnecessary friction.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/cockpit_settings.png"
+            alt="Cockpit Settings"
+            className="rounded-lg w-full"
+          />
+        </div>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/settings_credentials.png"
+            alt="Settings Credentials"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">The Navigator Cockpit</h2>
+        <p className="text-gray-300 mb-4">
+          Your first stop is the Navigator cockpit.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Think of this as the control centre of the entire framework — a high-level dashboard that gives you visibility into your research, strategies, deployments, and live monitoring.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Nothing here is random. The cockpit is designed to keep you oriented as complexity increases, so you always know:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>what you're working on,</li>
+          <li>where it sits in the pipeline,</li>
+          <li>and what requires attention.</li>
+        </ul>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/cockpit_dashboard.png"
+            alt="Navigator Cockpit Dashboard"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Strategy Development as a Workflow (Kanban)</h2>
+        <p className="text-gray-300 mb-4">
+          In our experience building software and complex systems, organisation is not optional — it's a prerequisite for success.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Navigator applies a Kanban-style workflow to strategy development. This allows you to:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>track ideas as they move from research → testing → deployment,</li>
+          <li>see bottlenecks clearly,</li>
+          <li>and avoid the common trap of half-finished strategies scattered across files and notebooks.</li>
+        </ul>
+        <p className="text-gray-300 mb-4">
+          Strategy development is not a linear process. The framework reflects that reality.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/strategy_pipeline_kanban_dashboard.png"
+            alt="Strategy Pipeline Kanban"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">The Integrated Journal</h2>
+        <p className="text-gray-300 mb-4">
+          Anyone serious about personal development understands the value of keeping a journal.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Trading and investing are no different.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Instead of forcing you to maintain a separate trading journal, Navigator includes an integrated journaling system that lives alongside your strategies, research, and live deployments.
+        </p>
+        <p className="text-gray-300 mb-4">
+          This ensures that:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>decisions are documented in context,</li>
+          <li>emotions and assumptions are captured in real time,</li>
+          <li>and learning compounds rather than being lost.</li>
+        </ul>
+        <p className="text-gray-300 mb-4">
+          The goal is not record-keeping for its own sake, but reflection with purpose.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/journal_dashboard.png"
+            alt="Integrated Journal"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Research Notes: Capturing and Evolving Ideas</h2>
+        <p className="text-gray-300 mb-4">
+          In keeping with the focus on organisation and productivity, Navigator includes a Research Notes module.
+        </p>
+        <p className="text-gray-300 mb-4">
+          This is where ideas begin — often messy, incomplete, and uncertain.
+        </p>
+        <p className="text-gray-300 mb-4">
+          The purpose of Research Notes is to:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>capture insights before they disappear,</li>
+          <li>track how ideas evolve over time,</li>
+          <li>and maintain continuity between thought, testing, and execution.</li>
+        </ul>
+        <p className="text-gray-300 mb-4">
+          The broader objective is simple: to bring all core research tools under one coherent system, rather than scattered across apps and documents.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/research_notes_dashboard.png"
+            alt="Research Notes"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">AI as a First-Class Citizen</h2>
+        <p className="text-gray-300 mb-4">
+          We are living through an AI revolution, and it would be irresponsible not to embrace it properly.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Navigator integrates AI throughout the framework, not as a novelty feature, but as a practical research assistant.
+        </p>
+        <p className="text-gray-300 mb-4">
+          You can choose which large language model you prefer to work with, including:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>ChatGPT</li>
+          <li>Claude</li>
+          <li>Gemini</li>
+        </ul>
+        <p className="text-gray-300 mb-4">
+          Each integration uses the best available models. If a model you rely on is not currently available, let us know — we actively expand this list.
+        </p>
+        <p className="text-gray-300 mb-4">
+          AI is not here to replace judgment. It's here to augment it.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/ai_dashboard.png"
+            alt="AI Dashboard"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">The Strategy Builder</h2>
+        <p className="text-gray-300 mb-4">
+          The Strategy Builder is where most of the real work happens.
+        </p>
+        <p className="text-gray-300 mb-4">
+          This is the engine room of Navigator.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Here, you can:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>load from 100+ prebuilt strategies included with the platform, or</li>
+          <li>construct your own strategies using structured dropdowns and configurable components.</li>
+        </ul>
+        <p className="text-gray-300 mb-4">
+          The design goal is to make sophisticated quantitative techniques accessible without hiding their complexity or encouraging reckless optimisation.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Navigator includes some of the most widely used portfolio construction and allocation models in quantitative finance — exposed transparently, not as black boxes.
+        </p>
+        <p className="text-gray-300 mb-4">
+          We will return to the Strategy Builder in much more detail later.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/strategy_builder_8_jan_26.png"
+            alt="Strategy Builder"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Portfolio Mode</h2>
+        <p className="text-gray-300 mb-4">
+          Navigator also supports a dedicated Portfolio Mode.
+        </p>
+        <p className="text-gray-300 mb-4">
+          This allows you to:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>combine multiple independent strategies,</li>
+          <li>mix asset classes and timeframes,</li>
+          <li>and harness diversification across genuinely non-correlated sources of return.</li>
+        </ul>
+        <p className="text-gray-300 mb-4">
+          Portfolio construction is where many otherwise sound strategies fail in practice. This mode exists to help you think at the system level, not just the strategy level.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/stategy_builder_portfolio_mode.png"
+            alt="Portfolio Mode"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <Callout type="tip" title="Next Steps">
+          Now that you're familiar with the Navigator interface, head to the next section to run your first backtest!
         </Callout>
       </div>
     ),
@@ -1202,7 +1608,7 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
   },
 };
 
-export function Docs({ onNavigate, initialDoc = 'getting-started' }: DocsProps) {
+export function Docs({ onNavigate, initialDoc = 'installation' }: DocsProps) {
   const [activeDoc, setActiveDoc] = useState(initialDoc);
 
   const handleDocChange = (docId: string) => {
@@ -1210,7 +1616,7 @@ export function Docs({ onNavigate, initialDoc = 'getting-started' }: DocsProps) 
     window.scrollTo(0, 0);
   };
 
-  const currentDoc = docContent[activeDoc] || docContent['getting-started'];
+  const currentDoc = docContent[activeDoc] || docContent['installation'];
 
   return (
     <div className="bg-[#1a1a1a] min-h-screen">

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Mail, Twitter, Facebook, Youtube } from 'lucide-react';
 
-type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer';
+type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'downloads';
 
 interface FooterProps {
   setCurrentPage: (page: Page) => void;
@@ -81,7 +81,7 @@ export function Footer({ setCurrentPage }: FooterProps) {
                 <li><button onClick={() => handleNavClick('pricing')} className="hover:text-[#FF9500] transition-colors">Pricing</button></li>
                 <li><button onClick={() => handleNavClick('integrations')} className="hover:text-[#FF9500] transition-colors">Integrations</button></li>
                 <li><a href={import.meta.env.VITE_STRIPE_PORTAL_LOGIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#FF9500] transition-colors">Manage Subscription</a></li>
-                <li><a href="#" className="hover:text-[#FF9500] transition-colors">Download</a></li>
+                <li><button onClick={() => handleNavClick('downloads')} className="hover:text-[#FF9500] transition-colors">Download</button></li>
               </ul>
             </div>
 

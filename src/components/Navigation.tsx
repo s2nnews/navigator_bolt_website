@@ -1,7 +1,7 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
-type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog';
+type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads';
 
 interface NavigationProps {
   currentPage: Page;

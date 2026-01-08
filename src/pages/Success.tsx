@@ -133,14 +133,12 @@ export function Success() {
 
               <div className="mb-8 -mt-2">
                 <a
-                  href={licenseData.download_url || "https://downloads.s2n-navigator.com/S2N_Navigator.zip"}
-                  download
+                  href="https://www.s2n-navigator.com/#downloads"
                   className="bg-gradient-to-r from-[#00C853] to-green-500 text-white px-12 py-6 rounded-xl font-bold text-xl hover:from-green-600 hover:to-green-600 transition-all transform hover:scale-105 flex items-center justify-center gap-3 mx-auto shadow-2xl shadow-green-900/60 border-2 border-green-400 max-w-md"
                 >
                   <Download size={32} className="animate-bounce" />
                   <div className="flex flex-col items-start">
                     <span>Download S2N Navigator</span>
-                    <span className="text-sm font-normal text-green-100">(496 MB)</span>
                   </div>
                 </a>
               </div>

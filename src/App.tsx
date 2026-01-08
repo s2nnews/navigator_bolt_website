@@ -18,15 +18,16 @@ import { Docs } from './pages/Docs';
 import { Strategies } from './pages/Strategies';
 import { Videos } from './pages/Videos';
 import { Blog } from './pages/Blog';
+import { Downloads } from './pages/Downloads';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { CookieConsent } from './components/CookieConsent';
 import { trackPageView } from './utils/analytics';
 import { loadConsentPreferences } from './utils/consent';
 
-type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'testers' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'success' | 'trial' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog';
+type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'testers' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'success' | 'trial' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads';
 
-const validPages: Page[] = ['home', 'pricing', 'features', 'about', 'contact', 'affiliate', 'testers', 'integrations', 'terms', 'privacy', 'refunds', 'disclaimer', 'success', 'trial', 'learn', 'docs', 'strategies', 'videos', 'blog'];
+const validPages: Page[] = ['home', 'pricing', 'features', 'about', 'contact', 'affiliate', 'testers', 'integrations', 'terms', 'privacy', 'refunds', 'disclaimer', 'success', 'trial', 'learn', 'docs', 'strategies', 'videos', 'blog', 'downloads'];
 
 function App() {
   const getPageFromHash = (hash: string): Page => {
@@ -113,6 +114,8 @@ function App() {
         return <Videos key={currentHash} onNavigate={handleNavigate} selectedVideo={fullPath} />;
       case 'blog':
         return <Blog key={currentHash} onNavigate={handleNavigate} selectedPost={fullPath} />;
+      case 'downloads':
+        return <Downloads />;
       default:
         return <Home />;
     }
