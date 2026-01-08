@@ -80,68 +80,184 @@ const docSections = [
 
 const docContent: Record<string, { title: string; content: JSX.Element }> = {
   'getting-started': {
-    title: 'Introduction to S2N Navigator',
+    title: 'Getting Started with S2N Navigator',
     content: (
       <div className="prose prose-invert max-w-none">
         <p className="text-xl text-gray-300 mb-6">
-          Welcome to S2N Navigator. This guide will help you understand what Navigator is,
-          what it can do, and how to get started.
+          This guide walks you through installing S2N Navigator for the first time and getting the application running successfully.
         </p>
 
-        <h2 className="text-2xl font-bold mt-8 mb-4">What is Backtesting?</h2>
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 1: Choose Your Access Option</h2>
         <p className="text-gray-300 mb-4">
-          Backtesting is the process of testing a trading strategy using historical data to
-          see how it would have performed in the past. While past performance doesn't guarantee
-          future results, backtesting helps you understand a strategy's behavior under different
-          market conditions.
+          The first step is to obtain S2N Navigator from the website.
         </p>
-
-        <Callout type="tip" title="Key Insight">
-          Backtesting reveals not just profitability, but also risk characteristics, drawdowns,
-          and consistency—critical factors for real-world trading.
-        </Callout>
-
-        <h2 className="text-2xl font-bold mt-8 mb-4">What Can You Do With Navigator?</h2>
-        <div className="grid md:grid-cols-2 gap-4 my-6">
-          <div className="bg-[#2d2d2d] p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-[#FF9500] mb-2">Build Strategies</h3>
-            <p className="text-gray-400 text-sm">
-              Use visual builders or write custom code to create any trading strategy imaginable.
-            </p>
-          </div>
-          <div className="bg-[#2d2d2d] p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-[#FF9500] mb-2">Test Thoroughly</h3>
-            <p className="text-gray-400 text-sm">
-              Run comprehensive backtests with accurate historical data and realistic execution modeling.
-            </p>
-          </div>
-          <div className="bg-[#2d2d2d] p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-[#FF9500] mb-2">Analyze Results</h3>
-            <p className="text-gray-400 text-sm">
-              Get detailed performance metrics, equity curves, and risk analytics.
-            </p>
-          </div>
-          <div className="bg-[#2d2d2d] p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-[#FF9500] mb-2">Deploy Live</h3>
-            <p className="text-gray-400 text-sm">
-              Connect to supported brokers and deploy strategies with confidence.
-            </p>
-          </div>
+        <p className="text-gray-300 mb-4">
+          Navigate to the <strong>Pricing</strong> page and choose one of the three available options:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li><strong>Free Trial</strong></li>
+          <li><strong>Launch Special Price</strong></li>
+          <li><strong>Pro License</strong></li>
+        </ul>
+        <p className="text-gray-300 mb-4">
+          Most users will begin with the <strong>Free Trial</strong>.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_01.png"
+            alt="Registering a License popup"
+            className="rounded-lg w-full"
+          />
         </div>
 
-        <h2 className="text-2xl font-bold mt-8 mb-4">Next Steps</h2>
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 2: Get Your License Code and Download Link</h2>
         <p className="text-gray-300 mb-4">
-          Ready to get started? Follow these next steps:
+          After completing your selection, you will see a confirmation popup showing:
         </p>
-        <ol className="list-decimal list-inside space-y-2 text-gray-300">
-          <li>Install S2N Navigator on your system</li>
-          <li>Run your first backtest using a pre-built strategy</li>
-          <li>Learn to interpret backtest results</li>
-          <li>Explore strategy customization options</li>
-        </ol>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
+          <li>Your <strong>license code</strong></li>
+          <li>A <strong>download link</strong> for S2N Navigator</li>
+        </ul>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_02.jpg"
+            alt="License and download popup"
+            className="rounded-lg w-full"
+          />
+        </div>
+        <p className="text-gray-300 mb-4">
+          You will also receive an email with the same details.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_03.png"
+            alt="Confirmation email"
+            className="rounded-lg w-full"
+          />
+        </div>
 
-        <Callout type="info" title="Learning Resources">
-          Check out our video tutorials for visual walkthroughs of key concepts.
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 3: Manage Your Subscription (If Applicable)</h2>
+        <p className="text-gray-300 mb-4">
+          If you purchased a subscription, you can manage it at any time by clicking <strong>"Manage Subscription"</strong> in the website footer.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_05.png"
+            alt="Manage Subscription location"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 4: Download the Installer ZIP</h2>
+        <p className="text-gray-300 mb-4">
+          Download the ZIP file from the link provided.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_11.png"
+            alt="Downloaded ZIP file"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 5: Extract the ZIP</h2>
+        <ol className="list-decimal list-inside space-y-2 text-gray-300 mb-4">
+          <li>Double-click the ZIP file — it will open like a folder</li>
+          <li>Click <strong>"Extract All"</strong></li>
+        </ol>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_10.png"
+            alt="Extract All button"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 6: Choose the Installation Location</h2>
+        <p className="text-gray-300 mb-4">
+          A window will pop up asking where you want to extract/install S2N Navigator.
+        </p>
+        <ol className="list-decimal list-inside space-y-2 text-gray-300 mb-4">
+          <li>Click <strong>"Browse"</strong></li>
+        </ol>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_04.png"
+            alt="Browse button"
+            className="rounded-lg w-full"
+          />
+        </div>
+        <ol start={2} className="list-decimal list-inside space-y-2 text-gray-300 mb-4">
+          <li>Select the <strong>C: drive</strong> (recommended)</li>
+        </ol>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_03_B.png"
+            alt="Choose C drive"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 7: Confirm the Folder Exists on C:\</h2>
+        <p className="text-gray-300 mb-4">
+          If everything worked as it should, you will see the <strong>S2N Navigator</strong> folder on the <strong>C:</strong> drive. Double-click the folder.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_07.png"
+            alt="S2N Navigator folder on C drive"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 9: Launch the Application</h2>
+        <p className="text-gray-300 mb-4">
+          Inside the folder, locate the <strong>S2N Navigator</strong> application (the executable) and double-click it.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_06.png"
+            alt="Launch the Executable File"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 10: Enter Your License and Activate</h2>
+        <p className="text-gray-300 mb-4">
+          You will be prompted to enter your license code. Enter it and activate.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_09.png"
+            alt="License entry prompt"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 11: Success — Navigator Opens</h2>
+        <p className="text-gray-300 mb-4">
+          If you reach the main application screen, the install was successful.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/getting-started_08.png"
+            alt="Navigator running successfully"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">You're Ready</h2>
+        <p className="text-gray-300 mb-4">
+          At this point:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>S2N Navigator is installed</li>
+          <li>Your license is active</li>
+          <li>The application is running</li>
+        </ul>
+        <Callout type="tip" title="Your Journey Starts Here">
+          You're all set! Explore the documentation to learn how to build strategies, run backtests, and deploy live.
         </Callout>
       </div>
     ),

@@ -26,30 +26,32 @@ import { loadConsentPreferences } from './utils/consent';
 
 type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'testers' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'success' | 'trial' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog';
 
+const validPages: Page[] = ['home', 'pricing', 'features', 'about', 'contact', 'affiliate', 'testers', 'integrations', 'terms', 'privacy', 'refunds', 'disclaimer', 'success', 'trial', 'learn', 'docs', 'strategies', 'videos', 'blog'];
+
 function App() {
-  const getPageFromHash = (): Page => {
-    const hash = window.location.hash.slice(1).split('?')[0].split('/')[0];
-    const validPages: Page[] = ['home', 'pricing', 'features', 'about', 'contact', 'affiliate', 'testers', 'integrations', 'terms', 'privacy', 'refunds', 'disclaimer', 'success', 'trial', 'learn', 'docs', 'strategies', 'videos', 'blog'];
-    return validPages.includes(hash as Page) ? (hash as Page) : 'home';
+  const getPageFromHash = (hash: string): Page => {
+    const pageName = hash.split('?')[0].split('/')[0];
+    return validPages.includes(pageName as Page) ? (pageName as Page) : 'home';
   };
+
+  const [currentHash, setCurrentHash] = useState<string>(window.location.hash.slice(1) || 'home');
+  const currentPage = getPageFromHash(currentHash);
 
   const handleNavigate = (page: string) => {
     console.log('handleNavigate called with:', page);
     const validPage = page.split('/')[0] as Page;
+    let newHash: string;
     if (validPage === 'learn' || validPage === 'docs' || validPage === 'strategies' || validPage === 'videos' || validPage === 'blog') {
       const subpath = page.split('/').slice(1).join('/');
-      const newHash = `${validPage}${subpath ? '/' + subpath : ''}`;
+      newHash = `${validPage}${subpath ? '/' + subpath : ''}`;
       console.log('Setting hash to:', newHash, 'subpath:', subpath);
-      window.location.hash = newHash;
-      setCurrentPage(validPage);
     } else {
-      window.location.hash = page;
-      setCurrentPage(validPage);
+      newHash = page;
     }
+    window.location.hash = newHash;
+    setCurrentHash(newHash);
     window.scrollTo(0, 0);
   };
-
-  const [currentPage, setCurrentPage] = useState<Page>(getPageFromHash());
 
   useEffect(() => {
     loadConsentPreferences();
@@ -61,7 +63,8 @@ function App() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      setCurrentPage(getPageFromHash());
+      const hash = window.location.hash.slice(1) || 'home';
+      setCurrentHash(hash);
     };
 
     window.addEventListener('hashchange', handleHashChange);
@@ -69,10 +72,9 @@ function App() {
   }, []);
 
   const renderPage = () => {
-    const hash = window.location.hash.slice(1);
-    const [mainPage, ...subPaths] = hash.split('/');
+    const [mainPage, ...subPaths] = currentHash.split('/');
     const fullPath = subPaths.join('/');
-    console.log('renderPage - hash:', hash, 'mainPage:', mainPage, 'fullPath:', fullPath, 'currentPage:', currentPage);
+    console.log('renderPage - currentHash:', currentHash, 'mainPage:', mainPage, 'fullPath:', fullPath, 'currentPage:', currentPage);
 
     switch (currentPage) {
       case 'pricing':
@@ -102,15 +104,15 @@ function App() {
       case 'trial':
         return <Trial />;
       case 'learn':
-        return <Learn key={hash} onNavigate={handleNavigate} initialPath={fullPath} />;
+        return <Learn key={currentHash} onNavigate={handleNavigate} initialPath={fullPath} />;
       case 'docs':
-        return <Docs key={hash} onNavigate={handleNavigate} initialDoc={fullPath} />;
+        return <Docs key={currentHash} onNavigate={handleNavigate} initialDoc={fullPath} />;
       case 'strategies':
-        return <Strategies key={hash} onNavigate={handleNavigate} initialStrategy={fullPath} />;
+        return <Strategies key={currentHash} onNavigate={handleNavigate} initialStrategy={fullPath} />;
       case 'videos':
-        return <Videos key={hash} onNavigate={handleNavigate} selectedVideo={fullPath} />;
+        return <Videos key={currentHash} onNavigate={handleNavigate} selectedVideo={fullPath} />;
       case 'blog':
-        return <Blog key={hash} onNavigate={handleNavigate} selectedPost={fullPath} />;
+        return <Blog key={currentHash} onNavigate={handleNavigate} selectedPost={fullPath} />;
       default:
         return <Home />;
     }
@@ -118,11 +120,17 @@ function App() {
 
   return (
     <div className="bg-[#1a1a1a] text-white min-h-screen flex flex-col">
-      <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Navigation currentPage={currentPage} setCurrentPage={(page) => {
+        window.location.hash = page;
+        setCurrentHash(page);
+      }} />
       <main className="flex-grow">
         {renderPage()}
       </main>
-      <Footer setCurrentPage={setCurrentPage} />
+      <Footer setCurrentPage={(page) => {
+        window.location.hash = page;
+        setCurrentHash(page);
+      }} />
       <CookieConsent />
     </div>
   );

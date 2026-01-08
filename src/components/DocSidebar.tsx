@@ -50,6 +50,29 @@ export function DocSidebar({ sections, activeId, onItemClick }: DocSidebarProps)
 
   return (
     <>
+      {/* Mobile Navigation Bar */}
+      <div className="lg:hidden fixed top-[64px] left-0 right-0 z-40 bg-[#2d2d2d] border-b border-[#3d3d3d] px-4 py-3">
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="flex items-center justify-between w-full"
+        >
+          <div className="flex items-center gap-2">
+            <BookOpen size={16} className="text-[#FF9500]" />
+            <span className="text-sm text-gray-300 truncate max-w-[200px]">
+              {activeItem?.label || 'Documentation'}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-[#FF9500] text-sm font-medium">
+            <span>Browse</span>
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </div>
+        </button>
+      </div>
+
+      {/* Add top padding on mobile to account for fixed nav bar */}
+      <div className="lg:hidden h-[52px]" />
+
+      {/* Floating button for additional visibility */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         className="lg:hidden fixed bottom-4 right-4 z-50 bg-[#FF9500] text-black p-3 rounded-full shadow-lg"
