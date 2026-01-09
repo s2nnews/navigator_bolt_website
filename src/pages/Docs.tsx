@@ -24,6 +24,7 @@ const docSections = [
     items: [
       { id: 'installation', label: 'Installation' },
       { id: 'overview', label: 'Overview' },
+      { id: 'data-farm', label: 'Data Farm' },
       { id: 'first-backtest', label: 'Your First Backtest' },
       { id: 'understanding-results', label: 'Understanding Results' },
     ],
@@ -135,6 +136,16 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
             className="rounded-lg w-full"
           />
         </div>
+        <p className="text-gray-300 mb-4">
+          When clicking on download you will be faced with a choice of Windows or Mac.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/downloads_page.png"
+            alt="Windows or Mac"
+            className="rounded-lg w-full"
+          />
+        </div>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">Step 3: Manage Your Subscription (If Applicable)</h2>
         <p className="text-gray-300 mb-4">
@@ -154,7 +165,7 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
         </p>
         <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
           <img
-            src="/getting_started/getting-started_11.png"
+            src="/getting_started/zip_downloads.png"
             alt="Downloaded ZIP file"
             className="rounded-lg w-full"
           />
@@ -219,6 +230,26 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
           <img
             src="/getting_started/getting-started_06.png"
             alt="Launch the Executable File"
+            className="rounded-lg w-full"
+          />
+        </div>
+        <p className="text-gray-300 mb-4">
+          A blue screen is likely to appear you need to click on the More Info button.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/blue_screen.png"
+            alt="Blue Screen"
+            className="rounded-lg w-full"
+          />
+        </div>
+        <p className="text-gray-300 mb-4">
+          Now click on Run Anyway it is 100% safe.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/run_anyway.jpg"
+            alt="Run Anyway"
             className="rounded-lg w-full"
           />
         </div>
@@ -663,7 +694,308 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
         </div>
 
         <Callout type="tip" title="Next Steps">
-          Now that you're familiar with the Navigator interface, head to the next section to run your first backtest!
+          Now that you're familiar with the Navigator interface, head to the Data Farm section to set up your market data foundation!
+        </Callout>
+      </div>
+    ),
+  },
+  'data-farm': {
+    title: 'Data Farm',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          The Data Farm is the foundation of the Navigator framework.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          Its purpose is simple: to give you a central, durable home for your market data — one that Navigator can access efficiently and that you can maintain without gaps or fragmentation.
+        </p>
+
+        <p className="text-gray-300 mb-6">
+          Good research depends on good data. The Data Farm is designed to make that dependency explicit, manageable, and scalable.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">A Single Source of Truth</h2>
+        <p className="text-gray-300 mb-4">
+          Navigator is built around the idea that your data should live in one place, under your control.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          Instead of scattered files, partial downloads, or vendor-specific silos, the Data Farm allows you to:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>store all market data centrally,</li>
+          <li>maintain it consistently over time,</li>
+          <li>and reuse it across research, backtesting, and live monitoring.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-6">
+          Data you curate today should remain valuable years from now.
+        </p>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/data_farm_launch_button.png"
+            alt="Data Farm Launch Button"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Built for Scale and Flexibility</h2>
+        <p className="text-gray-300 mb-4">
+          At its core, the Data Farm is powered by a SQLite database.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          Despite its simplicity, SQLite is capable of handling:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>hundreds of millions of rows,</li>
+          <li>terabytes of data,</li>
+          <li>multiple timeframes (from streaming and 1-minute data through to daily),</li>
+          <li>and data sourced from multiple vendors.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-4">
+          This structure allows Navigator to remain fast and portable, without requiring external database infrastructure or ongoing maintenance.
+        </p>
+
+        <p className="text-gray-300 mb-6">
+          Everything is managed under one roof.
+        </p>
+        
+        <h2 className="text-2xl font-bold mt-8 mb-4">Shipping with Data (So You Can Start Immediately)</h2>
+        <p className="text-gray-300 mb-4">
+          You cannot drive a car without fuel. You cannot use a phone without a charged battery.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          For the same reason, S2N Navigator ships with access to a large free market data set.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          This allows you to:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>sync data immediately,</li>
+          <li>run backtests out of the box,</li>
+          <li>and explore the platform without first committing to a paid data provider.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-6">
+          The free database is designed to get you started — not to be your long-term solution.
+        </p>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/dashboard_datafarm.png"
+            alt="Data Farm Dashboard"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">First Sync: What to Expect</h2>
+        <p className="text-gray-300 mb-4">
+          Your first full sync will take longer than subsequent updates.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          Typically:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>the initial sync takes around one hour,</li>
+          <li>data must first be downloaded,</li>
+          <li>then inserted into the database.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-4">
+          This is a one-time cost. Once the database is populated, ongoing syncs are significantly faster.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Navigator includes access to a large 1-minute data set, covering:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>more than 20 years of history for most instruments.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-4">
+          Due to its size and technical considerations, this data is:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>kept separate from the standard sync process,</li>
+          <li>and updated weekly.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-6">
+          This separation is intentional. It ensures performance and reliability while still giving you access to high-resolution history when you need it.
+        </p>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/data_farm_sync_process.png"
+            alt="Data Farm Sync Process"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <p className="text-gray-300 mb-6">
+          This is what the sync process looks like when it is running.
+        </p>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/free_data_syncing.png"
+            alt="Data Farm Syncing"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Free Data vs Professional Data</h2>
+        <p className="text-gray-300 mb-4">
+          The free database includes a limited symbol universe.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          Its purpose is orientation, exploration, and early testing.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          For serious research, we strongly recommend connecting one of the supported data providers or brokers. These offer:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>broader coverage,</li>
+          <li>higher data quality,</li>
+          <li>and better long-term continuity.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-6">
+          Navigator is designed to work with multiple providers, allowing you to choose the coverage that fits your needs.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Connecting Data Providers</h2>
+        <p className="text-gray-300 mb-4">
+          You can connect to supported brokers and data vendors using the provider buttons in the Data Farm interface.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          Once connected, their data becomes part of the same unified database — not a separate silo.
+        </p>
+
+        <p className="text-gray-300 mb-6">
+          Navigator handles the integration; you retain control.
+        </p>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/data_vendors_data_farm.png"
+            alt="Data Vendors in Data Farm"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/broker_config_data_farm.png"
+            alt="Broker Configuration in Data Farm"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Exploring the Database</h2>
+        <p className="text-gray-300 mb-4">
+          If you want to inspect what's inside your Data Farm, click <strong>View DB</strong>.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          This opens a tabular view of the entire database, with:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>filters,</li>
+          <li>sorting,</li>
+          <li>and search functionality.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-6">
+          It's designed for transparency, not mystery. You should always be able to see what data you are working with.
+        </p>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/data_base_view_data_farm.png"
+            alt="Database View in Data Farm"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Watchlists</h2>
+        <p className="text-gray-300 mb-4">
+          Watchlists are a key part of extracting value from your data.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          Rather than working with an overwhelming universe, watchlists allow you to:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>define relevant subsets of instruments,</li>
+          <li>focus research efforts,</li>
+          <li>and reuse curated universes across strategies.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-6">
+          Navigator includes a Watchlist Manager to help you build and maintain these lists efficiently.
+        </p>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/watchlist_manager_data_farm.png"
+            alt="Watchlist Manager in Data Farm"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Importing Your Own Data</h2>
+        <p className="text-gray-300 mb-4">
+          The Data Farm is intentionally flexible.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          In addition to integrated vendors, you can import your own CSV data files directly into the database.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          This allows you to:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>bring in proprietary data,</li>
+          <li>merge external research datasets,</li>
+          <li>or maintain legacy data alongside vendor feeds.</li>
+        </ul>
+
+        <p className="text-gray-300 mb-6">
+          The goal is not to restrict you, but to provide a structure that scales with you.
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/import_csv.png"
+            alt="Import CSV files"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+// Before we complete the data farm we need to show how to get all the different data flows working.
+        
+        <Callout type="tip" title="Data Foundation Complete">
+          With your Data Farm configured, you're ready to run your first backtest and put this data to work!
         </Callout>
       </div>
     ),
