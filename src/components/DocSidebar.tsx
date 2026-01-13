@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import { Book, FileText, HelpCircle, Lightbulb, BookOpen, Menu, X } from 'lucide-react';
+import { Book, FileText, HelpCircle, Lightbulb, BookOpen, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
+
+interface DocItem {
+  id: string;
+  label: string;
+  subitems?: Array<{ id: string; label: string; }>;
+}
 
 interface DocSection {
   title: string;
-  items: Array<{ id: string; label: string; }>;
+  items: DocItem[];
 }
 
 interface DocSidebarProps {
@@ -16,6 +22,7 @@ export function DocSidebar({ sections, activeId, onItemClick }: DocSidebarProps)
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(['data-farm']));
 
   const iconMap: Record<string, React.ReactNode> = {
     'Getting Started': <Book size={16} />,
@@ -24,6 +31,18 @@ export function DocSidebar({ sections, activeId, onItemClick }: DocSidebarProps)
     'Concepts': <Lightbulb size={16} />,
     'Knowledge Base': <BookOpen size={16} />,
     'FAQs': <HelpCircle size={16} />,
+  };
+
+  const toggleExpand = (itemId: string) => {
+    setExpandedItems(prev => {
+      const next = new Set(prev);
+      if (next.has(itemId)) {
+        next.delete(itemId);
+      } else {
+        next.add(itemId);
+      }
+      return next;
+    });
   };
 
   useEffect(() => {
@@ -46,6 +65,7 @@ export function DocSidebar({ sections, activeId, onItemClick }: DocSidebarProps)
 
   const activeItem = sections
     .flatMap(section => section.items)
+    .flatMap(item => item.subitems ? [item, ...item.subitems] : [item])
     .find(item => item.id === activeId);
 
   return (
@@ -108,16 +128,50 @@ export function DocSidebar({ sections, activeId, onItemClick }: DocSidebarProps)
                   <ul className="space-y-1">
                     {section.items.map((item) => (
                       <li key={item.id}>
-                        <button
-                          onClick={() => handleItemClick(item.id)}
-                          className={`w-full text-left px-3 py-2 rounded transition-colors ${
-                            activeId === item.id
-                              ? 'bg-[#FF9500]/10 text-[#FF9500] font-medium'
-                              : 'text-gray-400 hover:text-white hover:bg-[#2d2d2d]'
-                          }`}
-                        >
-                          {item.label}
-                        </button>
+                        <div>
+                          <div className="flex items-center gap-1">
+                            {item.subitems && (
+                              <button
+                                onClick={() => toggleExpand(item.id)}
+                                className="p-1 hover:bg-[#2d2d2d] rounded transition-colors"
+                              >
+                                {expandedItems.has(item.id) ? (
+                                  <ChevronDown size={16} className="text-gray-400" />
+                                ) : (
+                                  <ChevronRight size={16} className="text-gray-400" />
+                                )}
+                              </button>
+                            )}
+                            <button
+                              onClick={() => handleItemClick(item.id)}
+                              className={`flex-1 text-left px-3 py-2 rounded transition-colors ${
+                                activeId === item.id
+                                  ? 'bg-[#FF9500]/10 text-[#FF9500] font-medium'
+                                  : 'text-gray-400 hover:text-white hover:bg-[#2d2d2d]'
+                              } ${!item.subitems ? 'ml-0' : ''}`}
+                            >
+                              {item.label}
+                            </button>
+                          </div>
+                          {item.subitems && expandedItems.has(item.id) && (
+                            <ul className="ml-6 mt-1 space-y-1 border-l border-[#3d3d3d] pl-3">
+                              {item.subitems.map((subitem) => (
+                                <li key={subitem.id}>
+                                  <button
+                                    onClick={() => handleItemClick(subitem.id)}
+                                    className={`w-full text-left px-3 py-1.5 rounded text-sm transition-colors ${
+                                      activeId === subitem.id
+                                        ? 'bg-[#FF9500]/10 text-[#FF9500] font-medium'
+                                        : 'text-gray-400 hover:text-white hover:bg-[#2d2d2d]'
+                                    }`}
+                                  >
+                                    {subitem.label}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
                       </li>
                     ))}
                   </ul>

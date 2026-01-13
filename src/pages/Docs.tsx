@@ -24,15 +24,31 @@ const docSections = [
     items: [
       { id: 'installation', label: 'Installation' },
       { id: 'overview', label: 'Overview' },
-      { id: 'data-farm', label: 'Data Farm' },
-      { id: 'first-backtest', label: 'Your First Backtest' },
-      { id: 'understanding-results', label: 'Understanding Results' },
+      {
+        id: 'data-farm',
+        label: 'Data Farm',
+        subitems: [
+          { id: 'data-farm-introduction', label: 'Introduction' },
+          { id: 'data-farm-tradestation', label: 'TradeStation Setup' },
+          { id: 'data-farm-mt5', label: 'MT5 IC Markets Setup' },
+          { id: 'data-farm-live-streamer', label: 'Live Streamer' },
+          { id: 'data-farm-database-location', label: 'Database Location' },
+        ]
+      },
     ],
   },
   {
     title: 'Guides',
     items: [
-      { id: 'strategy-builder', label: 'Strategy Builder' },
+      {
+        id: 'strategy-builder',
+        label: 'Strategy Builder',
+        subitems: [
+          { id: 'strategy-builder-overview', label: 'Overview' },
+          { id: 'first-backtest', label: 'Your First Backtest' },
+          { id: 'understanding-results', label: 'Understanding Results' },
+        ]
+      },
       { id: 'data-sources', label: 'Data Sources' },
       { id: 'optimization', label: 'Optimization' },
       { id: 'live-trading', label: 'Live Trading' },
@@ -248,7 +264,7 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
         </p>
         <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
           <img
-            src="/getting_started/run_anyway.jpg"
+            src="/getting_started/run_anyway.png"
             alt="Run Anyway"
             className="rounded-lg w-full"
           />
@@ -700,7 +716,49 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
     ),
   },
   'data-farm': {
-    title: 'Data Farm',
+    title: 'Data Farm Overview',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          The Data Farm is the foundation of the Navigator framework — a central, durable home for your market data.
+        </p>
+
+        <p className="text-gray-300 mb-4">
+          Good research depends on good data. The Data Farm is designed to make that dependency explicit, manageable, and scalable.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">What You'll Learn</h2>
+        <p className="text-gray-300 mb-4">
+          This section covers everything you need to set up and optimize your Data Farm:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li><strong>Introduction</strong> - Core concepts, database structure, and getting started with free data</li>
+          <li><strong>TradeStation Setup</strong> - Connect your TradeStation account for professional-grade equities and futures data</li>
+          <li><strong>MT5 IC Markets Setup</strong> - Connect MetaTrader 5 for forex and CFD data</li>
+        </ul>
+
+        <Callout type="info" title="Start with the Introduction">
+          If this is your first time using Data Farm, begin with the Introduction subsection to understand the core concepts and complete your initial data sync.
+        </Callout>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Quick Start</h2>
+        <p className="text-gray-300 mb-4">
+          For experienced users who want to get started immediately:
+        </p>
+        <ol className="list-decimal list-inside space-y-2 text-gray-300 mb-6">
+          <li>Launch Data Farm from the Cockpit</li>
+          <li>Sync the free database (or skip to broker connection)</li>
+          <li>Connect your preferred data provider (TradeStation or MT5)</li>
+          <li>Create watchlists for your trading universe</li>
+          <li>Download historical data</li>
+        </ol>
+
+      </div>
+    ),
+  },
+  'data-farm-introduction': {
+    title: 'Data Farm Introduction',
     content: (
       <div className="prose prose-invert max-w-none">
         <p className="text-xl text-gray-300 mb-6">
@@ -765,7 +823,7 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
         <p className="text-gray-300 mb-6">
           Everything is managed under one roof.
         </p>
-        
+
         <h2 className="text-2xl font-bold mt-8 mb-4">Shipping with Data (So You Can Start Immediately)</h2>
         <p className="text-gray-300 mb-4">
           You cannot drive a car without fuel. You cannot use a phone without a charged battery.
@@ -992,11 +1050,417 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
           />
         </div>
 
-// Before we complete the data farm we need to show how to get all the different data flows working.
-        
-        <Callout type="tip" title="Data Foundation Complete">
-          With your Data Farm configured, you're ready to run your first backtest and put this data to work!
+        <Callout type="tip" title="Next Steps">
+          With these core concepts understood, you're ready to connect your preferred broker or data provider. Check out the TradeStation or MT5 setup guides to continue!
         </Callout>
+      </div>
+    ),
+  },
+  'data-farm-tradestation': {
+    title: 'Data Farm Setup: TradeStation',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          Follow these steps to connect TradeStation to Navigator and start building your market data library.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 1: Configure Broker</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Open the Navigator</li>
+          <li>Click the <strong>⚙️ Settings</strong> button on the right</li>
+          <li>Click the <strong>⚙️ Broker</strong> button</li>
+          <li>Add/Edit TradeStation credentials:
+            <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+              <li>API Key</li>
+              <li>API Secret</li>
+              <li>Account ID</li>
+              <li>Environment (Simulation or Live)</li>
+            </ul>
+          </li>
+          <li>Save and close</li>
+        </ol>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/tradestation_credentials.png"
+            alt="TradeStation Credentials Configuration"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <Callout type="info" title="Getting Your TradeStation API Credentials">
+          You'll need to register for API access through TradeStation's developer portal. Visit their website and navigate to the API section to generate your credentials.
+        </Callout>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 2: Authorize Connection</h2>
+        <p className="text-gray-300 mb-4">
+          After entering your credentials, you'll need to authorize Navigator to access your TradeStation account.
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Click <strong>Connect to TradeStation</strong> in the Data Farm interface</li>
+          <li>You'll be redirected to TradeStation's authorization page</li>
+          <li>Log in with your TradeStation credentials</li>
+          <li>Grant Navigator the requested permissions</li>
+          <li>You'll be redirected back to Navigator once authorized</li>
+        </ol>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/tradestation_connect.png"
+            alt="TradeStation Connection Interface"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/tradestation_authorisation.png"
+            alt="TradeStation Authorization Process"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 3: Create a Watchlist</h2>
+        <p className="text-gray-300 mb-4">
+          Watchlists help you organize and manage the symbols you want to track.
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Click <strong>📋 Watchlists</strong> button in Data Farm</li>
+          <li>Create a new watchlist (e.g., "TradeStation Equities" or "TradeStation Futures")</li>
+          <li>Add symbols you want to download
+            <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+              <li>For stocks: AAPL, MSFT, GOOGL, etc.</li>
+              <li>For futures: ES, NQ, YM, etc.</li>
+              <li>For forex: EUR/USD, GBP/USD, etc.</li>
+            </ul>
+          </li>
+          <li>Save watchlist</li>
+        </ol>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/tradestation_watchlist.png"
+            alt="TradeStation Watchlist Configuration"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 4: Download Historical Data</h2>
+        <p className="text-gray-300 mb-4">
+          With your watchlist configured, you're ready to download historical market data.
+        </p>
+        <p className="text-gray-300 mb-4">
+          In the <strong>BUILD HISTORY</strong> panel:
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li><strong>Source:</strong> Select <code className="bg-[#2d2d2d] px-2 py-1 rounded">tradestation</code></li>
+          <li><strong>Watchlist:</strong> Select your watchlist (or "All Symbols")</li>
+          <li><strong>Timeframe:</strong> Choose Daily, 60-Min, 10-Min, or 1-Min</li>
+          <li><strong>Start:</strong> Set how far back you want data (e.g., 10 years, 5 years)</li>
+          <li>Click <strong>▶️ Download</strong> button</li>
+          <li>Watch the console for progress updates</li>
+        </ol>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/tradestation_build_popup.png"
+            alt="TradeStation Build History Popup"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/tradestation_build_history.png"
+            alt="TradeStation Build History Process"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <Callout type="warning" title="Data Download Times">
+          The first download may take some time depending on the number of symbols and the historical period requested. Subsequent updates will be much faster as Navigator only downloads new bars.
+        </Callout>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 5: Verify Data</h2>
+        <p className="text-gray-300 mb-4">
+          After the download completes, verify that your data has been imported correctly.
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Check the <strong>Database size indicator</strong> (top left) - it should have increased</li>
+          <li>Click <strong>📊 View DB</strong> to browse downloaded bars</li>
+          <li>Filter by source "tradestation" to see only TradeStation data</li>
+          <li>Verify that the symbols and date ranges match your expectations</li>
+        </ol>
+
+        <Callout type="success" title="TradeStation Setup Complete">
+          Your TradeStation connection is now configured and your initial data download is complete. You can now use this data for backtesting and strategy development!
+        </Callout>
+      </div>
+    ),
+  },
+  'data-farm-mt5': {
+    title: 'Data Farm Setup: MT5 IC Markets',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          Follow these steps to connect MetaTrader 5 with IC Markets to Navigator and start building your market data library.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 1: Configure Broker</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Open Data Farm Dashboard</li>
+          <li>Click the <strong>⚙️ Brokers</strong> button</li>
+          <li>Add/Edit MT5 IC Markets credentials:
+            <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+              <li>Account number</li>
+              <li>Password</li>
+              <li>Server (e.g., <code className="bg-[#2d2d2d] px-2 py-1 rounded">ICMarketsSC-Demo</code> or <code className="bg-[#2d2d2d] px-2 py-1 rounded">ICMarketsSC-Live</code>)</li>
+              <li>Symbol suffix: <code className="bg-[#2d2d2d] px-2 py-1 rounded">.a</code> (IC Markets uses this)</li>
+            </ul>
+          </li>
+          <li>Save and close</li>
+        </ol>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/mt5_config_setup.png"
+            alt="MT5 Configuration Setup"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <Callout type="info" title="IC Markets Symbol Suffix">
+          IC Markets typically appends <code className="bg-[#2d2d2d] px-2 py-1 rounded">.a</code> to their symbol names (e.g., EURUSD.a). Make sure to configure this suffix correctly to ensure proper data mapping.
+        </Callout>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 2: Import Symbols from MT5</h2>
+        <p className="text-gray-300 mb-4">
+          Before importing symbols, ensure your MT5 terminal is running and has the desired symbols visible in Market Watch.
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Ensure MT5 terminal is <strong>running</strong> with your desired symbols in Market Watch</li>
+          <li>In Navigator's Data Farm, click the <strong>🔵 MT5</strong> button</li>
+          <li>Select your IC Markets account if prompted</li>
+          <li>Symbols from Market Watch are automatically imported to the database</li>
+        </ol>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/mt5_symbols_import.png"
+            alt="MT5 Symbols Import Process"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 3: Create a Watchlist</h2>
+        <p className="text-gray-300 mb-4">
+          Watchlists are optional but highly recommended for organizing your symbols.
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Click <strong>📋 Watchlists</strong> button in Data Farm</li>
+          <li>Create a new watchlist (e.g., "IC Markets Forex" or "IC Markets CFDs")</li>
+          <li>Add symbols you want to download from the imported list</li>
+          <li>Save watchlist</li>
+        </ol>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/build_mt5_watchlist.png"
+            alt="MT5 Watchlist Builder"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 4: Download Historical Data</h2>
+        <p className="text-gray-300 mb-4">
+          With your symbols imported and watchlist configured, you can now download historical data.
+        </p>
+        <p className="text-gray-300 mb-4">
+          In the <strong>BUILD HISTORY</strong> panel:
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li><strong>Source:</strong> Select <code className="bg-[#2d2d2d] px-2 py-1 rounded">mt5-ic</code></li>
+          <li><strong>Watchlist:</strong> Select your watchlist (or "All Symbols")</li>
+          <li><strong>Timeframe:</strong> Choose Daily, 60-Min, 10-Min, or 1-Min</li>
+          <li><strong>Start:</strong> Set how far back you want data (e.g., 10 years, 5 years)</li>
+          <li>Click <strong>▶️ Download</strong> button</li>
+          <li>Watch console for progress updates</li>
+        </ol>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/ic_markets_build_history.png"
+            alt="IC Markets Build History Process"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <Callout type="warning" title="MT5 Terminal Must Be Running">
+          The MT5 terminal must remain running during the data download process. Navigator connects to MT5 to retrieve the historical data.
+        </Callout>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 5: Verify Data</h2>
+        <p className="text-gray-300 mb-4">
+          After the download completes, verify that your data has been imported correctly.
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Check the <strong>Database size indicator</strong> (top left) - it should have increased</li>
+          <li>Click <strong>📊 View DB</strong> to browse downloaded bars</li>
+          <li>Filter by source "mt5-ic" to see only IC Markets data</li>
+          <li>Verify that the symbols and date ranges match your expectations</li>
+        </ol>
+
+        <Callout type="success" title="MT5 IC Markets Setup Complete">
+          Your MT5 IC Markets connection is now configured and your initial data download is complete. You can now use this data for backtesting and strategy development!
+        </Callout>
+      </div>
+    ),
+  },
+  'data-farm-live-streamer': {
+    title: 'Live Streamer',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          The Live Streamer provides real-time price updates for symbols you're actively monitoring. It connects to your broker and displays live bid/ask prices, spread, and price movement.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Streamer Watchlists</h2>
+        <p className="text-gray-300 mb-4">
+          Streamer watchlists are separate from regular watchlists by design. This prevents overloading your machine with too many live data streams.
+        </p>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Why separate watchlists?</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>Each streamed symbol requires a persistent connection to your broker</li>
+          <li>Too many symbols (50+) can slow down your machine and increase latency</li>
+          <li>Streamer watchlists let you focus on symbols you're actively trading</li>
+        </ul>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Recommended limits:</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li><strong>Casual monitoring:</strong> 10-20 symbols</li>
+          <li><strong>Active trading:</strong> 20-30 symbols</li>
+          <li><strong>Maximum recommended:</strong> 50 symbols</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Setting Up the Streamer</h2>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Create a Streamer Watchlist</h3>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Go to Watchlists in the Data Farm</li>
+          <li>Create a new watchlist with a name like "IC Markets Streamer"</li>
+          <li>Add only the symbols you want to monitor in real-time</li>
+        </ol>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/build_streamer_watchlist.png"
+            alt="Build Streamer Watchlist"
+            className="rounded-lg w-full"
+          />
+        </div>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Connect to Your Broker</h3>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Click <strong>Connect & Start</strong> in the Data Farm</li>
+          <li>Select your broker (e.g., IC Markets, AXI, Alpaca)</li>
+          <li>Wait for connection confirmation</li>
+        </ol>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Start the Streamer</h3>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Select your streamer watchlist from the dropdown</li>
+          <li>Click <strong>Start Stream</strong></li>
+          <li>Live prices will begin updating</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Streamer Status Indicators</h2>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-gray-700">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="border border-gray-700 px-4 py-2 text-left">Status</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">🟢 Connected</td>
+                <td className="border border-gray-700 px-4 py-2">Receiving live data</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">🟡 Paused</td>
+                <td className="border border-gray-700 px-4 py-2">Stream paused (click Resume to restart)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">🔴 Disconnected</td>
+                <td className="border border-gray-700 px-4 py-2">No connection to broker</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Pausing and Resuming</h2>
+        <p className="text-gray-300 mb-4">
+          <strong>Live stream paused</strong> - The streamer is connected but not actively updating. This saves resources when you step away.
+        </p>
+        <p className="text-gray-300 mb-4">
+          Click <strong>Resume</strong> to restart the live feed.
+        </p>
+      </div>
+    ),
+  },
+  'data-farm-database-location': {
+    title: 'Database Location',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          All your Data Farm data is stored in a local SQLite database on your machine.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">File Location</h2>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <code className="text-gray-300">C:\S2N Navigator\data\databases\data_farm.db</code>
+        </div>
+
+        <p className="text-gray-300 mb-4">
+          This single file contains:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>All downloaded historical price data (daily, 1-min, etc.)</li>
+          <li>Symbol metadata (names, asset classes, sectors)</li>
+          <li>Your watchlists and watchlist assignments</li>
+          <li>Download queue state</li>
+        </ul>
+
+        <Callout type="warning" title="Important Warnings">
+          Handle with care! Deleting or corrupting this file will erase ALL your downloaded data.
+        </Callout>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6 mt-4">
+          <li>Do not delete <code className="bg-[#2d2d2d] px-2 py-1 rounded">data_farm.db</code> unless you want to start fresh</li>
+          <li>Back up regularly - Copy the file to a safe location</li>
+          <li>Close the app first before copying or moving the database</li>
+          <li>File size grows as you download more data - this is normal</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Backup Recommendations</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Close S2N Navigator completely</li>
+          <li>Navigate to <code className="bg-[#2d2d2d] px-2 py-1 rounded">C:\S2N Navigator\data\databases\</code></li>
+          <li>Copy <code className="bg-[#2d2d2d] px-2 py-1 rounded">data_farm.db</code> to your backup location</li>
+          <li>Consider weekly backups if you're building a large dataset</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Starting Fresh</h2>
+        <p className="text-gray-300 mb-4">
+          If you want to reset your Data Farm completely:
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Close S2N Navigator</li>
+          <li>Delete <code className="bg-[#2d2d2d] px-2 py-1 rounded">data_farm.db</code></li>
+          <li>Restart the app - a new empty database will be created</li>
+        </ol>
       </div>
     ),
   },
@@ -1237,6 +1701,242 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
           <li>Clear economic rationale for why it works</li>
           <li>Simple, logical rules that make intuitive sense</li>
         </ol>
+      </div>
+    ),
+  },
+  'strategy-builder': {
+    title: 'Strategy Builder',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          The Strategy Builder is the core workspace for designing, configuring, and backtesting trading strategies in S2N Navigator.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">In This Section</h2>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li><strong>Overview</strong> - Configuration parameters, running backtests, and troubleshooting</li>
+          <li><strong>Your First Backtest</strong> - Step-by-step walkthrough of creating your first strategy</li>
+          <li><strong>Understanding Results</strong> - How to interpret backtest metrics and equity curves</li>
+        </ul>
+
+        <p className="text-gray-300 mb-4">
+          Select a topic from the sidebar to get started, or continue reading for an overview of the Strategy Builder's capabilities.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">What is the Strategy Builder?</h2>
+        <p className="text-gray-300 mb-4">
+          The Strategy Builder allows you to test trading ideas against historical data to understand how they would have performed in real market conditions. This process, called backtesting, is essential for developing confidence in a strategy before risking real capital.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Key Capabilities</h2>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>Configure and test custom trading strategies</li>
+          <li>Support for multiple data sources (Norgate, MT5, Alpaca, Yahoo)</li>
+          <li>Multiple timeframes from 1-minute to daily bars</li>
+          <li>Advanced risk management controls</li>
+          <li>Comprehensive performance metrics and visualizations</li>
+          <li>Portfolio-level backtesting across multiple symbols</li>
+        </ul>
+      </div>
+    ),
+  },
+  'strategy-builder-overview': {
+    title: 'Strategy Builder Overview',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          The Strategy Builder is where you design, configure, and backtest trading strategies.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Getting Started</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Open S2N Navigator</li>
+          <li>Click Strategy Builder in the sidebar</li>
+          <li>Configure your strategy parameters</li>
+          <li>Click Run Backtest</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Configuration Parameters</h2>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Data Settings</h3>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-gray-700">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="border border-gray-700 px-4 py-2 text-left">Parameter</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Data Source</td>
+                <td className="border border-gray-700 px-4 py-2">Where to load price data from: Norgate, S2N Free (Yahoo), Alpaca, MT5 brokers</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Frequency</td>
+                <td className="border border-gray-700 px-4 py-2">Bar timeframe: daily, weekly, 1min, 5min, 15min, 1hour</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Start Date</td>
+                <td className="border border-gray-700 px-4 py-2">First date of the backtest period</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">End Date</td>
+                <td className="border border-gray-700 px-4 py-2">Last date of the backtest period</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Symbol Selection</h3>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-gray-700">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="border border-gray-700 px-4 py-2 text-left">Parameter</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Symbols</td>
+                <td className="border border-gray-700 px-4 py-2">Trading symbols to include (comma-separated or from watchlist)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Benchmark</td>
+                <td className="border border-gray-700 px-4 py-2">Symbol to compare strategy performance against (e.g., SPY, $SPX)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Strategy Parameters</h3>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-gray-700">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="border border-gray-700 px-4 py-2 text-left">Parameter</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Strategy Type</td>
+                <td className="border border-gray-700 px-4 py-2">The trading logic to use (Momentum, Mean Reversion, etc.)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Lookback Period</td>
+                <td className="border border-gray-700 px-4 py-2">Number of bars to look back for signal calculation</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Entry Threshold</td>
+                <td className="border border-gray-700 px-4 py-2">Signal strength required to enter a position</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Exit Threshold</td>
+                <td className="border border-gray-700 px-4 py-2">Signal strength required to exit a position</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Risk Management</h3>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-gray-700">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="border border-gray-700 px-4 py-2 text-left">Parameter</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Initial Capital</td>
+                <td className="border border-gray-700 px-4 py-2">Starting portfolio value</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Position Size</td>
+                <td className="border border-gray-700 px-4 py-2">How much to allocate per trade (fixed $ or % of portfolio)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Max Positions</td>
+                <td className="border border-gray-700 px-4 py-2">Maximum number of concurrent positions</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Stop Loss</td>
+                <td className="border border-gray-700 px-4 py-2">Exit if position loses this % (optional)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Take Profit</td>
+                <td className="border border-gray-700 px-4 py-2">Exit if position gains this % (optional)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Running a Backtest</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li><strong>Configure all parameters</strong> - Ensure data source matches your symbols</li>
+          <li><strong>Click Run Backtest</strong> - The engine loads data and simulates trades</li>
+          <li><strong>Review Results</strong> - Performance metrics, equity curve, trade log</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Understanding Results</h2>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-gray-700">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="border border-gray-700 px-4 py-2 text-left">Metric</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Total Return</td>
+                <td className="border border-gray-700 px-4 py-2">Overall % gain/loss</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">CAGR</td>
+                <td className="border border-gray-700 px-4 py-2">Compound Annual Growth Rate</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Sharpe Ratio</td>
+                <td className="border border-gray-700 px-4 py-2">Risk-adjusted return (higher is better)</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Max Drawdown</td>
+                <td className="border border-gray-700 px-4 py-2">Largest peak-to-trough decline</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Win Rate</td>
+                <td className="border border-gray-700 px-4 py-2">% of trades that were profitable</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Profit Factor</td>
+                <td className="border border-gray-700 px-4 py-2">Gross profits / Gross losses</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Troubleshooting</h2>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-6 my-6">
+          <h3 className="text-lg font-semibold mb-3">"No data available for symbols"</h3>
+          <ul className="list-disc list-inside space-y-2 text-gray-300">
+            <li>Check your Data Source matches where your symbols exist</li>
+            <li>Norgate symbols won't work with MT5 data source and vice versa</li>
+            <li>Verify the symbol names are correct (MT5 uses suffixes like .a)</li>
+          </ul>
+        </div>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-6 my-6">
+          <h3 className="text-lg font-semibold mb-3">"Insufficient overlapping data"</h3>
+          <ul className="list-disc list-inside space-y-2 text-gray-300">
+            <li>Your symbols don't have enough common date range</li>
+            <li>Try a shorter backtest period or remove newer symbols</li>
+          </ul>
+        </div>
       </div>
     ),
   },
