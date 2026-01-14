@@ -68,8 +68,8 @@ export function Pricing() {
       ctaVariant: 'secondary' as const,
     },
     {
-      name: 'Pro Launch Special',
-      price: '$990',
+      name: 'Early Adopter Special',
+      price: '$350',
       period: '/year',
       description: 'Annual license',
       badge: 'Ends Feb 28, 2026',
@@ -87,7 +87,7 @@ export function Pricing() {
       ],
       cta: 'Get Started',
       ctaVariant: 'primary' as const,
-      subtext: '$82.50/month billed annually',
+      subtext: '$29.15/month billed annually',
     },
     {
       name: 'Pro',
@@ -120,7 +120,7 @@ export function Pricing() {
     },
     {
       question: 'Are these annual licenses?',
-      answer: 'Yes, all Pro licenses are annual licenses billed upfront. You get full access to Navigator for 12 months. The launch special at $990/year ends February 28, 2026, after which the standard price is $1,500/year.',
+      answer: 'Yes, all Pro licenses are annual licenses billed upfront. You get full access to Navigator for 12 months. The launch special at $350/year ends February 28, 2026, after which the standard price is $1,500/year.',
     },
     {
       question: 'Do I need a credit card for the trial?',
@@ -148,12 +148,12 @@ export function Pricing() {
     <div className="w-full">
       <section className="py-12 md:py-20 bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]">
         <div className="max-w-6xl mx-auto px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 md:mb-6">Professional Tools, Retail Pricing</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 md:mb-6">Institutional-Grade Framework</h1>
           <p className="text-lg sm:text-xl md:text-2xl text-[#FF9500] font-semibold text-center mb-3 md:mb-4">
             Don't be fooled by randomness.
           </p>
-          <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-2 max-w-2xl mx-auto">
-            Start free, upgrade when ready. Get institutional-grade infrastructure at a retail price.
+          <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-2 max-w-3xl mx-auto">
+            Navigator is opinionated and curated. The trial is intentionally limited to prevent misuse and false confidence. These constraints exist for your protection.
           </p>
           <p className="text-center text-white font-semibold text-base md:text-lg mb-8 md:mb-12">
             All Pro licenses are annual licenses, billed upfront
@@ -227,7 +227,7 @@ export function Pricing() {
 
           <div className="bg-[#2d2d2d] border border-[#3d3d3d] p-6 md:p-8 rounded-lg">
             <p className="text-center text-gray-300 text-sm md:text-base">
-              <span className="text-[#FF9500] font-semibold">All plans include:</span> Built-in bias detection, Quant scoring system inspired by the best minds in finance, Leaderboards that never forget, Real-time data streaming, 24/7 platform access
+              <span className="text-[#FF9500] font-semibold">All plans include:</span> Scientific bias detection, Organizational framework under one roof, Rear-view mirrors for continuous monitoring, Institutional-grade structure, Curated strategies designed to avoid common failure modes
             </p>
           </div>
         </div>
@@ -274,7 +274,7 @@ export function Pricing() {
             <p className="text-gray-400 text-sm">
               Already a customer?{' '}
               <a
-                href="https://billing.stripe.com/p/login/test_YOUR_PORTAL_ID"
+                href={import.meta.env.VITE_STRIPE_PORTAL_LOGIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#FF9500] hover:underline font-semibold"
@@ -289,16 +289,16 @@ export function Pricing() {
       <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="bg-gradient-to-r from-[#2d2d2d] to-[#3d3d3d] p-6 sm:p-8 md:p-12 rounded-lg border border-[#FF9500] text-center">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4">Ready to Navigate from Backtest to Live Trading?</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4">A Framework for Survival</h2>
             <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 max-w-2xl mx-auto">
-              Stop being fooled by randomness. Start with our free trial and experience all features with zero risk and no credit card required.
+              Navigator does not maximize returns. It maximizes the probability of long-term survival and slightly above-average outcomes. Start your intentionally limited trial.
             </p>
             <Button
               variant="primary"
               className="px-6 md:px-8 py-3 md:py-4"
               onClick={() => window.location.hash = 'trial'}
             >
-              Start Your Free Trial Now
+              Start Free Trial
             </Button>
           </div>
         </div>

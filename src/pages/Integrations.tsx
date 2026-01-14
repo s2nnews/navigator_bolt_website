@@ -19,19 +19,19 @@ export function Integrations() {
       logoClass: 'filter brightness-0 invert opacity-90'
     },
     {
-      name: 'Financial Data',
-      logo: '/logos/financialdata.png',
-      category: 'Data Provider',
-      description: 'Institutional-grade financial data covering global equities, futures, forex, and economic indicators.',
+      name: 'TradeStation',
+      logo: '/logos/tradestation.svg',
+      category: 'Broker',
+      description: 'Award-winning platform for active traders with powerful analysis tools and competitive pricing.',
       features: [
-        'Global market coverage',
-        'Real-time and historical data',
-        'Economic indicators',
-        'Alternative data sets'
+        'Advanced trading tools',
+        'Low commissions',
+        'Strategy automation',
+        'Educational resources'
       ],
-      deal: 'Exclusive discount for Navigator members',
-      url: '#',
-      logoClass: ''
+      deal: 'Partner integration available',
+      url: 'https://www.tradestation.com',
+      logoClass: 'filter brightness-0 invert opacity-90'
     },
     {
       name: 'Alpaca',
@@ -65,19 +65,19 @@ export function Integrations() {
       useWhiteBackground: true
     },
     {
-      name: 'TradeStation',
-      logo: '/logos/tradestation.svg',
-      category: 'Broker',
-      description: 'Award-winning platform for active traders with powerful analysis tools and competitive pricing.',
+      name: 'Financial Data',
+      logo: '/logos/financialdata.png',
+      category: 'Data Provider',
+      description: 'Institutional-grade financial data covering global equities, futures, forex, and economic indicators.',
       features: [
-        'Advanced trading tools',
-        'Low commissions',
-        'Strategy automation',
-        'Educational resources'
+        'Global market coverage',
+        'Real-time and historical data',
+        'Economic indicators',
+        'Alternative data sets'
       ],
-      deal: 'Partner integration available',
-      url: 'https://www.tradestation.com',
-      logoClass: 'filter brightness-0 invert opacity-90'
+      deal: 'Exclusive discount for Navigator members',
+      url: '#',
+      logoClass: ''
     }
   ];
 

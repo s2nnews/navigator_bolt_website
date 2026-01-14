@@ -31,10 +31,12 @@ const docSections = [
           { id: 'data-farm-introduction', label: 'Introduction' },
           { id: 'data-farm-tradestation', label: 'TradeStation Setup' },
           { id: 'data-farm-mt5', label: 'MT5 IC Markets Setup' },
+          { id: 'data-farm-build-vs-connect', label: 'Data Farming' },
           { id: 'data-farm-live-streamer', label: 'Live Streamer' },
           { id: 'data-farm-database-location', label: 'Database Location' },
         ]
       },
+      { id: 'license-upgrade', label: 'License Upgrade' },
     ],
   },
   {
@@ -600,6 +602,14 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
           />
         </div>
 
+        <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+          <img
+            src="/getting_started/strategy_pipeline_kanban_dashboard.png"
+            alt="Strategy Pipeline Kanban Dashboard"
+            className="rounded-lg w-full"
+          />
+        </div>
+
         <h2 className="text-2xl font-bold mt-8 mb-4">Research Notes: Capturing and Evolving Ideas</h2>
         <p className="text-gray-300 mb-4">
           In keeping with the focus on organisation and productivity, Navigator includes a Research Notes module.
@@ -736,6 +746,9 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
           <li><strong>Introduction</strong> - Core concepts, database structure, and getting started with free data</li>
           <li><strong>TradeStation Setup</strong> - Connect your TradeStation account for professional-grade equities and futures data</li>
           <li><strong>MT5 IC Markets Setup</strong> - Connect MetaTrader 5 for forex and CFD data</li>
+          <li><strong>Data Farming</strong> - Understanding Build History vs Connect workflows</li>
+          <li><strong>Live Streamer</strong> - Real-time price updates for active monitoring</li>
+          <li><strong>Database Location</strong> - Configure where your data is stored</li>
         </ul>
 
         <Callout type="info" title="Start with the Introduction">
@@ -1316,6 +1329,143 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
       </div>
     ),
   },
+  'data-farm-build-vs-connect': {
+    title: 'Data Farming',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <h2 className="text-3xl font-bold mb-6">Build History vs Connect</h2>
+        <p className="text-xl text-gray-300 mb-8">
+          Two distinct workflows for managing your data:
+        </p>
+
+        <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6 mb-8">
+          <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <span className="text-3xl">🔨</span>
+            BUILD HISTORY — Create Your Database Dimensions
+          </h3>
+          <p className="text-gray-300 mb-4">
+            Build History is how you deliberately construct your database. You choose:
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
+            <li>Select your broker (MT5 IC Markets, Alpaca, TradeStation, etc.)</li>
+            <li>Select a watchlist or use "All Symbols"</li>
+            <li>Choose the timeframe (Daily, 1min, 5min, 15min, 1hour)</li>
+            <li>Set your start date (how far back to download)</li>
+            <li>Click <strong>START BACKFILL</strong></li>
+          </ul>
+
+          <Callout type="info" title="Key Points">
+            <ul className="list-disc list-inside space-y-2 text-gray-300">
+              <li>If you only want daily data → build only daily</li>
+              <li>If you want daily + 10min → build daily first, then build 10min</li>
+              <li>You are in control — nothing downloads unless you choose it</li>
+              <li>Just because you imported 128 MT5 symbols doesn't mean your watchlist needs all of them</li>
+            </ul>
+          </Callout>
+
+          <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+            <img
+              src="/getting_started/tradestation_build_popup.png"
+              alt="Build History Interface"
+              className="rounded-lg w-full"
+            />
+          </div>
+
+          <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+            <img
+              src="/getting_started/ic_markets_build_history.png"
+              alt="IC Markets Build History Process"
+              className="rounded-lg w-full"
+            />
+          </div>
+        </div>
+
+        <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6 mb-8">
+          <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <span className="text-3xl">🔌</span>
+            CONNECT — Update Existing Data
+          </h3>
+          <p className="text-gray-300 mb-4">
+            Connect is for maintaining what you've already built:
+          </p>
+          <ol className="list-decimal list-inside space-y-2 text-gray-300 mb-4">
+            <li>Select your broker</li>
+            <li>Select your watchlist</li>
+            <li>Click <strong>Connect</strong></li>
+          </ol>
+
+          <p className="text-gray-300 mb-2 font-semibold">What happens automatically:</p>
+          <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
+            <li>Queries database for symbols in your watchlist</li>
+            <li>Finds ALL existing timeframes (daily, 10min, whatever you built)</li>
+            <li>Queues updates for everything — no choosing required</li>
+            <li>Updates last 7 days of data to fill gaps</li>
+          </ul>
+
+          <Callout type="tip" title="Example">
+            If your "IC Markets Forex" watchlist has symbols with daily and 10min data, Connect updates BOTH automatically.
+          </Callout>
+
+          <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
+            <img
+              src="/getting_started/tradestation_connect.png"
+              alt="Connect Interface for Updating Data"
+              className="rounded-lg w-full"
+            />
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Workflow Summary</h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="min-w-full bg-[#1a1a1a] border border-[#3d3d3d]">
+            <thead>
+              <tr className="bg-[#2d2d2d]">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Action</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Purpose</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Timeframes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Build History</td>
+                <td className="px-6 py-4 text-gray-300">Create/extend database</td>
+                <td className="px-6 py-4 text-gray-300">You choose one at a time</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-gray-300">Connect</td>
+                <td className="px-6 py-4 text-gray-300">Update existing data</td>
+                <td className="px-6 py-4 text-gray-300">All existing timeframes auto-updated</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Best Practices</h2>
+        <div className="space-y-3">
+          <div className="flex gap-3">
+            <span className="text-[#FF9500] flex-shrink-0">→</span>
+            <p className="text-gray-300"><strong>Start small</strong> — Build daily first for a focused watchlist</p>
+          </div>
+          <div className="flex gap-3">
+            <span className="text-[#FF9500] flex-shrink-0">→</span>
+            <p className="text-gray-300"><strong>Add timeframes deliberately</strong> — Only build 1min/5min if you need them</p>
+          </div>
+          <div className="flex gap-3">
+            <span className="text-[#FF9500] flex-shrink-0">→</span>
+            <p className="text-gray-300"><strong>Use watchlists</strong> — Don't update everything, update what matters</p>
+          </div>
+          <div className="flex gap-3">
+            <span className="text-[#FF9500] flex-shrink-0">→</span>
+            <p className="text-gray-300"><strong>Connect regularly</strong> — Keep your data fresh with one click</p>
+          </div>
+        </div>
+
+        <Callout type="success" title="Understanding Data Farming">
+          You now understand the difference between building your database dimensions (Build History) and maintaining existing data (Connect). This deliberate approach prevents database bloat and keeps your workflow focused.
+        </Callout>
+      </div>
+    ),
+  },
   'data-farm-live-streamer': {
     title: 'Live Streamer',
     content: (
@@ -1461,6 +1611,81 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
           <li>Delete <code className="bg-[#2d2d2d] px-2 py-1 rounded">data_farm.db</code></li>
           <li>Restart the app - a new empty database will be created</li>
         </ol>
+      </div>
+    ),
+  },
+  'license-upgrade': {
+    title: 'License Upgrade',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          Manage and upgrade your S2N Navigator license at any time through the Settings panel.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Accessing the License Tab</h2>
+        <p className="text-gray-300 mb-4">
+          The License tab is located in the Settings menu, accessible from the Cockpit Home dashboard:
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Open <strong>Cockpit Home</strong></li>
+          <li>Click the <strong>Settings</strong> button (gear icon)</li>
+          <li>Navigate to the <strong>License</strong> tab (key icon)</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Current License Status</h2>
+        <p className="text-gray-300 mb-4">
+          The License tab displays your current license information:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li><strong>License Type</strong> - Shows whether you have a Trial or Full license</li>
+          <li><strong>Expiry Date</strong> - The date your current license expires</li>
+          <li><strong>Days Remaining</strong> - Color-coded indicator showing time left on your license
+            <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+              <li className="text-green-400">Green - Plenty of time remaining</li>
+              <li className="text-orange-400">Orange - License expiring soon</li>
+              <li className="text-red-400">Red - License expiring very soon or expired</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Activating a New License Key</h2>
+        <p className="text-gray-300 mb-4">
+          You can upgrade or renew your license at any time without waiting for expiration:
+        </p>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>In the License tab, locate the <strong>Enter New License Key</strong> section</li>
+          <li>Paste or type your new license key into the text input field</li>
+          <li>Click the <strong>Activate License</strong> button</li>
+          <li>The system will validate and save your new license</li>
+          <li>Your license status will update immediately upon successful activation</li>
+        </ol>
+
+        <Callout type="success" title="Seamless Upgrades">
+          You can upgrade your license at any time. There's no need to wait until your current license expires - the new license will take effect immediately.
+        </Callout>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Getting a License</h2>
+        <p className="text-gray-300 mb-4">
+          If you don't have a license key yet, or want to upgrade to a different tier, use these options:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li><strong>View Pricing</strong> - Opens the pricing page where you can purchase a Full or Pro license</li>
+          <li><strong>Start Free Trial</strong> - Opens the trial page to begin a free evaluation of S2N Navigator</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">License Key Format</h2>
+        <p className="text-gray-300 mb-4">
+          License keys are provided via email after purchase or trial registration. Make sure to:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>Copy the entire license key exactly as provided</li>
+          <li>Avoid adding spaces or line breaks</li>
+          <li>Keep your license key in a safe place for future reference</li>
+        </ul>
+
+        <Callout type="tip" title="Quick Access">
+          From the Cockpit Home dashboard, click the Settings gear icon, then select the License tab to manage your subscription anytime.
+        </Callout>
       </div>
     ),
   },

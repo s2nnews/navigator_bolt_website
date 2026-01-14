@@ -108,7 +108,7 @@ export function Learn({ onNavigate, initialPath = '' }: LearnProps) {
           <div className="grid md:grid-cols-2 gap-6">
             <ContentCard
               icon={<BookOpen size={24} />}
-              title="Complete Beginner"
+              title="User Guide"
               description="New to backtesting? Start here to learn the fundamentals."
               difficulty="Beginner"
               duration="~2 hours"

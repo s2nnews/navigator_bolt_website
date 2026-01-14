@@ -54,8 +54,8 @@ export function Footer({ setCurrentPage }: FooterProps) {
   return (
     <footer className="bg-[#0f0f0f] border-t border-[#2d2d2d] mt-20">
       <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div className="md:col-span-1">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8">
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <img src="/logos/S2N_Navigator_64.png" alt="S2N Navigator" className="w-16 h-16" />
               <span className="font-bold">S2N Navigator</span>
@@ -73,42 +73,40 @@ export function Footer({ setCurrentPage }: FooterProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:col-span-2">
-            <div>
-              <h3 className="font-semibold mb-4 text-white">Product</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><button onClick={() => handleNavClick('features')} className="hover:text-[#FF9500] transition-colors">Features</button></li>
-                <li><button onClick={() => handleNavClick('pricing')} className="hover:text-[#FF9500] transition-colors">Pricing</button></li>
-                <li><button onClick={() => handleNavClick('integrations')} className="hover:text-[#FF9500] transition-colors">Integrations</button></li>
-                <li><a href={import.meta.env.VITE_STRIPE_PORTAL_LOGIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#FF9500] transition-colors">Manage Subscription</a></li>
-                <li><button onClick={() => handleNavClick('downloads')} className="hover:text-[#FF9500] transition-colors">Download</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4 text-white">Company</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><button onClick={() => handleNavClick('about')} className="hover:text-[#FF9500] transition-colors">About</button></li>
-                <li><button onClick={() => handleNavClick('affiliate')} className="hover:text-[#FF9500] transition-colors">Affiliate</button></li>
-                <li><button onClick={() => handleNavClick('contact')} className="hover:text-[#FF9500] transition-colors">Contact</button></li>
-                <li><a href="#" className="hover:text-[#FF9500] transition-colors">Blog</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4 text-white">Legal</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><button onClick={() => handleNavClick('disclaimer')} className="hover:text-[#FF9500] transition-colors font-semibold text-[#FF9500]">Trading Disclaimer</button></li>
-                <li><button onClick={() => handleNavClick('terms')} className="hover:text-[#FF9500] transition-colors">Terms & Conditions</button></li>
-                <li><button onClick={() => handleNavClick('privacy')} className="hover:text-[#FF9500] transition-colors">Privacy Policy</button></li>
-                <li><button onClick={() => handleNavClick('refunds')} className="hover:text-[#FF9500] transition-colors">Refund Policy</button></li>
-              </ul>
-            </div>
+          <div>
+            <h3 className="font-semibold mb-4 text-white">Product</h3>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><button onClick={() => handleNavClick('features')} className="hover:text-[#FF9500] transition-colors">Features</button></li>
+              <li><button onClick={() => handleNavClick('pricing')} className="hover:text-[#FF9500] transition-colors">Pricing</button></li>
+              <li><button onClick={() => handleNavClick('integrations')} className="hover:text-[#FF9500] transition-colors">Integrations</button></li>
+              <li><a href={import.meta.env.VITE_STRIPE_PORTAL_LOGIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#FF9500] transition-colors">Manage Subscription</a></li>
+              <li><button onClick={() => handleNavClick('downloads')} className="hover:text-[#FF9500] transition-colors">Download</button></li>
+            </ul>
           </div>
 
-          <div className="md:col-span-1">
-            <h3 className="font-semibold mb-2 text-white text-sm">Michael Berman's free daily</h3>
-            <p className="text-xs text-gray-400 mb-3">Global Macro Newsletter Signup</p>
+          <div>
+            <h3 className="font-semibold mb-4 text-white">Company</h3>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><button onClick={() => handleNavClick('about')} className="hover:text-[#FF9500] transition-colors">About</button></li>
+              <li><button onClick={() => handleNavClick('affiliate')} className="hover:text-[#FF9500] transition-colors">Affiliate</button></li>
+              <li><button onClick={() => handleNavClick('contact')} className="hover:text-[#FF9500] transition-colors">Contact</button></li>
+              <li><a href="#" className="hover:text-[#FF9500] transition-colors">Blog</a></li>
+            </ul>
+          </div>
+
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="font-semibold mb-4 text-white">Legal</h3>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><button onClick={() => handleNavClick('disclaimer')} className="hover:text-[#FF9500] transition-colors font-semibold text-[#FF9500]">Trading Disclaimer</button></li>
+              <li><button onClick={() => handleNavClick('terms')} className="hover:text-[#FF9500] transition-colors">Terms & Conditions</button></li>
+              <li><button onClick={() => handleNavClick('privacy')} className="hover:text-[#FF9500] transition-colors">Privacy Policy</button></li>
+              <li><button onClick={() => handleNavClick('refunds')} className="hover:text-[#FF9500] transition-colors">Refund Policy</button></li>
+            </ul>
+          </div>
+
+          <div className="col-span-2 md:col-span-4 max-w-md mx-auto">
+            <h3 className="font-semibold mb-2 text-white text-sm">Join 4,000+ subscribers to Michael Berman's free daily</h3>
+            <p className="text-xs text-gray-400 mb-3">Signal2Noise (S2N) Global Macro Newsletter</p>
             <div id="footer-newsletter-embed" className="bg-[#1a1a1a] p-3 rounded-lg border border-[#FF9500]">
               <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2">
                 <input

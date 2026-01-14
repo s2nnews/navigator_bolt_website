@@ -12,40 +12,121 @@ export function Home() {
         <span className="text-base md:text-lg">S2N Navigator is currently in Alpha Testing</span>
       </div>
 
-      <section className="bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f] py-20 md:py-32">
-        <div className="max-w-6xl mx-auto px-4 w-full">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-            <div className="text-center md:text-left">
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight max-w-xl mx-auto md:mx-0">
-                Backtesting to<br/> Live Trading<br/>with Edge
+      <section className="relative bg-gradient-to-b from-[#1a1a1a] via-[#151515] to-[#0f0f0f] py-8 sm:py-12 md:py-16 lg:py-12 overflow-hidden">
+        {/* Subtle background accent */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#FF9500]/5 via-transparent to-transparent opacity-40"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative">
+          <div className="grid lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-center">
+            {/* Left Content - Desktop: 7 cols, Mobile: full width with flex ordering */}
+            <div className="lg:col-span-7 text-left flex flex-col lg:space-y-3 lg:block">
+              {/* Small badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2d2d2d] border border-[#3d3d3d] text-sm text-gray-300 mb-3 sm:mb-4 order-1">
+                <Brain size={16} className="text-[#FF9500]" />
+                <span>Bias-Aware Framework</span>
+              </div>
+
+              {/* Main headline - bigger on mobile */}
+              <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-10 sm:mb-12 order-2">
+                <span className="block text-white">Backtesting to</span>
+                <span className="block text-white">Live Trading</span>
+                <span className="block bg-gradient-to-r from-[#FF9500] to-[#FF7A00] bg-clip-text text-transparent pb-2">with Edge</span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-[#FF9500] font-semibold mb-3 md:mb-4">
+
+              {/* Tagline */}
+              <p className="text-xl sm:text-2xl md:text-3xl text-[#FF9500] font-semibold mb-8 order-3">
                 Don't be fooled by randomness.
               </p>
-              <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-6 md:mb-8">
-                The world's first commercial backtesting framework with built-in bias detection and a modular workflow to production. See the truth, not the illusion.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-4 justify-center md:justify-start">
+
+              {/* Image on mobile only - appears after tagline on mobile */}
+              <div className="lg:hidden relative mb-6 order-4">
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#FF9500] to-[#FF7A00] rounded-xl opacity-20 group-hover:opacity-40 blur transition-opacity duration-300"></div>
+                  <div className="relative rounded-lg overflow-hidden shadow-2xl shadow-black/50 border border-[#3d3d3d]">
+                    <img
+                      src="/feature_images/backtest_score_key_image_updated.png"
+                      alt="S2N Navigator Scoring System"
+                      className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-6 justify-start order-5">
                 <Button
                   variant="primary"
-                  className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
+                  className="group w-full sm:w-auto text-lg px-8 py-4 shadow-lg shadow-[#FF9500]/20 hover:shadow-[#FF9500]/40 transition-all duration-300"
                   onClick={() => window.location.hash = 'trial'}
                 >
-                  Start Free Trial
+                  <span>Start Free Trial</span>
+                  <ArrowRight className="inline ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                 </Button>
                 <Button
                   variant="secondary"
-                  className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
+                  className="w-full sm:w-auto text-lg px-8 py-4"
                   onClick={() => setIsVideoOpen(true)}
                 >
                   Watch Demo
                 </Button>
               </div>
-              <p className="text-gray-500 text-sm md:text-base mb-6 md:mb-0">14-day free trial. No credit card required.</p>
+
+              {/* Description paragraphs with better spacing */}
+              <div className="space-y-4 text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl lg:mx-0 mb-6 order-6">
+                <p>
+                  Navigator is a bias-aware, AI-enabled organisational framework designed to reduce the most common causes of trading failure — overfitting, fragmentation, and self-deception.
+                </p>
+                <p className="text-gray-400">
+                  By bringing research, strategy development, deployment, and monitoring under one roof, Navigator gives you a higher probability of long-term survival and compounding than chasing performance mirages.
+                </p>
+              </div>
+
+              {/* Key value proposition - styled differently */}
+              <div className="relative mb-6 order-7">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#FF9500] to-transparent"></div>
+                <p className="pl-6 text-base sm:text-lg md:text-xl text-white font-semibold leading-relaxed">
+                  Navigator does not help you find the best strategy.<br className="hidden sm:block"/>
+                  <span className="text-gray-300">It helps you avoid the bad ones — and stay in the game.</span>
+                </p>
+              </div>
+
+              {/* Trust badge */}
+              <p className="text-gray-500 text-sm sm:text-base flex items-center gap-2 justify-start order-8">
+                <Lock size={16} className="text-gray-600" />
+                <span>14-day free trial. No credit card required.</span>
+              </p>
             </div>
-            <div className="flex flex-col gap-4 pt-0 md:pt-[22px]">
-              <img src="/Backtest Score Key image.png" alt="S2N Navigator Scoring System" className="w-full max-w-md rounded-lg shadow-2xl" />
-              <img src="/feature_images/control center.png" alt="Control Center" className="w-full max-w-md rounded-lg shadow-lg" />
+
+            {/* Right Images - Desktop: 5 cols, Hidden on mobile (shown inline above) */}
+            <div className="hidden lg:block lg:col-span-5 relative mt-6 lg:mt-0">
+              <div className="relative space-y-6">
+                {/* Main featured image with accent border */}
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#FF9500] to-[#FF7A00] rounded-xl opacity-20 group-hover:opacity-40 blur transition-opacity duration-300"></div>
+                  <div className="relative rounded-lg overflow-hidden shadow-2xl shadow-black/50 border border-[#3d3d3d]">
+                    <img
+                      src="/feature_images/backtest_score_key_image_updated.png"
+                      alt="S2N Navigator Scoring System"
+                      className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Secondary image - hidden on mobile, visible on desktop */}
+                <div className="hidden md:block relative group lg:ml-8">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#FF7A00] to-[#FF9500] rounded-xl opacity-10 group-hover:opacity-30 blur transition-opacity duration-300"></div>
+                  <div className="relative rounded-lg overflow-hidden shadow-xl shadow-black/40 border border-[#2d2d2d]">
+                    <img
+                      src="/feature_images/cockpit_home.png"
+                      alt="Cockpit Home"
+                      className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Decorative element - desktop only */}
+                <div className="hidden lg:block absolute -right-12 top-1/2 -translate-y-1/2 w-32 h-32 bg-[#FF9500]/5 rounded-full blur-3xl"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -53,25 +134,25 @@ export function Home() {
 
       <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 md:mb-4">The Problem with Traditional Backtesting</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 md:mb-4">Why Most Trading Fails</h2>
           <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-8 md:mb-16 max-w-3xl mx-auto">
-            Most traders lose money because they can't distinguish real signal from random noise.
+            Markets are noisy, deceptive, and regime-dependent. Most backtests fail out of sample because cognitive bias and poor organization hide mistakes and reinforce false confidence.
           </p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             <div className="bg-[#2d2d2d] p-6 md:p-8 rounded-lg border border-[#3d3d3d]">
-              <div className="text-4xl md:text-5xl mb-3 md:mb-4">📊</div>
-              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Inflated Metrics Mask the Truth</h3>
-              <p className="text-sm md:text-base text-gray-400">Traditional performance metrics hide overfitting and multiple testing bias, making lucky trades look like skill.</p>
+              <div className="text-4xl md:text-5xl mb-3 md:mb-4">🧠</div>
+              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Cognitive Bias</h3>
+              <p className="text-sm md:text-base text-gray-400">Confirmation bias, narrative fallacies, and wishful thinking lead traders to see patterns where none exist.</p>
             </div>
             <div className="bg-[#2d2d2d] p-6 md:p-8 rounded-lg border border-[#3d3d3d]">
-              <div className="text-4xl md:text-5xl mb-3 md:mb-4">⚠️</div>
-              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Testing leads to False Positives</h3>
-              <p className="text-sm md:text-base text-gray-400">The more strategies you test, the higher the chance of finding one that worked by pure chance alone.</p>
+              <div className="text-4xl md:text-5xl mb-3 md:mb-4">📊</div>
+              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Overfitting</h3>
+              <p className="text-sm md:text-base text-gray-400">More choice increases bias, not edge. Test enough parameters and any backtest looks good by chance alone.</p>
             </div>
             <div className="bg-[#2d2d2d] p-6 md:p-8 rounded-lg border border-[#3d3d3d] sm:col-span-2 md:col-span-1">
-              <div className="text-4xl md:text-5xl mb-3 md:mb-4">📉</div>
-              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Backtests Die in Live Trading</h3>
-              <p className="text-sm md:text-base text-gray-400">Without scientific bias correction, stellar backtest results often collapse when facing real market conditions.</p>
+              <div className="text-4xl md:text-5xl mb-3 md:mb-4">📁</div>
+              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Fragmented Workflow</h3>
+              <p className="text-sm md:text-base text-gray-400">Scattered scripts, disconnected notebooks, and forgotten assumptions create blind spots that compound over time.</p>
             </div>
           </div>
         </div>
@@ -79,12 +160,12 @@ export function Home() {
 
       <section className="py-12 md:py-20 bg-[#0f0f0f] border-y border-[#2d2d2d]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 md:mb-6">The S2N Navigator Difference</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 md:mb-6">An Organizational Framework Under One Roof</h2>
           <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-3 md:mb-4 max-w-3xl mx-auto">
-            The world's first commercial backtesting framework with built-in bias detection. The world's most advanced AI models fully integrated and trained to build strategies using the Navigator framework with performance visualisations along with tailored report explanations.
+            Navigator brings strategy development, data farming, research notes, journaling, workflow tracking, monitoring, and feedback into a single coherent framework designed to keep decisions observable, auditable, and connected over time.
           </p>
           <p className="text-center text-[#FF9500] text-base sm:text-lg md:text-xl font-semibold mb-8 md:mb-12">
-            Clarity over confusion. Robustness over randomness. Discipline over emotion.
+            The purpose is not convenience. It is surveillance and self-awareness.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-8 md:mb-16">
@@ -97,8 +178,8 @@ export function Home() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Built-In Bias Detection</h3>
-                  <p className="text-sm md:text-base text-gray-400">Reveals hidden fragility, randomness, and overfitting. Protects you from false confidence and misleading curves.</p>
+                  <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Rear-View Mirrors</h3>
+                  <p className="text-sm md:text-base text-gray-400">See when assumptions break, when behavior drifts, when strategies deviate from intent. Continuous feedback loops prevent blind spots.</p>
                 </div>
               </div>
               <div className="flex gap-3 md:gap-4">
@@ -109,8 +190,8 @@ export function Home() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Quant Scoring System</h3>
-                  <p className="text-sm md:text-base text-gray-400">Inspired by the best minds in quant finance. Evaluates robustness, fragility, stability, and tail risk.</p>
+                  <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Institutional-Grade Structure</h3>
+                  <p className="text-sm md:text-base text-gray-400">Workflows are structured. Research is tracked. Decisions are monitored. Nothing important lives in isolation.</p>
                 </div>
               </div>
               <div className="flex gap-3 md:gap-4">
@@ -121,13 +202,13 @@ export function Home() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Blockchain-Locked Trades</h3>
-                  <p className="text-sm md:text-base text-gray-400">Every trade cryptographically locked. Prevents tampering, hindsight edits, and manipulation.</p>
+                  <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Scientific Bias Detection</h3>
+                  <p className="text-sm md:text-base text-gray-400">Reveals hidden fragility, randomness, and overfitting. Protects you from false confidence when none is justified.</p>
                 </div>
               </div>
             </div>
             <div className="hidden md:flex justify-center">
-              <img src="/feature_images/backtest report equity.png" alt="Backtest Report" className="w-full max-w-md rounded-lg shadow-2xl" />
+              <img src="/feature_images/backtest_report_equity.png" alt="Backtest Report" className="w-full max-w-md rounded-lg shadow-2xl" />
             </div>
           </div>
         </div>
@@ -135,35 +216,48 @@ export function Home() {
 
       <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">Professional Features</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 md:mb-4">Everything Under One Roof</h2>
+          <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-8 md:mb-16 max-w-3xl mx-auto">
+            No more scattered scripts, disconnected notebooks, or forgotten strategies. Navigator brings your entire workflow into a single coherent framework.
+          </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             <div className="bg-[#2d2d2d] rounded-lg border border-[#3d3d3d] hover:border-[#FF9500] transition-colors overflow-hidden">
               <div className="h-32 sm:h-40 md:h-48 overflow-hidden">
                 <img src="/feature_images/DataFarm.png" alt="DataFarm" className="w-full h-full object-cover" />
               </div>
               <div className="p-4 md:p-6">
-                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Institutional-Grade Data</h3>
-                <p className="text-sm md:text-base text-gray-400">Survivorship-bias-free equities, properly rolled futures, FX, indices, and macro datasets. Instant access.</p>
+                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Data Farming</h3>
+                <p className="text-sm md:text-base text-gray-400">Clean, structured, survivorship-bias-free data. No more hunting for datasets or questioning data quality.</p>
               </div>
             </div>
 
             <div className="bg-[#2d2d2d] rounded-lg border border-[#3d3d3d] hover:border-[#FF9500] transition-colors overflow-hidden">
               <div className="h-32 sm:h-40 md:h-48 overflow-hidden">
-                <img src="/feature_images/AI.png" alt="AI Integration" className="w-full h-full object-cover" />
+                <img src="/feature_images/strategy_builder_copy.png" alt="Strategy Builder" className="w-full h-full object-cover" />
               </div>
               <div className="p-4 md:p-6">
-                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Python Editor + AI Integration</h3>
-                <p className="text-sm md:text-base text-gray-400">Built-in editor with AI that understands Navigator architecture. Generate signals internally or pass external signals.</p>
+                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Strategy Development</h3>
+                <p className="text-sm md:text-base text-gray-400">Python editor with AI integration. Ships with curated strategies designed to avoid common failure modes.</p>
               </div>
             </div>
 
             <div className="bg-[#2d2d2d] rounded-lg border border-[#3d3d3d] hover:border-[#FF9500] transition-colors overflow-hidden">
               <div className="h-32 sm:h-40 md:h-48 overflow-hidden">
-                <img src="/feature_images/leaderboard.png" alt="Leaderboard" className="w-full h-full object-cover" />
+                <img src="/feature_images/leaderboard_copy.png" alt="Leaderboard" className="w-full h-full object-cover" />
               </div>
               <div className="p-4 md:p-6">
-                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Leaderboards That Never Forget</h3>
-                <p className="text-sm md:text-base text-gray-400">Every backtest saved, ranked, scored, and archived. Your research becomes a living library.</p>
+                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Research Archive</h3>
+                <p className="text-sm md:text-base text-gray-400">Every backtest saved, ranked, and archived. Your research becomes a living library that never forgets.</p>
+              </div>
+            </div>
+
+            <div className="bg-[#2d2d2d] rounded-lg border border-[#3d3d3d] hover:border-[#FF9500] transition-colors overflow-hidden">
+              <div className="h-32 sm:h-40 md:h-48 overflow-hidden">
+                <img src="/getting_started/strategy_pipeline_kanban_dashboard.png" alt="Strategy Pipeline Kanban Dashboard" className="w-full h-full object-cover" />
+              </div>
+              <div className="p-4 md:p-6">
+                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Workflow Tracking</h3>
+                <p className="text-sm md:text-base text-gray-400">Kanban-style organization keeps research, testing, and deployment visible and accountable.</p>
               </div>
             </div>
 
@@ -172,28 +266,18 @@ export function Home() {
                 <img src="/feature_images/Live trading.png" alt="Live Trading" className="w-full h-full object-cover" />
               </div>
               <div className="p-4 md:p-6">
-                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">One-Click Promotion to Paper Trading</h3>
-                <p className="text-sm md:text-base text-gray-400">Promote strategies to broker paper accounts or unlimited S2N virtual forward tests. True real-time insight.</p>
+                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Monitoring & Feedback</h3>
+                <p className="text-sm md:text-base text-gray-400">Real-time forward testing and monitoring. See when strategies drift before capital is lost.</p>
               </div>
             </div>
 
             <div className="bg-[#2d2d2d] rounded-lg border border-[#3d3d3d] hover:border-[#FF9500] transition-colors overflow-hidden">
               <div className="h-32 sm:h-40 md:h-48 overflow-hidden">
-                <img src="/feature_images/Strategy Builder.png" alt="Strategy Builder" className="w-full h-full object-cover" />
+                <img src="/feature_images/journal.png" alt="Journal" className="w-full h-full object-cover" />
               </div>
               <div className="p-4 md:p-6">
-                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Multi-Asset Strategy Library</h3>
-                <p className="text-sm md:text-base text-gray-400">Ships with proven strategies: trend-following, mean reversion, tactical allocation, FX rotation. Ready to run.</p>
-              </div>
-            </div>
-
-            <div className="bg-[#2d2d2d] rounded-lg border border-[#3d3d3d] hover:border-[#FF9500] transition-colors overflow-hidden">
-              <div className="h-32 sm:h-40 md:h-48 overflow-hidden">
-                <img src="/feature_images/cockpit home.png" alt="Cockpit Home" className="w-full h-full object-cover" />
-              </div>
-              <div className="p-4 md:p-6">
-                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Community Leaderboard</h3>
-                <p className="text-sm md:text-base text-gray-400">A bias free transparent social quant community. Publish results, follow performers, discuss strategies.</p>
+                <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Research Notes & Journal</h3>
+                <p className="text-sm md:text-base text-gray-400">Document assumptions, decisions, and emotional states. Build institutional memory that compounds over time.</p>
               </div>
             </div>
           </div>
@@ -271,19 +355,22 @@ export function Home() {
 
       <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">Who It's For</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 md:mb-4">Who Navigator Is For</h2>
+          <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-8 md:mb-12 max-w-3xl mx-auto">
+            Navigator is opinionated and curated. It is designed for serious users who value organizational discipline and intellectual honesty over convenience and mass appeal.
+          </p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             <div className="bg-[#2d2d2d] p-6 md:p-8 rounded-lg border border-[#3d3d3d]">
-              <h3 className="text-base md:text-xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Systematic Traders & Investors</h3>
-              <p className="text-sm md:text-base text-gray-400">Execute disciplined, rules-based strategies with professional-grade infrastructure at retail pricing.</p>
+              <h3 className="text-base md:text-xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Systematic Traders</h3>
+              <p className="text-sm md:text-base text-gray-400">Those who recognize that markets are deceptive and value survival over peak performance.</p>
             </div>
             <div className="bg-[#2d2d2d] p-6 md:p-8 rounded-lg border border-[#3d3d3d]">
-              <h3 className="text-base md:text-xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Quant Developers</h3>
-              <p className="text-sm md:text-base text-gray-400">Focus on finding alpha. Let Navigator handle infrastructure, data, and bias detection.</p>
+              <h3 className="text-base md:text-xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Experienced Researchers</h3>
+              <p className="text-sm md:text-base text-gray-400">Those who have learned that fragmented tools and scattered research lead to blind spots and compounding mistakes.</p>
             </div>
             <div className="bg-[#2d2d2d] p-6 md:p-8 rounded-lg border border-[#3d3d3d] sm:col-span-2 md:col-span-1">
-              <h3 className="text-base md:text-xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Professional Researchers</h3>
-              <p className="text-sm md:text-base text-gray-400">Leverage institutional-grade analytics and data to discover robust trading signals.</p>
+              <h3 className="text-base md:text-xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Serious Professionals</h3>
+              <p className="text-sm md:text-base text-gray-400">Those willing to confront uncomfortable truths about their strategies rather than chase comforting narratives.</p>
             </div>
           </div>
         </div>
@@ -292,9 +379,9 @@ export function Home() {
       <section className="py-12 md:py-20 bg-[#0f0f0f] border-y border-[#2d2d2d]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="bg-gradient-to-r from-[#2d2d2d] to-[#3d3d3d] p-6 sm:p-8 md:p-12 rounded-lg border border-[#FF9500] text-center">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Ready to Navigate from Backtest to Live Trading?</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">A Framework for Long-Term Survival</h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto">
-              Stop being fooled by randomness. Start with a 14-day free trial. No credit card required.
+              Navigator maximizes the probability of long-term survival and slightly above-average outcomes. It does not maximize returns. It maximizes clarity.
             </p>
             <Button
               variant="primary"

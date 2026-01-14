@@ -6,12 +6,12 @@ export function About() {
     <div className="w-full">
       <section className="py-12 md:py-20 bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6">Built by Experience, Powered by AI</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6">Why Navigator Exists</h1>
           <p className="text-lg sm:text-xl md:text-2xl text-[#FF9500] font-semibold mb-3 md:mb-4">
             Don't be fooled by randomness.
           </p>
-          <p className="text-base sm:text-lg md:text-xl text-gray-400">
-            The fusion of 25 years of real-world trading wisdom with the full strength of modern AI.
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto">
+            Built on 25 years of hard-won experience and deep expertise in behavioral finance. Navigator exists to solve the problem that destroys most traders: the inability to distinguish real edge from cognitive bias and narrative self-deception.
           </p>
         </div>
       </section>
@@ -32,15 +32,15 @@ export function About() {
               <div className="flex-1 space-y-4 md:space-y-6">
                 <div>
                   <p className="text-sm md:text-base text-gray-400 mb-3 md:mb-4">
-                    Navigator is built by a 25-year trading veteran with real capital management experience & deep psychology expertise.
+                    25 years managing real capital. PhD in Behavioral Finance. Thousands of traders mentored. Navigator is built by someone who understands how bias and poor organization compound into catastrophic failure.
                   </p>
                   <p className="text-sm md:text-base text-gray-300">
-                    Michael has spent decades solving the problem that costs traders the most: distinguishing real signals from random luck. His expertise spans quantitative design, risk management, global macro regime navigation, and the psychological patterns that separate winning traders from the rest.
+                    Michael watched countless smart, disciplined traders fall into the same trap: they couldn't distinguish real alpha from narrative self-deception. Traditional tools amplified the problem by hiding overfitting and making lucky backtests look like skill. Navigator exists to confront this problem directly.
                   </p>
                 </div>
                 <div className="bg-[#2d2d2d] border border-[#FF9500] p-4 md:p-6 rounded-lg">
                   <p className="text-base sm:text-lg md:text-xl text-gray-300 italic mb-3 md:mb-4">
-                    "I built Navigator to solve the problem that cost me years of frustration and lots of money: distinguishing real strategies from lucky ones. Having a trusted platform to tell you uncomfortable truths is gold."
+                    "Over decades, I accumulated scattered Python scripts, disconnected notebooks, forgotten assumptions. This fragmentation created blind spots that compounded over time. Navigator solves the problem I wish I'd had 25 years ago."
                   </p>
                   <p className="text-sm md:text-base text-gray-400">— Michael Berman, PhD</p>
                 </div>
@@ -88,54 +88,54 @@ export function About() {
 
       <section className="py-12 md:py-20 bg-[#0f0f0f] border-y border-[#2d2d2d]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">The Dual Foundation</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">Built on Two Foundational Beliefs</h2>
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
             <div className="bg-[#1a1a1a] border border-[#3d3d3d] p-6 md:p-8 rounded-lg">
-              <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Real-World Wisdom</h3>
+              <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Cognitive Failure</h3>
               <p className="text-sm md:text-base text-gray-400 mb-3 md:mb-4">
-                25 years managing real capital. Thousands of traders mentored, hundreds seeded. Deep expertise in trading analytics, psychology and the behavioural patterns that destroy accounts.
+                Most trading failure comes from cognitive bias, overfitting, and narrative self-deception. Markets are noisy and regime-dependent. More choice increases bias, not edge.
               </p>
               <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-400">
                 <li className="flex gap-2 md:gap-3">
                   <span className="text-[#FF9500]">→</span>
-                  <span>Real capital management experience</span>
+                  <span>Confirmation bias and wishful thinking</span>
                 </li>
                 <li className="flex gap-2 md:gap-3">
                   <span className="text-[#FF9500]">→</span>
-                  <span>Trading psychology expertise</span>
+                  <span>Test enough parameters, any backtest looks good</span>
                 </li>
                 <li className="flex gap-2 md:gap-3">
                   <span className="text-[#FF9500]">→</span>
-                  <span>Multi-regime navigation</span>
+                  <span>Most backtests fail out of sample</span>
                 </li>
                 <li className="flex gap-2 md:gap-3">
                   <span className="text-[#FF9500]">→</span>
-                  <span>Risk & Portfolio management discipline</span>
+                  <span>Narrative self-deception compounds over time</span>
                 </li>
               </ul>
             </div>
 
             <div className="bg-[#1a1a1a] border border-[#3d3d3d] p-6 md:p-8 rounded-lg">
-              <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Modern AI Power</h3>
+              <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#FF9500]">Organizational Failure</h3>
               <p className="text-sm md:text-base text-gray-400 mb-3 md:mb-4">
-                Cutting-edge AI integration that understands quant frameworks. Scientific bias detection based on academic research. Institutional-grade infrastructure.
+                These failures are amplified by poor organization, fragmented tooling, and lack of feedback loops. Scattered workflows hide mistakes and reinforce false confidence.
               </p>
               <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-400">
                 <li className="flex gap-2 md:gap-3">
                   <span className="text-[#FF9500]">→</span>
-                  <span>AI strategy generation</span>
+                  <span>Disconnected scripts and notebooks</span>
                 </li>
                 <li className="flex gap-2 md:gap-3">
                   <span className="text-[#FF9500]">→</span>
-                  <span>Scientific bias detection</span>
+                  <span>Forgotten assumptions and orphaned strategies</span>
                 </li>
                 <li className="flex gap-2 md:gap-3">
                   <span className="text-[#FF9500]">→</span>
-                  <span>Institutional data infrastructure</span>
+                  <span>No accountability, no rear-view mirrors</span>
                 </li>
                 <li className="flex gap-2 md:gap-3">
                   <span className="text-[#FF9500]">→</span>
-                  <span>Blockchain trade verification</span>
+                  <span>Blind spots compound unnoticed</span>
                 </li>
               </ul>
             </div>
@@ -143,7 +143,7 @@ export function About() {
 
           <div className="bg-gradient-to-r from-[#2d2d2d] to-[#3d3d3d] p-6 md:p-8 rounded-lg border border-[#FF9500] text-center">
             <p className="text-base sm:text-lg md:text-2xl text-gray-300 font-semibold">
-              This dual foundation is a core differentiator. Navigator isn't just another backtesting tool—it's the culmination of decades of hard-won experience combined with breakthrough technology.
+              Navigator exists to act as a bias-aware, organization-first decision framework. Not a strategy marketplace. Not a signal service. Not a leaderboard-driven performance tool.
             </p>
           </div>
         </div>
@@ -151,13 +151,13 @@ export function About() {
 
       <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">Our Mission</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">The Goal</h2>
           <div className="bg-[#2d2d2d] border border-[#FF9500] p-6 md:p-12 rounded-lg text-center">
             <p className="text-base sm:text-lg md:text-2xl text-gray-300 mb-3 md:mb-4">
-              Empower traders to navigate from backtesting to live trading with clarity, robustness, discipline. To provide all the essential requirements for successful trading in one wholistic framework.
+              Navigator does not help you find the best strategy. It helps you avoid the bad ones.
             </p>
             <p className="text-sm sm:text-base md:text-xl text-gray-400">
-              Stop being fooled by randomness. See the truth behind your strategies, not the illusion.
+              The goal is not to maximize returns. It is to maximize the probability of long-term survival and slightly above-average outcomes. Robustness, monitoring, and survival matter more than peak performance.
             </p>
           </div>
         </div>
@@ -170,30 +170,30 @@ export function About() {
             <div className="bg-[#1a1a1a] p-6 md:p-8 rounded-lg border border-[#3d3d3d]">
               <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
                 <Target className="text-[#FF9500]" size={24} />
-                <h3 className="text-lg md:text-xl font-semibold">Clarity Over Confusion</h3>
+                <h3 className="text-lg md:text-xl font-semibold">Surveillance, Not Convenience</h3>
               </div>
               <p className="text-sm md:text-base text-gray-400">
-                Cut through the noise. See real performance, not inflated metrics. Distinguish luck from randomness.
+                Organized workflows exist to keep decisions observable, auditable, and connected. The purpose is self-awareness, not ease.
               </p>
             </div>
 
             <div className="bg-[#1a1a1a] p-6 md:p-8 rounded-lg border border-[#3d3d3d]">
               <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
                 <Shield className="text-[#FF9500]" size={24} />
-                <h3 className="text-lg md:text-xl font-semibold">Signal2Noise (S2N)</h3>
+                <h3 className="text-lg md:text-xl font-semibold">Robustness Over Performance</h3>
               </div>
               <p className="text-sm md:text-base text-gray-400">
-                Build strategies that survive multiple market regimes. Avoid the trap of overfitted lucky backtests.
+                Robustness, monitoring, and survival matter more than peak returns. Avoid fragile strategies that collapse under real conditions.
               </p>
             </div>
 
             <div className="bg-[#1a1a1a] p-6 md:p-8 rounded-lg border border-[#3d3d3d]">
               <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
                 <Brain className="text-[#FF9500]" size={24} />
-                <h3 className="text-lg md:text-xl font-semibold">Discipline Over Emotion</h3>
+                <h3 className="text-lg md:text-xl font-semibold">Bias Protection First</h3>
               </div>
               <p className="text-sm md:text-base text-gray-400">
-                Use scientific methods to evaluate strategies. Remove emotional bias from trading decisions.
+                Navigator is a filter against self-deception. It reveals uncomfortable truths when confidence is not justified.
               </p>
             </div>
           </div>
@@ -202,22 +202,22 @@ export function About() {
 
       <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">Why Navigator Exists</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">The Problem Navigator Solves</h2>
           <div className="max-w-4xl mx-auto space-y-4 md:space-y-6 text-gray-400">
             <p className="text-sm md:text-base lg:text-lg">
-              Most traders lose money not because their ideas are bad, but because they can't distinguish real alpha from random luck. Traditional backtesting tools show you what you want to see—stellar returns, impressive Sharpe ratios, beautiful equity curves.
+              Over decades, traders accumulate scattered Python scripts, disconnected Jupyter notebooks, abandoned datasets, forgotten assumptions, and orphaned strategies with no accountability. This fragmentation creates blind spots where strategies drift, data goes stale, mistakes are forgotten, and biases compound unnoticed.
             </p>
             <p className="text-sm md:text-base lg:text-lg">
-              But these metrics lie. They hide overfitting, multiple testing bias, and regime sensitivity. When you go live, the strategies collapse.
+              Traditional tools amplify the problem. They show you what you want to see: beautiful equity curves, impressive Sharpe ratios, stellar backtests. But these metrics hide overfitting and regime sensitivity. Without scientific bias correction and organizational discipline, confidence becomes dangerous.
             </p>
             <p className="text-sm md:text-base lg:text-lg">
-              Michael Berman experienced this frustration for years. He watched countless traders—smart, disciplined people—fall into the same trap. He knew there had to be a better way.
+              Navigator provides rear-view mirrors so you can see when assumptions break, when behavior drifts, when strategies deviate from intent, and when confidence is no longer justified. It reflects how elite institutions operate: workflows are structured, research is tracked, decisions are monitored, and feedback loops are continuous.
             </p>
             <p className="text-sm md:text-base lg:text-lg">
-              Navigator is the solution. It combines Michael's 25 years of trading wisdom with cutting-edge AI and scientific bias detection. For the first time, retail traders can access institutional-grade tools that reveal the truth behind their backtests. They can now work in a framework that is designed to take all levels of traders from an ideas all the way to live trading providing, unbiased expert feedback along the way, in a never ending feedback loop.
+              Navigator brings this institutional-grade framework to individual traders and small teams. Not to guarantee success, but to maximize the probability of survival. Not to find the best strategy, but to avoid the bad ones.
             </p>
             <p className="text-base sm:text-lg md:text-xl text-[#FF9500] font-semibold text-center">
-              Don't be fooled by randomness. Navigate with clarity.
+              A filter against self-deception.
             </p>
           </div>
         </div>
@@ -254,9 +254,9 @@ export function About() {
       <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="bg-gradient-to-r from-[#2d2d2d] to-[#3d3d3d] p-8 md:p-12 rounded-lg border border-[#FF9500] text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Join the Revolution in Quantitative Trading</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">For Those Who Value Survival</h2>
             <p className="text-sm md:text-base text-gray-300 mb-6 max-w-2xl mx-auto">
-              Experience the difference that real expertise and modern AI make. Start your 14-day free trial.
+              Navigator is not for everyone. It is for serious traders who recognize that markets are deceptive and value organizational discipline over convenience.
             </p>
             <Button
               variant="primary"

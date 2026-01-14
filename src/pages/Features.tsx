@@ -1,4 +1,4 @@
-import { BarChart3, TrendingUp, Database, Lock, Shield, Brain, FileText, Bookmark, Zap, LineChart, BookOpen } from 'lucide-react';
+import { BarChart3, TrendingUp, Database, Lock, Shield, Brain, FileText, Bookmark, Zap, LineChart, BookOpen, Layers } from 'lucide-react';
 import { Button } from '../components/Button';
 
 export function Features() {
@@ -6,9 +6,9 @@ export function Features() {
     <div className="w-full">
       <section className="py-12 md:py-20 bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]">
         <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6">Professional Quantitative Trading Infrastructure</h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-400">
-            Everything you need to navigate from backtesting to live trading. Python engine, AI models, Trade Journal all integrated. 100+ robust strategies included.
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6">An Organizational Framework</h1>
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl">
+            Everything under one roof: strategy development, data farming, research notes, journaling, workflow tracking, monitoring, and feedback. Designed to keep decisions observable, auditable, and connected over time.
           </p>
         </div>
       </section>
@@ -19,16 +19,16 @@ export function Features() {
             <div>
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <BarChart3 size={28} className="md:w-8 md:h-8 text-[#FF9500]" />
-                <h2 className="text-2xl md:text-3xl font-bold">Built-In Bias Detection</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">Scientific Bias Detection</h2>
               </div>
               <p className="text-lg md:text-2xl text-[#FF9500] font-semibold mb-3 md:mb-4">
-                World's First Commercial Framework
+                A Filter Against Self-Deception
               </p>
               <p className="text-sm md:text-base text-gray-400 mb-4 md:mb-6">
-                Navigator reveals the hidden fragility, randomness, and overfitting inside backtests.
+                Navigator reveals hidden fragility, randomness, and overfitting inside backtests. It protects you from false confidence when none is justified.
               </p>
               <p className="text-sm md:text-base text-gray-300 font-semibold mb-4">
-                Separates real strategies from lucky ones.
+                Helps you avoid bad strategies, not find the best ones.
               </p>
               <div className="bg-[#2d2d2d] border border-[#3d3d3d] p-4 md:p-6 rounded-lg">
                 <p className="text-xs md:text-sm text-gray-400 mb-2">Traditional Sharpe Ratio: 2.5</p>
@@ -39,7 +39,7 @@ export function Features() {
               </div>
             </div>
             <div className="flex justify-center">
-              <img src="/Backtest Score Key image.png" alt="Bias Detection" className="w-full max-w-md rounded-lg shadow-xl" />
+              <img src="/feature_images/backtest_score_key_image_updated.png" alt="Bias Detection" className="w-full max-w-md rounded-lg shadow-xl" />
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@ export function Features() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
             <div className="flex justify-center md:order-2">
-              <img src="/feature_images/backtest report equity.png" alt="Scoring System" className="w-full max-w-md rounded-lg shadow-xl" />
+              <img src="/feature_images/pure_score.png" alt="Scoring System" className="w-full max-w-md rounded-lg shadow-xl" />
             </div>
             <div className="md:order-1">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
@@ -131,7 +131,7 @@ export function Features() {
               </ul>
             </div>
             <div className="hidden md:block">
-              <img src="/feature_images/leaderboard.png" alt="Leaderboards" className="w-full rounded-lg shadow-xl" />
+              <img src="/feature_images/leaderboard_copy.png" alt="Leaderboards" className="w-full rounded-lg shadow-xl" />
             </div>
           </div>
         </div>
@@ -249,7 +249,7 @@ export function Features() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
             <div>
-              <img src="/feature_images/Strategy Builder.png" alt="Strategy Library" className="w-full rounded-lg shadow-xl mb-6 md:hidden" />
+              <img src="/feature_images/strategy_library.png" alt="Strategy Library" className="w-full rounded-lg shadow-xl mb-6 md:hidden" />
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <BookOpen size={28} className="md:w-8 md:h-8 text-[#FF9500]" />
                 <h2 className="text-2xl md:text-3xl font-bold">Ships with Proven Strategies</h2>
@@ -277,7 +277,7 @@ export function Features() {
               </div>
             </div>
             <div className="hidden md:flex justify-center">
-              <img src="/feature_images/Strategy Builder.png" alt="Strategy Library" className="w-full max-w-md rounded-lg shadow-xl" />
+              <img src="/feature_images/strategy_library.png" alt="Strategy Library" className="w-full max-w-md rounded-lg shadow-xl" />
             </div>
           </div>
         </div>
@@ -287,7 +287,7 @@ export function Features() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
             <div className="flex justify-center md:order-2">
-              <img src="/feature_images/AI.png" alt="AI Integration" className="w-full max-w-md rounded-lg shadow-xl" />
+              <img src="/feature_images/ai_python.png" alt="AI Integration" className="w-full max-w-md rounded-lg shadow-xl" />
             </div>
             <div className="md:order-1">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
@@ -324,7 +324,7 @@ export function Features() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
             <div>
-              <img src="/feature_images/cockpit home.png" alt="Market Monitors" className="w-full rounded-lg shadow-xl mb-6 md:hidden" />
+              <img src="/feature_images/cockpit_home.png" alt="Market Monitors" className="w-full rounded-lg shadow-xl mb-6 md:hidden" />
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <LineChart size={28} className="md:w-8 md:h-8 text-[#FF9500]" />
                 <h2 className="text-2xl md:text-3xl font-bold">Market Monitors & Research</h2>
@@ -354,7 +354,7 @@ export function Features() {
               </div>
             </div>
             <div className="hidden md:flex justify-center">
-              <img src="/feature_images/cockpit home.png" alt="Market Monitors" className="w-full max-w-md rounded-lg shadow-xl" />
+              <img src="/feature_images/market_monitor.png" alt="Market Monitors" className="w-full max-w-md rounded-lg shadow-xl" />
             </div>
           </div>
         </div>
@@ -364,17 +364,7 @@ export function Features() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
             <div className="flex justify-center md:order-2">
-              <div className="bg-[#2d2d2d] p-6 md:p-8 rounded-lg border border-[#3d3d3d]">
-                <FileText size={40} className="md:w-12 md:h-12 text-[#FF9500] mb-4" />
-                <h4 className="font-semibold mb-3 text-sm md:text-base">Your Trading Journal</h4>
-                <p className="text-gray-400 text-xs md:text-sm mb-4">Capture the why behind every trade</p>
-                <div className="space-y-2 text-[10px] md:text-xs text-gray-400">
-                  <p>✓ Document decisions</p>
-                  <p>✓ Track emotions</p>
-                  <p>✓ Record reasoning</p>
-                  <p>✓ Continuous improvement</p>
-                </div>
-              </div>
+              <img src="/feature_images/journal.png" alt="Trading Journal" className="w-full max-w-md rounded-lg shadow-xl" />
             </div>
             <div className="md:order-1">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
@@ -408,12 +398,38 @@ export function Features() {
 
       <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+            <div>
+              <img src="/feature_images/multi_accounts.png" alt="Multi-Account Orchestration" className="w-full rounded-lg shadow-xl mb-6 md:hidden" />
+              <div className="flex items-center gap-3 mb-4 md:mb-6">
+                <Layers size={28} className="md:w-8 md:h-8 text-[#FF9500]" />
+                <h2 className="text-2xl md:text-3xl font-bold">Multi-Account Strategy Orchestration</h2>
+              </div>
+              <p className="text-sm md:text-base text-gray-400 mb-4 md:mb-6">
+                Navigator is designed as a central control framework — not a single-account trading tool.
+              </p>
+              <p className="text-sm md:text-base text-gray-400 mb-4 md:mb-6">
+                It can run multiple strategies across unlimited virtual accounts simultaneously, allowing you to separate capital, risk, instruments, or mandates without duplicating infrastructure or losing oversight.
+              </p>
+              <p className="text-base md:text-lg text-[#FF9500] font-semibold">
+                This is how professional trading desks operate: one framework, many accounts, complete visibility.
+              </p>
+            </div>
+            <div className="hidden md:flex justify-center">
+              <img src="/feature_images/multi_accounts.png" alt="Multi-Account Orchestration" className="w-full max-w-md rounded-lg shadow-xl" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-20 bg-[#0f0f0f] border-y border-[#2d2d2d]">
+        <div className="max-w-6xl mx-auto px-4">
           <div className="bg-gradient-to-r from-[#2d2d2d] to-[#3d3d3d] p-8 md:p-12 rounded-lg border border-[#FF9500] text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Experience Professional Quant Trading</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Surveillance and Self-Awareness</h2>
             <p className="text-sm md:text-base text-gray-300 mb-6 max-w-2xl mx-auto">
-              Start your 14-day free trial. Full access to all features. No credit card required.
+              Navigator provides rear-view mirrors so you can see when assumptions break, when behavior drifts, and when confidence is no longer justified. Start your intentionally limited trial.
             </p>
-            <Button variant="primary" className="w-full sm:w-auto">Start Free Trial</Button>
+            <Button variant="primary" className="w-full sm:w-auto" onClick={() => window.location.hash = 'trial'}>Start Free Trial</Button>
           </div>
         </div>
       </section>
