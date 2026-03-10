@@ -12,6 +12,8 @@ export function Pricing() {
     }
 
     try {
+      const promotekit_referral = (window as any).promotekit_referral || null;
+
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout-session`, {
         method: 'POST',
         headers: {
@@ -20,7 +22,8 @@ export function Pricing() {
         },
         body: JSON.stringify({
           priceId,
-          origin: window.location.origin
+          origin: window.location.origin,
+          referral: promotekit_referral
         }),
       });
 
@@ -52,7 +55,6 @@ export function Pricing() {
       period: '',
       description: '14-day trial access',
       badge: 'No Credit Card Required',
-      stripePriceId: 'price_1ShJnZDX08AkqjRWmT6NhmgA',
       features: [
         { name: 'No credit card required', included: true },
         { name: '50+ GB FREE DATA', included: true },
@@ -72,8 +74,8 @@ export function Pricing() {
       price: '$350',
       period: '/year',
       description: 'Annual license',
-      badge: 'Ends Feb 28, 2026',
-      stripePriceId: 'price_1Sh0MlDX08AkqjRWlSP6pYsF',
+      badge: 'Ends June 30, 2026',
+      stripePriceId: 'price_1SqoFERgf0gOK6k5rVYNJ0ez',
       features: [
         { name: 'Everything in Free Trial', included: true },
         { name: '100+ robust trading strategies', included: true },
@@ -84,10 +86,11 @@ export function Pricing() {
         { name: 'Use your own AI keys (unlimited)', included: true },
         { name: 'Priority support', included: true },
         { name: 'All future features included', included: true },
+        { name: '$350/year price locked in forever', included: true },
       ],
       cta: 'Get Started',
       ctaVariant: 'primary' as const,
-      subtext: '$29.15/month billed annually',
+      subtext: '$29.15/month billed annually - price locked forever',
     },
     {
       name: 'Pro',
@@ -95,7 +98,7 @@ export function Pricing() {
       period: '/year',
       description: 'Annual license',
       badge: null,
-      stripePriceId: 'price_1Sh0OzDX08AkqjRWC40HylOE',
+      stripePriceId: 'price_1SqoCfRgf0gOK6k56ubtiqf5',
       features: [
         { name: 'Everything in Free Trial', included: true },
         { name: '100+ robust trading strategies', included: true },
@@ -120,7 +123,7 @@ export function Pricing() {
     },
     {
       question: 'Are these annual licenses?',
-      answer: 'Yes, all Pro licenses are annual licenses billed upfront. You get full access to Navigator for 12 months. The launch special at $350/year ends February 28, 2026, after which the standard price is $1,500/year.',
+      answer: 'Yes, all Pro licenses are annual licenses billed upfront. You get full access to Navigator for 12 months. The launch special at $350/year ends June 30, 2026, after which the standard price is $1,500/year. Early adopters who purchase before the deadline lock in the $350/year price forever.',
     },
     {
       question: 'Do I need a credit card for the trial?',
@@ -128,7 +131,7 @@ export function Pricing() {
     },
     {
       question: 'What happens after my annual license expires?',
-      answer: 'Your license will need to be renewed annually to maintain access. You\'ll receive reminders before expiration. Licenses renew at the current pricing (standard rate of $1,500/year).',
+      answer: 'Your license will need to be renewed annually to maintain access. You\'ll receive reminders before expiration. Early adopters who purchase before June 30, 2026 will renew at $350/year forever. All other licenses renew at the standard rate of $1,500/year.',
     },
     {
       question: 'Do I need my own AI API keys?',

@@ -1,6 +1,7 @@
 import { Button } from '../components/Button';
 import { CheckCircle, Copy, Check, AlertCircle, Download } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { trackPurchaseCompleted } from '../utils/analytics';
 
 interface LicenseData {
   license_key: string;
@@ -44,6 +45,23 @@ export function Success() {
 
       const data = await response.json();
       setLicenseData(data);
+
+      const licenseValue = data.license_type === 'Annual' ? 350 : 1500;
+      trackPurchaseCompleted(
+        data.license_type,
+        data.email,
+        licenseValue,
+        data.license_key,
+        id
+      );
+
+      if ((window as any).promotekit?.refer) {
+        try {
+          (window as any).promotekit.refer(data.email);
+        } catch (err) {
+          console.error('Failed to track PromoteKit referral:', err);
+        }
+      }
     } catch (err) {
       console.error('Error fetching license:', err);
       setError('Your license is being processed. Please check your email or contact support@s2n-navigator.com');
@@ -160,7 +178,7 @@ export function Success() {
                 </p>
               </div>
 
-              <div className="bg-[#0f0f0f] border border-[#3d3d3d] rounded-lg p-4">
+              <div className="bg-[#0f0f0f] border border-[#3d3d3d] rounded-lg p-4 mb-4">
                 <h3 className="text-lg font-semibold mb-2 text-[#FF9500]">Next Steps</h3>
                 <ol className="text-left space-y-2 text-gray-300 text-sm">
                   <li className="flex gap-2">
@@ -181,6 +199,16 @@ export function Success() {
                   </li>
                 </ol>
               </div>
+
+              <a
+                href="https://www.s2n-navigator.com/#docs/getting-started"
+                className="block bg-[#1a1a1a] border border-[#FF9500] rounded-lg p-4 hover:bg-[#2d2d2d] transition-colors"
+              >
+                <p className="text-[#FF9500] font-semibold mb-1">Need more details?</p>
+                <p className="text-gray-300 text-sm">
+                  View the complete Getting Started guide for detailed setup instructions and tutorials
+                </p>
+              </a>
             </div>
           )}
 

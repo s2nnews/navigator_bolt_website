@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Button } from '../components/Button';
 import { Loader, CheckCircle, Copy, Mail } from 'lucide-react';
-import { trackTrialStarted, trackTrialCompleted, trackTrialCreatedGTM } from '../utils/analytics';
+import { trackTrialStarted, trackTrialCompleted } from '../utils/analytics';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
 
 export function Trial() {
   const [formData, setFormData] = useState({
@@ -51,7 +57,28 @@ export function Trial() {
 
       setResult(data);
       trackTrialCompleted(formData.email);
-      trackTrialCreatedGTM(formData.email);
+
+      // Track in Supabase database
+      try {
+        await supabase.from('trials').insert({
+          email: formData.email,
+          name: formData.name || null,
+          license_key: data.license_key,
+          valid_until: data.valid_until,
+          promotekit_referral: (window as any).promotekit_referral || null,
+          status: 'active',
+        });
+      } catch (supabaseErr) {
+        console.error('Failed to track trial in Supabase:', supabaseErr);
+      }
+
+      if ((window as any).promotekit?.refer) {
+        try {
+          (window as any).promotekit.refer(formData.email);
+        } catch (err) {
+          console.error('Failed to track PromoteKit referral:', err);
+        }
+      }
     } catch (err) {
       console.error('Error starting trial:', err);
       setError('Unable to connect to the server. Please check your connection and try again.');

@@ -35,7 +35,7 @@ export function Integrations() {
     },
     {
       name: 'Alpaca',
-      logo: '/logos/alpaca-logo.png',
+      logo: '/logos/alpaca.png',
       category: 'Broker',
       description: 'Commission-free trading API for stocks and crypto. Perfect for algorithmic trading and automation.',
       features: [
@@ -77,6 +77,81 @@ export function Integrations() {
       ],
       deal: 'Exclusive discount for Navigator members',
       url: '#',
+      logoClass: ''
+    },
+    {
+      name: 'Binance',
+      logo: '/logos/binance.png',
+      category: 'Crypto Exchange',
+      description: 'The world\'s largest cryptocurrency exchange by trading volume, supporting spot and futures trading.',
+      features: [
+        'Spot & futures trading',
+        'Deep liquidity',
+        'Advanced order types',
+        'Real-time market data'
+      ],
+      deal: 'Direct integration via CCXT wrapper',
+      url: 'https://www.binance.com',
+      logoClass: ''
+    },
+    {
+      name: 'Coinbase',
+      logo: '/logos/coinbase.png',
+      category: 'Crypto Exchange',
+      description: 'Leading US-based cryptocurrency exchange with institutional-grade security and compliance.',
+      features: [
+        'US regulated exchange',
+        'Institutional custody',
+        'Fiat on/off ramps',
+        'API integration'
+      ],
+      deal: 'Direct integration via CCXT wrapper',
+      url: 'https://www.coinbase.com',
+      logoClass: ''
+    },
+    {
+      name: 'Kraken',
+      logo: '/logos/kraken.png',
+      category: 'Crypto Exchange',
+      description: 'Established crypto exchange with robust security, low fees, and advanced trading features.',
+      features: [
+        'Low trading fees',
+        'Margin trading',
+        'Staking rewards',
+        'Advanced charting'
+      ],
+      deal: 'Direct integration via CCXT wrapper',
+      url: 'https://www.kraken.com',
+      logoClass: ''
+    },
+    {
+      name: 'Bybit',
+      logo: '/logos/bybit.png',
+      category: 'Crypto Exchange',
+      description: 'Derivatives exchange specializing in perpetual contracts and options with high leverage.',
+      features: [
+        'Derivatives trading',
+        'High leverage options',
+        'Copy trading',
+        'Dual price mechanism'
+      ],
+      deal: 'Direct integration via CCXT wrapper',
+      url: 'https://www.bybit.com',
+      logoClass: ''
+    },
+    {
+      name: 'Hyperliquid',
+      logo: '/logos/hyperliquid.png',
+      category: 'Crypto Exchange',
+      description: 'High-performance decentralized perpetual exchange with on-chain order book and deep liquidity.',
+      features: [
+        'Decentralized exchange',
+        'On-chain order book',
+        'Perpetual contracts',
+        'Low latency trading'
+      ],
+      deal: 'Direct integration via CCXT wrapper',
+      url: 'https://hyperliquid.xyz',
       logoClass: ''
     }
   ];
@@ -152,15 +227,31 @@ export function Integrations() {
             ))}
           </div>
 
-          <div className="mt-12 bg-gradient-to-r from-[#2d2d2d] to-[#3d3d3d] p-8 md:p-12 rounded-lg border border-[#FF9500] text-center">
+          <div className="mt-12 bg-gradient-to-r from-[#2d2d2d] to-[#3d3d3d] p-8 md:p-12 rounded-lg border border-[#FF9500]">
             <Database className="mx-auto mb-4 text-[#FF9500]" size={48} />
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">More Integrations Coming Soon</h2>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">Extensive Exchange Network</h2>
+            <div className="grid md:grid-cols-2 gap-6 mb-6 max-w-4xl mx-auto">
+              <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-lg p-6">
+                <h3 className="text-xl font-bold text-[#FF9500] mb-3">100+ Crypto Exchanges</h3>
+                <p className="text-gray-300">
+                  Access over 100 cryptocurrency exchanges through our CCXT wrapper integration, including all major and regional platforms.
+                </p>
+              </div>
+              <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-lg p-6">
+                <h3 className="text-xl font-bold text-[#FF9500] mb-3">500+ MT5 CFD Brokers</h3>
+                <p className="text-gray-300">
+                  Connect to more than 500 MetaTrader 5 CFD brokers worldwide through our MT5 wrapper for comprehensive market access.
+                </p>
+              </div>
+            </div>
+            <p className="text-gray-300 mb-6 text-center max-w-2xl mx-auto">
               We're constantly expanding our partner network. Have a specific integration request? Let us know and we'll prioritize it.
             </p>
-            <Button variant="primary" className="text-base md:text-lg px-8 py-3">
-              Request an Integration
-            </Button>
+            <div className="text-center">
+              <Button variant="primary" className="text-base md:text-lg px-8 py-3">
+                Request an Integration
+              </Button>
+            </div>
           </div>
 
           <div className="mt-12 grid sm:grid-cols-2 md:grid-cols-3 gap-6">

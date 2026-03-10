@@ -12,6 +12,10 @@ import { ProbabilityOfBacktestOverfittingContent } from '../components/articles/
 import { MonitoringStrategyContent } from '../components/articles/MonitoringStrategy';
 import { SmoothEquityCurvesContent } from '../components/articles/SmoothEquityCurves';
 import { BrokenVsUnluckyContent } from '../components/articles/BrokenVsUnlucky';
+import { ParameterOptimisationRiskContent } from '../components/articles/ParameterOptimisationRisk';
+import { FounderIntroductionContent } from '../components/articles/FounderIntroduction';
+import { S2NScoreContent } from '../components/articles/S2NScore';
+import { PositionSizingRiskManagementContent } from '../components/articles/PositionSizingRiskManagement';
 
 interface DocsProps {
   onNavigate: (page: string) => void;
@@ -31,17 +35,23 @@ const docSections = [
           { id: 'data-farm-introduction', label: 'Introduction' },
           { id: 'data-farm-tradestation', label: 'TradeStation Setup' },
           { id: 'data-farm-mt5', label: 'MT5 IC Markets Setup' },
+          { id: 'data-farm-crypto-exchanges', label: 'Crypto Exchange Integration' },
           { id: 'data-farm-build-vs-connect', label: 'Data Farming' },
+          { id: 'data-farm-free-data', label: 'Free Data Guide' },
+          { id: 'data-farm-download-scheduling', label: 'Download Scheduling & Gap Detection' },
           { id: 'data-farm-live-streamer', label: 'Live Streamer' },
           { id: 'data-farm-database-location', label: 'Database Location' },
+          { id: 'data-farm-csv-import', label: 'Importing Custom CSV Data' },
         ]
       },
       { id: 'license-upgrade', label: 'License Upgrade' },
+      { id: 'version-upgrade-data-migration', label: 'Upgrading Versions & Moving Data' },
     ],
   },
   {
     title: 'Guides',
     items: [
+      { id: 'journal', label: 'Journal' },
       {
         id: 'strategy-builder',
         label: 'Strategy Builder',
@@ -51,7 +61,6 @@ const docSections = [
           { id: 'understanding-results', label: 'Understanding Results' },
         ]
       },
-      { id: 'data-sources', label: 'Data Sources' },
       { id: 'optimization', label: 'Optimization' },
       { id: 'live-trading', label: 'Live Trading' },
     ],
@@ -77,6 +86,8 @@ const docSections = [
   {
     title: 'Knowledge Base',
     items: [
+      { id: 'founder-introduction', label: 'Founder Introduction' },
+      { id: 's2n-score', label: 'The S2N Score' },
       { id: 'why-most-backtests-lie', label: 'Why Most Backtests Lie' },
       { id: 'research-integrity-in-practice', label: 'Research Integrity in Practice' },
       { id: 'survivorship-bias-the-invisible-killer', label: 'Survivorship Bias' },
@@ -86,6 +97,8 @@ const docSections = [
       { id: 'monitoring-strategy', label: 'What It Means to Monitor a Strategy' },
       { id: 'smooth-equity-curves', label: 'Why Smooth Equity Curves Are a Red Flag' },
       { id: 'broken-vs-unlucky', label: 'When a Strategy Is Broken vs Just Unlucky' },
+      { id: 'parameter-optimisation-risk', label: 'Parameter Optimisation as a Risk' },
+      { id: 'position-sizing-risk-management', label: 'Position Sizing and Risk Management' },
     ],
   },
   {
@@ -123,8 +136,8 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
         </p>
         <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
           <img
-            src="/getting_started/getting-started_01.png"
-            alt="Registering a License popup"
+            src="/getting_started/pricing.png"
+            alt="Pricing"
             className="rounded-lg w-full"
           />
         </div>
@@ -747,6 +760,7 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
           <li><strong>TradeStation Setup</strong> - Connect your TradeStation account for professional-grade equities and futures data</li>
           <li><strong>MT5 IC Markets Setup</strong> - Connect MetaTrader 5 for forex and CFD data</li>
           <li><strong>Data Farming</strong> - Understanding Build History vs Connect workflows</li>
+          <li><strong>Download Scheduling & Gap Detection</strong> - How the system automatically keeps your data up-to-date</li>
           <li><strong>Live Streamer</strong> - Real-time price updates for active monitoring</li>
           <li><strong>Database Location</strong> - Configure where your data is stored</li>
         </ul>
@@ -1329,6 +1343,181 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
       </div>
     ),
   },
+  'data-farm-crypto-exchanges': {
+    title: 'Crypto Exchange Integration',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          Connect S2N Navigator to 100+ cryptocurrency exchanges for backtesting and live trading.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Supported Exchanges</h2>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-gray-700">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="border border-gray-700 px-4 py-2 text-left">Exchange</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Symbol Format</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Binance</td>
+                <td className="border border-gray-700 px-4 py-2">BTC/USDT, ETH/USDT</td>
+                <td className="border border-gray-700 px-4 py-2">World's largest exchange</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Coinbase</td>
+                <td className="border border-gray-700 px-4 py-2">BTC/USD, ETH/USD</td>
+                <td className="border border-gray-700 px-4 py-2">US regulated</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Kraken</td>
+                <td className="border border-gray-700 px-4 py-2">BTC/USD, ETH/EUR</td>
+                <td className="border border-gray-700 px-4 py-2">Established US/EU exchange</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Bybit</td>
+                <td className="border border-gray-700 px-4 py-2">BTC/USDT, SOL/USDT</td>
+                <td className="border border-gray-700 px-4 py-2">Popular derivatives exchange</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Hyperliquid</td>
+                <td className="border border-gray-700 px-4 py-2">BTC/USDC, ETH/USDC</td>
+                <td className="border border-gray-700 px-4 py-2">On-chain perpetuals DEX</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">And 90+ more...</td>
+                <td className="border border-gray-700 px-4 py-2"></td>
+                <td className="border border-gray-700 px-4 py-2">Full CCXT library support</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 1: Get API Keys from Your Exchange</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Log in to your exchange (e.g., Binance)</li>
+          <li>Go to Account → API Management</li>
+          <li>Create a new API key</li>
+        </ol>
+
+        <h3 className="text-xl font-bold mt-6 mb-3">Important Security Settings:</h3>
+        <ul className="list-none space-y-2 text-gray-300 mb-6">
+          <li>✅ Enable Read (for market data)</li>
+          <li>✅ Enable Trade (for live trading)</li>
+          <li>❌ Never enable Withdraw permissions</li>
+          <li>✅ Set IP Whitelist to your IP address</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 2: Enter API Credentials in Navigator</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Open S2N Navigator</li>
+          <li>Click the ⚙️ Settings button</li>
+          <li>Go to the 🪙 Crypto Exchanges tab</li>
+          <li>Enter your API Key and API Secret for each exchange you use</li>
+          <li>Click Save Settings</li>
+        </ol>
+
+        <Callout type="info" title="Security">
+          Your credentials are stored locally and never transmitted.
+        </Callout>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 3: Select Exchange in Strategy Builder</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Go to Strategy Builder</li>
+          <li>Under Data Source, select your exchange (e.g., 🪙 Binance)</li>
+          <li>Enter crypto symbols using the format: BTC/USDT, ETH/USD</li>
+          <li>Set your date range and timeframe</li>
+          <li>Run backtest</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 4: Live Trading (Optional)</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Go to Cockpit → Virtual Paper Trading</li>
+          <li>Select your crypto exchange from the broker dropdown</li>
+          <li>Add your strategy</li>
+          <li>Monitor positions and P&L in real-time</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Symbol Format Reference</h2>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-gray-700">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="border border-gray-700 px-4 py-2 text-left">Exchange</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Format</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Binance</td>
+                <td className="border border-gray-700 px-4 py-2">CRYPTO/USDT</td>
+                <td className="border border-gray-700 px-4 py-2">BTC/USDT, ETH/USDT, SOL/USDT</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Coinbase</td>
+                <td className="border border-gray-700 px-4 py-2">CRYPTO/USD</td>
+                <td className="border border-gray-700 px-4 py-2">BTC/USD, ETH/USD</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Kraken</td>
+                <td className="border border-gray-700 px-4 py-2">CRYPTO/USD</td>
+                <td className="border border-gray-700 px-4 py-2">XBT/USD (BTC), ETH/USD</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Bybit</td>
+                <td className="border border-gray-700 px-4 py-2">CRYPTO/USDT</td>
+                <td className="border border-gray-700 px-4 py-2">BTC/USDT, ETH/USDT</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">Hyperliquid</td>
+                <td className="border border-gray-700 px-4 py-2">CRYPTO/USDC</td>
+                <td className="border border-gray-700 px-4 py-2">BTC/USDC, ETH/USDC</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Security Best Practices</h2>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>Never share your API keys</li>
+          <li>Use IP whitelisting on the exchange</li>
+          <li>Disable withdrawals on all trading API keys</li>
+          <li>Use separate keys for Navigator vs other applications</li>
+          <li>Rotate keys periodically</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Troubleshooting</h2>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-gray-700">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="border border-gray-700 px-4 py-2 text-left">Issue</th>
+                <th className="border border-gray-700 px-4 py-2 text-left">Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">"Invalid API key"</td>
+                <td className="border border-gray-700 px-4 py-2">Check key/secret are correct, verify IP whitelist</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">"Symbol not found"</td>
+                <td className="border border-gray-700 px-4 py-2">Use format BTC/USDT not BTCUSDT</td>
+              </tr>
+              <tr>
+                <td className="border border-gray-700 px-4 py-2">"Rate limit exceeded"</td>
+                <td className="border border-gray-700 px-4 py-2">Reduce request frequency</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ),
+  },
   'data-farm-build-vs-connect': {
     title: 'Data Farming',
     content: (
@@ -1462,6 +1651,642 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
 
         <Callout type="success" title="Understanding Data Farming">
           You now understand the difference between building your database dimensions (Build History) and maintaining existing data (Connect). This deliberate approach prevents database bloat and keeps your workflow focused.
+        </Callout>
+      </div>
+    ),
+  },
+  'data-farm-free-data': {
+    title: 'S2N Free Data Guide',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-8">
+          S2N Navigator includes free market data so you can start backtesting immediately - no paid data subscription required.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">What's Included</h2>
+
+        <p className="text-gray-300 mb-4">
+          <strong>Daily Data (800+ symbols):</strong>
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li><strong>Indices</strong> - S&P 500, Dow Jones, NASDAQ, Russell 2000, VIX, international indices</li>
+          <li><strong>Futures</strong> - ES, NQ, YM, Gold, Silver, Crude Oil, Natural Gas, Bonds, Agriculture</li>
+          <li><strong>FX</strong> - Major pairs (EUR/USD, GBP/USD), cross rates, emerging market currencies</li>
+          <li><strong>Crypto</strong> - Bitcoin, Ethereum, and major altcoins</li>
+          <li><strong>ETFs</strong> - SPY, QQQ, sector ETFs, bond ETFs, commodity ETFs</li>
+          <li><strong>Stocks</strong> - 500+ large cap stocks across all sectors</li>
+        </ul>
+
+        <p className="text-gray-300 mb-8">
+          Data is sourced from Yahoo Finance and updated daily.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">How to Get the Data</h2>
+
+        <h3 className="text-xl font-semibold mb-3 mt-6">Step 1: Sync (One-time or periodic)</h3>
+
+        <p className="text-gray-300 mb-4">
+          Run this command to download all free data to your local machine:
+        </p>
+
+        <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-lg p-4 mb-6">
+          <pre className="text-sm text-gray-300 overflow-x-auto">
+            <code>
+{`from s2n import DataFarm
+
+# Download/update all free data
+DataFarm.sync()`}
+            </code>
+          </pre>
+        </div>
+
+        <p className="text-gray-300 mb-8">
+          This downloads the latest data from our cloud storage to your local DataFarm database.
+        </p>
+
+        <h3 className="text-xl font-semibold mb-3 mt-6">Step 2: Use in Strategies</h3>
+
+        <p className="text-gray-300 mb-4">
+          Once synced, use <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#FF9500]">s2n_free</code> as your data source in strategy configs:
+        </p>
+
+        <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-lg p-4 mb-4">
+          <pre className="text-sm text-gray-300 overflow-x-auto">
+            <code>
+{`{
+  "data_source": "s2n_free",
+  "symbol": "SPY",
+  "timeframe": "daily"
+}`}
+            </code>
+          </pre>
+        </div>
+
+        <p className="text-gray-300 mb-4">
+          Or in Python:
+        </p>
+
+        <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-lg p-4 mb-8">
+          <pre className="text-sm text-gray-300 overflow-x-auto">
+            <code>
+{`from s2n import DataFarm
+
+# Get data for a symbol
+df = DataFarm.get("SPY", timeframe="daily")`}
+            </code>
+          </pre>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Keeping Data Up-to-Date</h2>
+
+        <h3 className="text-xl font-semibold mb-3 mt-6">Option 1: Manual Sync (Recommended)</h3>
+
+        <p className="text-gray-300 mb-4">
+          Run <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#FF9500]">DataFarm.sync()</code> whenever you want the latest data. This only downloads new bars since your last sync - it's fast and efficient.
+        </p>
+
+        <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-lg p-4 mb-6">
+          <pre className="text-sm text-gray-300 overflow-x-auto">
+            <code>
+{`from s2n import DataFarm
+DataFarm.sync()  # Takes ~1-2 minutes`}
+            </code>
+          </pre>
+        </div>
+
+        <h3 className="text-xl font-semibold mb-3 mt-6">Option 2: Automatic Sync</h3>
+
+        <p className="text-gray-300 mb-8">
+          Enable auto-sync in Navigator settings to sync automatically when you open the app.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Available Symbols</h2>
+
+        <h3 className="text-xl font-semibold mb-3 mt-6">By Category</h3>
+
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full bg-[#1a1a1a] border border-[#3d3d3d]">
+            <thead>
+              <tr className="bg-[#2d2d2d]">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Category</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Examples</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Indices</td>
+                <td className="px-6 py-4 text-gray-400">^GSPC, ^DJI, ^IXIC, ^VIX</td>
+                <td className="px-6 py-4 text-gray-400">40</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Futures</td>
+                <td className="px-6 py-4 text-gray-400">ES=F, NQ=F, GC=F, CL=F</td>
+                <td className="px-6 py-4 text-gray-400">35</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">FX</td>
+                <td className="px-6 py-4 text-gray-400">EURUSD=X, GBPUSD=X, JPY=X</td>
+                <td className="px-6 py-4 text-gray-400">23</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Crypto</td>
+                <td className="px-6 py-4 text-gray-400">BTC-USD, ETH-USD, SOL-USD</td>
+                <td className="px-6 py-4 text-gray-400">11</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">ETFs</td>
+                <td className="px-6 py-4 text-gray-400">SPY, QQQ, GLD, TLT</td>
+                <td className="px-6 py-4 text-gray-400">180+</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-gray-300">Stocks</td>
+                <td className="px-6 py-4 text-gray-400">AAPL, MSFT, NVDA, TSLA</td>
+                <td className="px-6 py-4 text-gray-400">500+</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-xl font-semibold mb-3 mt-6">By Sector (Stocks)</h3>
+
+        <div className="overflow-x-auto mb-8">
+          <table className="min-w-full bg-[#1a1a1a] border border-[#3d3d3d]">
+            <thead>
+              <tr className="bg-[#2d2d2d]">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Sector</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Technology</td>
+                <td className="px-6 py-4 text-gray-400">NVDA, AAPL, MSFT, GOOGL, META</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Healthcare</td>
+                <td className="px-6 py-4 text-gray-400">LLY, UNH, JNJ, ABBV, PFE</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Financials</td>
+                <td className="px-6 py-4 text-gray-400">JPM, V, MA, BAC, GS</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Consumer Discretionary</td>
+                <td className="px-6 py-4 text-gray-400">AMZN, TSLA, HD, MCD, NKE</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Consumer Staples</td>
+                <td className="px-6 py-4 text-gray-400">WMT, COST, PG, KO, PEP</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Energy</td>
+                <td className="px-6 py-4 text-gray-400">XOM, CVX, COP, SLB, EOG</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Industrials</td>
+                <td className="px-6 py-4 text-gray-400">CAT, GE, HON, RTX, UNP</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Utilities</td>
+                <td className="px-6 py-4 text-gray-400">NEE, DUK, SO, D, AEP</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Materials</td>
+                <td className="px-6 py-4 text-gray-400">LIN, APD, SHW, FCX, NEM</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Real Estate</td>
+                <td className="px-6 py-4 text-gray-400">AMT, PLD, EQIX, CCI, WELL</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-gray-300">Communication Services</td>
+                <td className="px-6 py-4 text-gray-400">NFLX, T, VZ, DIS, CMCSA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Data Quality</h2>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-8">
+          <li><strong>Source</strong>: Yahoo Finance (reliable, widely used)</li>
+          <li><strong>History</strong>: Full available history (varies by symbol, typically 10-30+ years)</li>
+          <li><strong>Updates</strong>: Daily after market close</li>
+          <li><strong>Adjustments</strong>: Adjusted for splits and dividends</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">FAQ</h2>
+
+        <div className="space-y-6 mb-8">
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Q: How often is the cloud data updated?</h3>
+            <p className="text-gray-300">
+              A: Daily, after US market close (~6 PM EST).
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Q: Do I need an internet connection to use the data?</h3>
+            <p className="text-gray-300">
+              A: Only for syncing. Once synced, all data is stored locally.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Q: Can I use this data for live trading?</h3>
+            <p className="text-gray-300">
+              A: Free data is delayed and best for backtesting/research. For live trading, consider a real-time data provider.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Q: What if a symbol I need isn't included?</h3>
+            <p className="text-gray-300">
+              A: You can request additions or use a paid data provider (Norgate, TradeStation, etc.) for more symbols.
+            </p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Upgrading to Professional Data</h2>
+
+        <p className="text-gray-300 mb-4">
+          For real-time data, more symbols, or intraday timeframes, consider:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
+          <li><strong>Norgate Data</strong> - US stocks, ETFs, futures (excellent quality)</li>
+          <li><strong>TradeStation</strong> - Real-time streaming, futures, forex</li>
+          <li><strong>Interactive Brokers</strong> - Real-time data with brokerage account</li>
+        </ul>
+
+        <p className="text-gray-300">
+          These integrate seamlessly with Navigator - just change your <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#FF9500]">data_source</code> config.
+        </p>
+      </div>
+    ),
+  },
+  'data-farm-download-scheduling': {
+    title: 'Download Scheduling & Gap Detection',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-8">
+          The Data Farm Historical Builder uses a sophisticated scheduling and gap detection system to keep market data up-to-date while minimizing API calls and avoiding wasteful re-downloads of existing data.
+        </p>
+
+        <Callout type="warning" title="Critical Rule">
+          The scheduler <strong>ONLY updates timeframes that already exist</strong> in the database for each symbol. It will NOT auto-download new timeframes - you must use "Build History" to add new timeframes.
+        </Callout>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Auto-Scheduler Update Frequency</h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="min-w-full bg-[#1a1a1a] border border-[#3d3d3d]">
+            <thead>
+              <tr className="bg-[#2d2d2d]">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Timeframe</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Update Frequency</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Lookback (Initial)</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Lookback (Periodic)</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300"><strong>Daily (1day)</strong></td>
+                <td className="px-6 py-4 text-gray-300">3x per day (06:00, 14:00, 22:00)</td>
+                <td className="px-6 py-4 text-gray-300">10 days</td>
+                <td className="px-6 py-4 text-gray-300">5 days</td>
+                <td className="px-6 py-4 text-gray-300">Catch vendor updates across time zones</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300"><strong>Hourly (60min)</strong></td>
+                <td className="px-6 py-4 text-gray-300">Every 10 minutes</td>
+                <td className="px-6 py-4 text-gray-300">48 hours</td>
+                <td className="px-6 py-4 text-gray-300">30 minutes</td>
+                <td className="px-6 py-4 text-gray-300">Keep hourly charts current</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300"><strong>10-Minute (10min)</strong></td>
+                <td className="px-6 py-4 text-gray-300">Every 10 minutes</td>
+                <td className="px-6 py-4 text-gray-300">48 hours</td>
+                <td className="px-6 py-4 text-gray-300">30 minutes</td>
+                <td className="px-6 py-4 text-gray-300">Keep 10-min charts current</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-gray-300"><strong>1-Minute (1min)</strong></td>
+                <td className="px-6 py-4 text-gray-300">Every 10 minutes</td>
+                <td className="px-6 py-4 text-gray-300">48 hours</td>
+                <td className="px-6 py-4 text-gray-300">30 minutes</td>
+                <td className="px-6 py-4 text-gray-300">Keep minute charts current</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6 mb-8">
+          <h3 className="text-xl font-bold mb-4">Daily Schedule (3x per day)</h3>
+          <p className="text-gray-300 mb-4">
+            The daily bars update at three times to catch data vendor updates across different time zones:
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-300">
+            <li><strong>06:00 local</strong> - Catch Asian/European vendor updates</li>
+            <li><strong>14:00 local</strong> - Catch early US updates</li>
+            <li><strong>22:00 local</strong> - Catch US close updates (few hours after 4 PM ET market close)</li>
+          </ul>
+        </div>
+
+        <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6 mb-8">
+          <h3 className="text-xl font-bold mb-4">Intraday Schedule (Every 10 minutes)</h3>
+          <p className="text-gray-300 mb-4">
+            All intraday timeframes (60min, 10min, 1min) update together every 10 minutes:
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-300">
+            <li>Downloads last 30 minutes of data (periodic)</li>
+            <li>Ends at "now - 5 minutes" to avoid incomplete bars</li>
+            <li>Batched together to minimize database access</li>
+          </ul>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Download Schedule (Detailed)</h2>
+
+        <div className="space-y-6">
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">1. On Startup (Immediate)</h3>
+            <p className="text-gray-300 mb-4">
+              When the Historical Builder starts via "Connect & Start", it performs:
+            </p>
+
+            <h4 className="text-lg font-semibold mb-2 text-[#FF9500]">A. Gap Detection (FIRST)</h4>
+            <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
+              <li>Scans all active symbols for missing data</li>
+              <li>Uses asset-aware logic (Stock/Futures/Forex/Crypto)</li>
+              <li>Queues HIGH priority downloads for any gaps found</li>
+            </ul>
+
+            <h4 className="text-lg font-semibold mb-2 text-[#FF9500]">B. Daily Bar Updates</h4>
+            <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
+              <li>Queues last 10 days of daily bars</li>
+              <li>HIGH priority</li>
+              <li>Only for symbols with existing daily data</li>
+            </ul>
+
+            <h4 className="text-lg font-semibold mb-2 text-[#FF9500]">C. Intraday Bar Updates</h4>
+            <ul className="list-disc list-inside space-y-2 text-gray-300">
+              <li>Queues last 48 hours for each timeframe (60min, 10min, 1min)</li>
+              <li>HIGH priority</li>
+              <li>Only for symbols with existing data for that timeframe</li>
+            </ul>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">2. Every 10 Minutes (Recurring)</h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-300">
+              <li>Updates all intraday timeframes (60min, 10min, 1min)</li>
+              <li>Downloads last 30 minutes of data</li>
+              <li>Ends at "now - 5 minutes" to avoid incomplete bars</li>
+              <li>NORMAL priority</li>
+              <li><strong>Critical for Market Monitor</strong> - keeps charts current</li>
+            </ul>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">3. 3x Daily (06:00, 14:00, 22:00) (Scheduled)</h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-300">
+              <li>Updates daily bars for symbols with existing daily data</li>
+              <li>Downloads last 5 days of data</li>
+              <li>NORMAL priority</li>
+              <li>Catches vendor updates across time zones</li>
+            </ul>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">4. Daily at Midnight (Scheduled)</h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-300">
+              <li>Full gap detection for all symbols</li>
+              <li>Catches any missed days (e.g., if system was offline)</li>
+              <li>Asset-aware detection</li>
+              <li>HIGH priority</li>
+            </ul>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">5. When Symbol Added (Immediate)</h3>
+            <p className="text-gray-300 mb-4">
+              When you add a new symbol via add_symbols():
+            </p>
+
+            <h4 className="text-lg font-semibold mb-2 text-[#FF9500]">New Symbol (No Data):</h4>
+            <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
+              <li>Queues 25 years of daily bars</li>
+              <li>Queues 30 days of 1-min bars</li>
+              <li>HIGH priority</li>
+              <li><strong>No waiting until midnight!</strong></li>
+            </ul>
+
+            <h4 className="text-lg font-semibold mb-2 text-[#FF9500]">Existing Symbol (Has Data):</h4>
+            <ul className="list-disc list-inside space-y-2 text-gray-300">
+              <li>Runs gap detection immediately</li>
+              <li>Queues any missing data</li>
+              <li>HIGH priority</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Gap Detection Logic</h2>
+        <p className="text-gray-300 mb-6">
+          Gap detection is <strong>asset-aware</strong> and uses different rules for different asset classes to avoid flagging normal market closures as "gaps".
+        </p>
+
+        <div className="space-y-6">
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">Daily Bars (All Asset Classes)</h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-300">
+              <li><strong>Gap Threshold:</strong> &gt; 7 days</li>
+              <li><strong>Logic:</strong> Any gap over a week is flagged</li>
+              <li><strong>Ignores:</strong> Weekends, long weekends</li>
+              <li><strong>Catches:</strong> Multi-week data outages, new symbols</li>
+            </ul>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">1-Min Bars (Asset-Aware)</h3>
+
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-lg font-semibold mb-2 text-[#FF9500]">Stock (AAPL, MSFT, etc.)</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li><strong>Trading Hours:</strong> 9:30 AM - 4:00 PM ET</li>
+                  <li><strong>Gap Threshold:</strong> &gt; 15 minutes during market hours, same day only</li>
+                  <li><strong>Ignores:</strong> Overnight gaps (4:00 PM → 9:30 AM), Weekend gaps, Pre/post-market gaps</li>
+                  <li><strong>Catches:</strong> Intraday trading halts, data outages</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold mb-2 text-[#FF9500]">Futures (@ES, @NQ, etc.)</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li><strong>Trading Hours:</strong> Nearly 24/5 (Sunday 5 PM CT - Friday 4 PM CT)</li>
+                  <li><strong>Gap Threshold:</strong> &gt; 2 hours on same day, &gt; 24 hours multi-day</li>
+                  <li><strong>Ignores:</strong> Weekend gaps (Friday PM → Sunday PM), Daily maintenance windows</li>
+                  <li><strong>Catches:</strong> Multi-hour outages, missed weekdays</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold mb-2 text-[#FF9500]">Forex (GBPUSD, EURUSD, etc.)</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li><strong>Trading Hours:</strong> 24/5 (Sunday evening - Friday evening)</li>
+                  <li><strong>Gap Threshold:</strong> &gt; 2 hours on same day, &gt; 24 hours multi-day</li>
+                  <li><strong>Ignores:</strong> Weekend gaps (Friday close → Sunday open)</li>
+                  <li><strong>Catches:</strong> Intraday outages, missed weekdays</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold mb-2 text-[#FF9500]">Crypto (BTCUSD, etc.)</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li><strong>Trading Hours:</strong> 24/7/365</li>
+                  <li><strong>Gap Threshold:</strong> &gt; 1 hour any time</li>
+                  <li><strong>Ignores:</strong> Nothing (trades continuously)</li>
+                  <li><strong>Catches:</strong> Any outage &gt; 1 hour</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Priority System</h2>
+        <p className="text-gray-300 mb-6">
+          Downloads are queued with different priorities:
+        </p>
+
+        <div className="space-y-4">
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4 text-green-400">HIGH Priority</h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-300">
+              <li>Gap-filled data</li>
+              <li>Startup downloads (first 10 days daily, 48 hours 1-min)</li>
+              <li>First 1-min update (initial 48 hours)</li>
+              <li>New symbol data</li>
+            </ul>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4 text-blue-400">NORMAL Priority</h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-300">
+              <li>Recurring 5-minute 1-min updates</li>
+              <li>Daily 5 PM daily bar updates</li>
+              <li>Subsequent scheduled updates</li>
+            </ul>
+          </div>
+        </div>
+
+        <Callout type="info" title="Priority System">
+          Priority ensures critical data (gaps, new symbols) downloads first, while routine updates are queued normally.
+        </Callout>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Example Scenarios</h2>
+
+        <div className="space-y-6">
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">Scenario 1: Fresh Install</h3>
+            <ol className="list-decimal list-inside space-y-2 text-gray-300">
+              <li>Start Data Farm Dashboard</li>
+              <li>Gap detection runs → Finds NO existing data</li>
+              <li>Queues 10 years daily + 48 hours 1-min for all symbols</li>
+              <li>Downloads begin immediately</li>
+            </ol>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">Scenario 2: Daily Use</h3>
+            <ol className="list-decimal list-inside space-y-2 text-gray-300">
+              <li>System running 24/7</li>
+              <li>Every 5 minutes: Updates 1-min bars</li>
+              <li>Daily at 5 PM: Updates daily bars</li>
+              <li>Daily at midnight: Gap check (finds nothing - clean!)</li>
+            </ol>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">Scenario 3: Add New Symbol</h3>
+            <ol className="list-decimal list-inside space-y-2 text-gray-300">
+              <li>builder.add_symbols(['TSLA'], asset_class='Stock')</li>
+              <li>Immediate check: Symbol has no data</li>
+              <li>Queue 10 years daily + 48 hours 1-min</li>
+              <li>Downloads start immediately (HIGH priority)</li>
+              <li>Data available within minutes</li>
+            </ol>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">Scenario 4: Weekend Return</h3>
+            <ol className="list-decimal list-inside space-y-2 text-gray-300">
+              <li>Friday 4 PM: System downloads data</li>
+              <li>Weekend: System offline</li>
+              <li>Monday 9 AM: System starts</li>
+              <li>Gap detection finds Friday → Monday gap</li>
+              <li>Queues missing data (HIGH priority)</li>
+              <li>Downloads Friday PM data immediately</li>
+            </ol>
+          </div>
+
+          <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-4">Scenario 5: Multi-Day Absence</h3>
+            <ol className="list-decimal list-inside space-y-2 text-gray-300">
+              <li>Thursday night: Last data download</li>
+              <li>Offline Friday, Saturday, Sunday, Monday</li>
+              <li>Tuesday morning: System starts</li>
+              <li>Gap detection finds 4-day gap</li>
+              <li>Queues all missing days (HIGH priority)</li>
+              <li>Downloads complete history since Thursday</li>
+            </ol>
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Smart Features</h2>
+
+        <div className="space-y-3">
+          <div className="flex gap-3">
+            <span className="text-[#FF9500] flex-shrink-0">1.</span>
+            <div>
+              <p className="text-gray-300"><strong>No Duplicate Downloads</strong></p>
+              <p className="text-gray-400 text-sm">INSERT OR REPLACE prevents duplicate data. Overlapping date ranges are safe. Re-downloading existing data updates it (no harm).</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <span className="text-[#FF9500] flex-shrink-0">2.</span>
+            <div>
+              <p className="text-gray-300"><strong>Asset-Aware Detection</strong></p>
+              <p className="text-gray-400 text-sm">Stock gaps ignore overnight/weekend. Futures gaps allow for maintenance. Forex gaps ignore weekends. Crypto gaps catch any outage.</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <span className="text-[#FF9500] flex-shrink-0">3.</span>
+            <div>
+              <p className="text-gray-300"><strong>Rate Limiting</strong></p>
+              <p className="text-gray-400 text-sm">2-second delay between batches prevents API throttling. Batch size: 10 symbols at a time.</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <span className="text-[#FF9500] flex-shrink-0">4.</span>
+            <div>
+              <p className="text-gray-300"><strong>Safe End Dates</strong></p>
+              <p className="text-gray-400 text-sm">1-min downloads end at "now - 10 minutes" to avoid incomplete bars. Daily downloads end at yesterday.</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <span className="text-[#FF9500] flex-shrink-0">5.</span>
+            <div>
+              <p className="text-gray-300"><strong>Immediate New Symbol Detection</strong></p>
+              <p className="text-gray-400 text-sm">No waiting until midnight. Data available within minutes. Proper gap detection on existing data.</p>
+            </div>
+          </div>
+        </div>
+
+        <Callout type="success" title="Summary">
+          The Data Farm download scheduling system is designed to keep data current (10-min updates for intraday bars), fill gaps automatically (asset-aware detection), handle new symbols immediately (no waiting), minimize API calls (smart gap detection), avoid wasteful re-downloads (ignore overnight/weekend), and support multiple asset classes. The result is a robust, efficient, and intelligent data management system that "just works"!
         </Callout>
       </div>
     ),
@@ -1614,6 +2439,146 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
       </div>
     ),
   },
+  'data-farm-csv-import': {
+    title: 'Importing Custom CSV Data into Navigator',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <h2 className="text-2xl font-bold mb-6">Overview</h2>
+        <p className="text-xl text-gray-300 mb-8">
+          Import your own historical price data (OHLCV) from CSV files into DataFarm for backtesting.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 1: Prepare Your CSV File</h2>
+        <p className="text-gray-300 mb-4">
+          Your CSV must include these columns:
+        </p>
+
+        <div className="overflow-x-auto mb-8">
+          <table className="min-w-full bg-[#1a1a1a] border border-[#3d3d3d]">
+            <thead>
+              <tr className="bg-[#2d2d2d]">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Column</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Required</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Date</td>
+                <td className="px-6 py-4 text-gray-300">✅</td>
+                <td className="px-6 py-4 text-gray-300">Date of the bar</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Time</td>
+                <td className="px-6 py-4 text-gray-300">✅</td>
+                <td className="px-6 py-4 text-gray-300">Time of the bar</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Open</td>
+                <td className="px-6 py-4 text-gray-300">✅</td>
+                <td className="px-6 py-4 text-gray-300">Opening price</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">High</td>
+                <td className="px-6 py-4 text-gray-300">✅</td>
+                <td className="px-6 py-4 text-gray-300">Highest price</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Low</td>
+                <td className="px-6 py-4 text-gray-300">✅</td>
+                <td className="px-6 py-4 text-gray-300">Lowest price</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">Close</td>
+                <td className="px-6 py-4 text-gray-300">✅</td>
+                <td className="px-6 py-4 text-gray-300">Closing price</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-gray-300">Volume</td>
+                <td className="px-6 py-4 text-gray-300">Optional</td>
+                <td className="px-6 py-4 text-gray-300">Trading volume</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 2: Use a Supported Date Format</h2>
+        <p className="text-gray-300 mb-4">
+          Navigator auto-detects these formats:
+        </p>
+
+        <div className="overflow-x-auto mb-8">
+          <table className="min-w-full bg-[#1a1a1a] border border-[#3d3d3d]">
+            <thead>
+              <tr className="bg-[#2d2d2d]">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Format</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#FF9500] border-b border-[#3d3d3d]">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">YYYY.MM.DD HH:MM:SS</td>
+                <td className="px-6 py-4 text-gray-400">2025.01.15 14:30:00</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-6 py-4 text-gray-300">YYYY-MM-DD HH:MM:SS</td>
+                <td className="px-6 py-4 text-gray-400">2025-01-15 14:30:00</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-gray-300">MM/DD/YYYY HH:MM:SS</td>
+                <td className="px-6 py-4 text-gray-400">01/15/2025 14:30:00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p className="text-gray-300 mb-8">
+          For daily bars, use <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#FF9500]">00:00:00</code> as the time.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 3: Name Your File Correctly</h2>
+        <p className="text-gray-300 mb-4">
+          Use this naming convention:
+        </p>
+
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-8">
+          <li>Daily data: <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#FF9500]">SPY_D1.csv</code> or <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#FF9500]">SPY-D1.csv</code></li>
+          <li>1-minute data: <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#FF9500]">EURUSD_M1.csv</code> or <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#FF9500]">EURUSD-M1.csv</code></li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 4: Example CSV</h2>
+        <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-lg p-4 mb-8">
+          <pre className="text-sm text-gray-300 overflow-x-auto">
+            <code>
+{`Date,Time,Open,High,Low,Close,Volume
+2025.01.15,00:00:00,595.50,598.75,594.25,597.80,1234567
+2025.01.16,00:00:00,597.80,602.10,596.50,601.25,1456789
+2025.01.17,00:00:00,601.25,605.00,600.10,604.50,1345678`}
+            </code>
+          </pre>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Step 5: Import into Navigator</h2>
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-8">
+          <li>Open <strong>DataFarm</strong> in Navigator</li>
+          <li>Click <strong>Import Data</strong></li>
+          <li>Select your CSV file(s)</li>
+          <li>Navigator will parse and store the data</li>
+          <li>Your symbol is now available for backtesting</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">Troubleshooting</h2>
+
+        <Callout type="warning" title="'No data available' error?">
+          <ul className="list-disc list-inside space-y-2 text-gray-300">
+            <li>Ensure dates don't include timezone (e.g., -05:00)</li>
+            <li>Check column headers are spelled correctly</li>
+            <li>Verify date format is one of the supported formats</li>
+          </ul>
+        </Callout>
+      </div>
+    ),
+  },
   'license-upgrade': {
     title: 'License Upgrade',
     content: (
@@ -1686,6 +2651,433 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
         <Callout type="tip" title="Quick Access">
           From the Cockpit Home dashboard, click the Settings gear icon, then select the License tab to manage your subscription anytime.
         </Callout>
+      </div>
+    ),
+  },
+  'version-upgrade-data-migration': {
+    title: 'Upgrading Versions & Moving Data',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          Learn how to safely export your data before upgrading Navigator and import it into the new version.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">📦 EXPORTING DATA (Before Upgrade)</h2>
+
+        <h3 className="text-xl font-semibold mt-6 mb-3">Step 1: Open Settings</h3>
+        <p className="text-gray-300 mb-4">
+          Click the ⚙️ Settings button in the top toolbar
+        </p>
+
+        <h3 className="text-xl font-semibold mt-6 mb-3">Step 2: Open Export/Import</h3>
+        <p className="text-gray-300 mb-4">
+          Click the 📦 Export/Import Data button
+        </p>
+
+        <h3 className="text-xl font-semibold mt-6 mb-3">Step 3: Select What to Export</h3>
+        <ul className="list-none space-y-2 text-gray-300 mb-6">
+          <li>✅ <strong>Strategies & Configs</strong> - Your custom strategy configs</li>
+          <li>✅ <strong>Backtest Results</strong> - All historical backtest outputs</li>
+          <li>✅ <strong>Journal Entries</strong> - Trading journal and notes</li>
+          <li>✅ <strong>User Profile</strong> - Trader profile and preferences</li>
+          <li>✅ <strong>API Credentials</strong> - Saved API keys (encrypted)</li>
+          <li>✅ <strong>Cockpit Database</strong> - Activity logs, insights, favorites</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold mt-6 mb-3">Step 4: Optional Password Protection</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>Check "Encrypt with password" for sensitive data</li>
+          <li>Enter and confirm password (remember this!)</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold mt-6 mb-3">Step 5: Export</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>Click Export</li>
+          <li>File saves to: <code className="bg-[#2d2d2d] px-2 py-1 rounded">Downloads/s2n_export_YYYYMMDD_HHMMSS.zip</code></li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">📥 IMPORTING DATA (After Upgrade)</h2>
+
+        <ol className="list-decimal list-inside space-y-3 text-gray-300 mb-6">
+          <li>Install the new version of S2N Navigator</li>
+          <li>Launch Navigator and complete Welcome Wizard (or skip)</li>
+          <li>Open Settings → 📦 Export/Import Data</li>
+          <li>Click Import tab</li>
+          <li>Browse to your export ZIP file</li>
+          <li>Enter password (if encrypted)</li>
+          <li>Select categories to import
+            <ul className="list-disc list-inside ml-6 mt-2">
+              <li>Uncheck any you want to skip</li>
+            </ul>
+          </li>
+          <li>Click Import</li>
+          <li>Restart Navigator to apply all changes</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">🔄 COMMON UPGRADE SCENARIOS</h2>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-6 mb-6">
+          <table className="w-full text-gray-300">
+            <thead>
+              <tr className="border-b border-gray-600">
+                <th className="text-left py-2 pr-4">Scenario</th>
+                <th className="text-left py-2">What to Export</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-700">
+                <td className="py-3 pr-4">Fresh install, new PC</td>
+                <td className="py-3">All categories</td>
+              </tr>
+              <tr className="border-b border-gray-700">
+                <td className="py-3 pr-4">Minor version update</td>
+                <td className="py-3">Strategies, Backtest Results, Journal</td>
+              </tr>
+              <tr className="border-b border-gray-700">
+                <td className="py-3 pr-4">Moving to new machine</td>
+                <td className="py-3">All categories (especially API Credentials)</td>
+              </tr>
+              <tr>
+                <td className="py-3 pr-4">Backup only</td>
+                <td className="py-3">Strategies & Configs, Journal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">⚠️ TROUBLESHOOTING</h2>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-6 mb-6">
+          <table className="w-full text-gray-300">
+            <thead>
+              <tr className="border-b border-gray-600">
+                <th className="text-left py-2 pr-4">Issue</th>
+                <th className="text-left py-2">Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-700">
+                <td className="py-3 pr-4">Import fails</td>
+                <td className="py-3">Check ZIP file isn't corrupted</td>
+              </tr>
+              <tr className="border-b border-gray-700">
+                <td className="py-3 pr-4">Wrong password</td>
+                <td className="py-3">Re-export with known password</td>
+              </tr>
+              <tr className="border-b border-gray-700">
+                <td className="py-3 pr-4">Missing data after import</td>
+                <td className="py-3">Verify category was selected</td>
+              </tr>
+              <tr className="border-b border-gray-700">
+                <td className="py-3 pr-4">DataFarm data missing</td>
+                <td className="py-3">Run DataFarm.sync() after import</td>
+              </tr>
+              <tr>
+                <td className="py-3 pr-4">API keys not working</td>
+                <td className="py-3">Re-enter in Settings after import</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">📍 DATA LOCATIONS (Advanced)</h2>
+
+        <p className="text-gray-300 mb-4">
+          User data is stored in:
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 mb-6">
+          <code className="text-sm text-gray-300">
+            %APPDATA%\S2N Navigator\<br />
+            ├── api_config.json        (API keys)<br />
+            ├── broker_config.json     (Broker credentials)<br />
+            ├── cockpit.db             (Main database)<br />
+            └── tradestation\          (TradeStation config)
+          </code>
+        </div>
+
+        <p className="text-gray-300 mb-4">
+          Strategy configs:
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 mb-6">
+          <code className="text-sm text-gray-300">
+            &lt;Navigator Install&gt;\config\*.json
+          </code>
+        </div>
+
+        <p className="text-gray-300 mb-4">
+          Backtest outputs:
+        </p>
+        <div className="bg-[#2d2d2d] rounded-lg p-4 mb-6">
+          <code className="text-sm text-gray-300">
+            &lt;Navigator Install&gt;\outputs\&lt;strategy_type&gt;\&lt;timestamp&gt;\
+          </code>
+        </div>
+
+        <Callout type="tip" title="Best Practice">
+          Always export your data before upgrading to a new version. This ensures you have a backup if anything goes wrong during the upgrade process.
+        </Callout>
+      </div>
+    ),
+  },
+  'journal': {
+    title: 'Journal',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <h2 className="text-2xl font-bold mb-4">📓 What is the Journal?</h2>
+        <p className="text-gray-300 mb-4">
+          The Journal is your private trading diary integrated into Navigator's Cockpit. It helps you:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>Track daily trading thoughts and market observations</li>
+          <li>Record emotional states and decision-making patterns</li>
+          <li>Link entries to actual trades and outcomes</li>
+          <li>Get AI-powered analysis of your trading behavior</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">🚀 Getting Started</h2>
+
+        <h3 className="text-xl font-semibold text-[#FF9500] mt-6 mb-3">Access the Journal:</h3>
+        <ol className="list-decimal list-inside space-y-2 text-gray-300 mb-6">
+          <li>Click <strong>Cockpit</strong> in the left navigation bar</li>
+          <li>Select the <strong>📓 Journal</strong> tab</li>
+        </ol>
+
+        <h3 className="text-xl font-semibold text-[#FF9500] mt-6 mb-3">Create Your First Entry:</h3>
+        <ol className="list-decimal list-inside space-y-2 text-gray-300 mb-6">
+          <li>Click <strong>+ New Entry</strong></li>
+          <li>Select the date (defaults to today)</li>
+          <li>Write your entry - thoughts, observations, market notes</li>
+          <li>Add tags to categorize (e.g., "idea", "lesson", "win", "loss")</li>
+          <li>Click <strong>Save</strong></li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">✍️ What to Journal</h2>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-[#3d3d3d]">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="px-4 py-3 text-left text-[#FF9500] font-semibold border-b border-[#3d3d3d]">Category</th>
+                <th className="px-4 py-3 text-left text-[#FF9500] font-semibold border-b border-[#3d3d3d]">Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">Pre-Market</td>
+                <td className="px-4 py-3 text-gray-300">"Futures up 0.5%, expecting gap fill. Watching AAPL earnings reaction."</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">During Session</td>
+                <td className="px-4 py-3 text-gray-300">"Entered SPY long at 450, felt confident based on support bounce."</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">Post-Market</td>
+                <td className="px-4 py-3 text-gray-300">"Closed SPY for 1.2% gain. Held longer than planned - need to stick to rules."</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">Emotions</td>
+                <td className="px-4 py-3 text-gray-300">"Felt FOMO watching NVDA rally. Resisted chasing. Proud of discipline."</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">Lessons</td>
+                <td className="px-4 py-3 text-gray-300">"Third time I've over-sized on Friday. Adding rule: 50% size on Fridays."</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 text-gray-300">Ideas</td>
+                <td className="px-4 py-3 text-gray-300">"Notice tech leads market by 2-3 days. Research sector rotation strategy."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">🏷️ Tagging System</h2>
+        <p className="text-gray-300 mb-4">
+          Use tags to categorize entries for easy filtering and AI analysis:
+        </p>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-[#3d3d3d]">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="px-4 py-3 text-left text-[#FF9500] font-semibold border-b border-[#3d3d3d]">Tag</th>
+                <th className="px-4 py-3 text-left text-[#FF9500] font-semibold border-b border-[#3d3d3d]">Use For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300 font-mono">win</td>
+                <td className="px-4 py-3 text-gray-300">Successful trades</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300 font-mono">loss</td>
+                <td className="px-4 py-3 text-gray-300">Losing trades</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300 font-mono">lesson</td>
+                <td className="px-4 py-3 text-gray-300">Key learnings</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300 font-mono">idea</td>
+                <td className="px-4 py-3 text-gray-300">Strategy ideas</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300 font-mono">emotion</td>
+                <td className="px-4 py-3 text-gray-300">Psychological notes</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300 font-mono">research</td>
+                <td className="px-4 py-3 text-gray-300">Market analysis</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 text-gray-300 font-mono">rule</td>
+                <td className="px-4 py-3 text-gray-300">Trading rules created/broken</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">🤖 AI-Powered Analysis</h2>
+        <p className="text-gray-300 mb-4">
+          Ask the Oracle to analyze your journal:
+        </p>
+        <div className="overflow-x-auto mb-6">
+          <table className="min-w-full border border-[#3d3d3d]">
+            <thead className="bg-[#2d2d2d]">
+              <tr>
+                <th className="px-4 py-3 text-left text-[#FF9500] font-semibold border-b border-[#3d3d3d]">Command</th>
+                <th className="px-4 py-3 text-left text-[#FF9500] font-semibold border-b border-[#3d3d3d]">What You Get</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">"Summarize my journal this week"</td>
+                <td className="px-4 py-3 text-gray-300">Overview of recent entries</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">"What patterns do you see in my losses?"</td>
+                <td className="px-4 py-3 text-gray-300">Identifies recurring mistakes</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">"When do I trade best?"</td>
+                <td className="px-4 py-3 text-gray-300">Finds your optimal conditions</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">"What emotions hurt my trading?"</td>
+                <td className="px-4 py-3 text-gray-300">Psychological pattern analysis</td>
+              </tr>
+              <tr className="border-b border-[#3d3d3d]">
+                <td className="px-4 py-3 text-gray-300">"Review my last 10 trades"</td>
+                <td className="px-4 py-3 text-gray-300">Performance + behavior correlation</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 text-gray-300">"Am I following my rules?"</td>
+                <td className="px-4 py-3 text-gray-300">Rule compliance check</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">📊 Linking Entries to Trades</h2>
+        <p className="text-gray-300 mb-4">
+          Connect journal entries to actual trade outcomes:
+        </p>
+        <ol className="list-decimal list-inside space-y-2 text-gray-300 mb-6">
+          <li>
+            In your journal entry, mention the symbol and direction
+            <ul className="list-disc list-inside ml-6 mt-2">
+              <li><em>"Went long TSLA at $245"</em></li>
+            </ul>
+          </li>
+          <li>
+            After closing, update with outcome
+            <ul className="list-disc list-inside ml-6 mt-2">
+              <li><em>"Closed TSLA for +3.2%. Held through pullback as planned."</em></li>
+            </ul>
+          </li>
+          <li>Oracle correlates entries with backtest/paper trade results</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">📅 Journal Best Practices</h2>
+
+        <h3 className="text-xl font-semibold text-[#FF9500] mt-6 mb-3">Daily Habits:</h3>
+        <ul className="space-y-2 text-gray-300 mb-6">
+          <li>✅ Write before market open (plan the day)</li>
+          <li>✅ Write after market close (review the day)</li>
+          <li>✅ Record emotions honestly - no judgment</li>
+          <li>✅ Note what you did RIGHT, not just mistakes</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-[#FF9500] mt-6 mb-3">Weekly Review:</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>Ask Oracle: "What patterns do you see in my journal this week?"</li>
+          <li>Review tagged entries by category</li>
+          <li>Update trading rules based on lessons</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-[#FF9500] mt-6 mb-3">Monthly Deep Dive:</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li>"Analyze my trading psychology over the past month"</li>
+          <li>Correlate journal mood with P&L</li>
+          <li>Identify your best/worst trading conditions</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">🔒 Privacy & Backup</h2>
+        <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
+          <li><strong>Private:</strong> Journal entries stored locally in your Cockpit database</li>
+          <li><strong>Exportable:</strong> Settings → Export/Import → Select "Cockpit" to backup journal</li>
+          <li><strong>Encrypted:</strong> Optional password protection on exports</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold mt-8 mb-4">💡 Example Entries</h2>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-6 mb-4 border border-[#3d3d3d]">
+          <h3 className="text-lg font-semibold text-[#FF9500] mb-3">Pre-Market Entry:</h3>
+          <div className="text-gray-400 text-sm mb-2">
+            <strong>Date:</strong> 2026-01-19<br />
+            <strong>Tags:</strong> plan, research
+          </div>
+          <div className="bg-[#1a1a1a] p-4 rounded text-gray-300 font-mono text-sm whitespace-pre-line">
+Market gapping up on good jobs data. SPY at resistance 480.
+Plan: Wait for first 30 min, look for pullback to VWAP.
+Watching: NVDA (earnings tomorrow), AAPL (bounce setup)
+Risk: 1% per trade today, no FOMO on gaps.
+          </div>
+        </div>
+
+        <div className="bg-[#2d2d2d] rounded-lg p-6 mb-6 border border-[#3d3d3d]">
+          <h3 className="text-lg font-semibold text-[#FF9500] mb-3">Post-Trade Entry:</h3>
+          <div className="text-gray-400 text-sm mb-2">
+            <strong>Date:</strong> 2026-01-19<br />
+            <strong>Tags:</strong> win, lesson
+          </div>
+          <div className="bg-[#1a1a1a] p-4 rounded text-gray-300 font-mono text-sm whitespace-pre-line">
+Took SPY long at 478.50 after VWAP test. Target 481.
+Closed at 480.20 for +0.35%. Left money on table (hit 481.50).
+
+Lesson: My targets are too conservative. Review stats on
+average winner size vs target distance.
+
+Emotion: Felt good about patience, frustrated about early exit.
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  'optimization': {
+    title: 'Optimization',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          Content coming soon.
+        </p>
+      </div>
+    ),
+  },
+  'live-trading': {
+    title: 'Live Trading',
+    content: (
+      <div className="prose prose-invert max-w-none">
+        <p className="text-xl text-gray-300 mb-6">
+          Content coming soon.
+        </p>
       </div>
     ),
   },
@@ -2299,8 +3691,8 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
               Can I backtest with options or futures?
             </h3>
             <p className="text-gray-300">
-              Yes, Navigator supports options and futures backtesting with appropriate
-              data subscriptions. These instruments require more careful modeling due to
+              We do not offer options but we do offer futures. Navigator supports futures backtesting with appropriate
+              data subscriptions. These instruments require careful modeling due to
               expiration and rollover considerations.
             </p>
           </div>
@@ -2369,6 +3761,22 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
   'broken-vs-unlucky': {
     title: 'When a Strategy Is Broken (and When It\'s Just Unlucky)',
     content: <BrokenVsUnluckyContent />,
+  },
+  'parameter-optimisation-risk': {
+    title: 'Why Navigator Treats Parameter Optimisation as a Risk — Not a Goal',
+    content: <ParameterOptimisationRiskContent />,
+  },
+  'founder-introduction': {
+    title: 'Founder Introduction — S2N Navigator',
+    content: <FounderIntroductionContent />,
+  },
+  's2n-score': {
+    title: 'The S2N Score: How Navigator Evaluates Trading Skill (Not Just Backtests)',
+    content: <S2NScoreContent />,
+  },
+  'position-sizing-risk-management': {
+    title: 'Why Position Sizing and Risk Management Matter More Than Being Right',
+    content: <PositionSizingRiskManagementContent />,
   },
   'advanced': {
     title: 'Advanced Features Overview',

@@ -1,7 +1,7 @@
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 
-type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads';
+type Page = 'home' | 'pricing' | 'features' | 'ai-oracle' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads';
 
 interface NavigationProps {
   currentPage: Page;
@@ -14,7 +14,9 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
   const navItems = [
     { label: 'Home', page: 'home' as Page },
     { label: 'Features', page: 'features' as Page },
+    { label: 'AI Oracle', page: 'ai-oracle' as Page, special: true },
     { label: 'Learn', page: 'learn' as Page },
+    { label: 'Newsletter', page: 'blog' as Page },
     { label: 'Pricing', page: 'pricing' as Page },
     { label: 'Integrations', page: 'integrations' as Page },
     { label: 'About', page: 'about' as Page },
@@ -40,12 +42,17 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
             <button
               key={item.page}
               onClick={() => handleNavClick(item.page)}
-              className={`transition-colors ${
-                currentPage === item.page
+              className={`transition-colors flex items-center gap-1.5 ${
+                item.special
+                  ? currentPage === item.page
+                    ? 'text-cyan-400'
+                    : 'text-cyan-400/80 hover:text-cyan-300'
+                  : currentPage === item.page
                   ? 'text-[#FF9500]'
                   : 'text-gray-400 hover:text-white'
               }`}
             >
+              {item.special && <Sparkles className="w-4 h-4" />}
               {item.label}
             </button>
           ))}
@@ -72,12 +79,17 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
               <button
                 key={item.page}
                 onClick={() => handleNavClick(item.page)}
-                className={`block w-full text-left px-4 py-2 rounded transition-colors ${
-                  currentPage === item.page
+                className={`block w-full text-left px-4 py-2 rounded transition-colors flex items-center gap-2 ${
+                  item.special
+                    ? currentPage === item.page
+                      ? 'bg-cyan-500 text-white'
+                      : 'text-cyan-400 hover:text-cyan-300'
+                    : currentPage === item.page
                     ? 'bg-[#FF9500] text-black'
                     : 'text-gray-400 hover:text-white'
                 }`}
               >
+                {item.special && <Sparkles className="w-4 h-4" />}
                 {item.label}
               </button>
             ))}

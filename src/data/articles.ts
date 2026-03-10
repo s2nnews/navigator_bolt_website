@@ -3,7 +3,7 @@ export interface ArticleMetadata {
   title: string;
   subtitle: string;
   readingTime: string;
-  level: 'Foundations' | 'Research' | 'Strategies';
+  level: 'Introduction' | 'Foundations' | 'Research' | 'Strategies';
   sections: Array<{ id: string; title: string }>;
 }
 
@@ -162,6 +162,75 @@ export const articles: ArticleMetadata[] = [
       { id: 'why-humans-wrong', title: 'Why Humans Get This Wrong' },
       { id: 'decision-rules', title: 'Decision Rules Matter More Than Decisions' },
       { id: 'the-point', title: 'The Point' },
+    ],
+  },
+  {
+    slug: 'parameter-optimisation-risk',
+    title: 'Why Navigator Treats Parameter Optimisation as a Risk — Not a Goal',
+    subtitle: 'Why optimisation tables encourage luck-seeking — and what to do instead.',
+    readingTime: '8–10 min',
+    level: 'Research',
+    sections: [
+      { id: 'illusion-of-precision', title: 'The Illusion of Scientific Precision' },
+      { id: 'best-parameters-red-flag', title: 'Why "Best Parameters" Are a Red Flag' },
+      { id: 'optimisation-inversion', title: 'Optimisation in Navigator: Inversion, Not Elimination' },
+      { id: 'robustness-over-precision', title: 'Robustness Over Precision' },
+      { id: 'avoiding-tables', title: 'Why Navigator Avoids Optimisation Tables' },
+      { id: 'time-first', title: 'Time First, Parameters Second' },
+      { id: 'failure-is-data', title: 'Failure Is Data — and Navigator Preserves It' },
+      { id: 'monte-carlo-limits', title: 'Monte Carlo and the Limits of Randomisation' },
+      { id: 'core-principle', title: 'The Core Principle' },
+    ],
+  },
+  {
+    slug: 'founder-introduction',
+    title: 'Founder Introduction — S2N Navigator',
+    subtitle: 'Why Navigator exists and what problem it solves for traders.',
+    readingTime: '5–7 min',
+    level: 'Introduction',
+    sections: [
+      { id: 'fragmentation-problem', title: 'The Second Reason Smart People Fail' },
+      { id: 'integrated-framework', title: 'An Integrated Framework' },
+      { id: 'ai-era-platform', title: 'An AI-Era Platform' },
+      { id: 'what-navigator-is', title: 'What Navigator Is' },
+    ],
+  },
+  {
+    slug: 's2n-score',
+    title: 'The S2N Score: How Navigator Evaluates Trading Skill (Not Just Backtests)',
+    subtitle: 'A bias-aware framework that answers: How likely is this strategy to survive outside the backtest?',
+    readingTime: '10–12 min',
+    level: 'Research',
+    sections: [
+      { id: 'what-it-is', title: 'What the S2N Score Is (and Is Not)' },
+      { id: 'market-philosophy', title: 'How the S2N Score Thinks About Markets' },
+      { id: 'five-pillars', title: 'The Five Pillars of the S2N Score' },
+      { id: 'performance', title: '1. Performance (Dominant Component)' },
+      { id: 'statistical-validation', title: '2. Academic & Statistical Validation' },
+      { id: 'robustness', title: '3. Robustness & Regime Awareness' },
+      { id: 'research-integrity', title: '4. Research Integrity & Behavioural Signals' },
+      { id: 'realism', title: '5. Realism & Live Translation' },
+      { id: 'no-optimisation', title: 'Why Navigator Does Not Promote Parameter Optimisation' },
+      { id: 'ratings', title: 'Understanding S2N Score Ratings' },
+      { id: 'limitations', title: 'What the S2N Score Cannot Do' },
+      { id: 'core-principle', title: 'The Core Principle' },
+    ],
+  },
+  {
+    slug: 'position-sizing-risk-management',
+    title: 'Why Position Sizing and Risk Management Matter More Than Being Right',
+    subtitle: 'Why accepting a 50% win rate changes everything — and how to structure trades around that reality.',
+    readingTime: '10–12 min',
+    level: 'Foundations',
+    sections: [
+      { id: 'core-equation', title: 'The Core Equation Traders Ignore' },
+      { id: 'structural-pillars', title: 'Two Structural Pillars of Robust Trading' },
+      { id: 'pre-trade-checklist', title: 'A Practical Pre-Trade Checklist' },
+      { id: 'volatility-adjusted-sizing', title: 'Volatility-Adjusted Position Sizing' },
+      { id: 'why-it-works', title: 'Why Volatility-Adjusted Sizing Works' },
+      { id: 'making-money', title: 'Making Money with a 50% Win Rate' },
+      { id: 'trailing-framework', title: 'A Simple Trailing Framework' },
+      { id: 'summary', title: 'A Sensible Trading Framework, Summarized' },
     ],
   },
 ];

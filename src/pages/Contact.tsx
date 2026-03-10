@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../components/Button';
-import { Mail, MapPin, Loader } from 'lucide-react';
+import { Mail, Users, Loader } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { trackFormSubmission } from '../utils/analytics';
 
@@ -80,13 +80,15 @@ export function Contact() {
 
             <div className="bg-[#2d2d2d] p-6 md:p-8 rounded-lg border border-[#3d3d3d]">
               <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <MapPin className="text-[#FF9500]" size={20} />
-                <h3 className="font-semibold text-base md:text-lg">Beta Program</h3>
+                <Users className="text-[#FF9500]" size={20} />
+                <h3 className="font-semibold text-base md:text-lg">Partnerships</h3>
               </div>
               <p className="text-sm md:text-base text-gray-400">
-                Interested in our beta? Join our waitlist for early access.
+                Interested in partnering with us please email:{' '}
+                <a href="mailto:partners@s2n-navigator.com" className="hover:text-[#FF9500] transition-colors break-all">
+                  partners@s2n-navigator.com
+                </a>
               </p>
-              <p className="text-xs md:text-sm text-gray-500 mt-2">Limited spots available</p>
             </div>
 
             <div className="bg-[#2d2d2d] p-6 md:p-8 rounded-lg border border-[#3d3d3d] sm:col-span-2 md:col-span-1">

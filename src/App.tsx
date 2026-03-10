@@ -1,33 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Home } from './pages/Home';
-import { Pricing } from './pages/Pricing';
-import { Features } from './pages/Features';
-import { About } from './pages/About';
-import { Contact } from './pages/Contact';
-import { Affiliate } from './pages/Affiliate';
-import { Testers } from './pages/Testers';
-import { Integrations } from './pages/Integrations';
-import { Terms } from './pages/Terms';
-import { Privacy } from './pages/Privacy';
-import { Refunds } from './pages/Refunds';
-import { Disclaimer } from './pages/Disclaimer';
-import { Success } from './pages/Success';
-import { Trial } from './pages/Trial';
-import { Learn } from './pages/Learn';
-import { Docs } from './pages/Docs';
-import { Strategies } from './pages/Strategies';
-import { Videos } from './pages/Videos';
-import { Blog } from './pages/Blog';
-import { Downloads } from './pages/Downloads';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { CookieConsent } from './components/CookieConsent';
 import { trackPageView } from './utils/analytics';
 import { loadConsentPreferences } from './utils/consent';
 
-type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'testers' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'success' | 'trial' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads';
+const Pricing = lazy(() => import('./pages/Pricing').then(m => ({ default: m.Pricing })));
+const Features = lazy(() => import('./pages/Features').then(m => ({ default: m.Features })));
+const AIOracle = lazy(() => import('./pages/AIOracle').then(m => ({ default: m.AIOracle })));
+const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));
+const Contact = lazy(() => import('./pages/Contact').then(m => ({ default: m.Contact })));
+const Affiliate = lazy(() => import('./pages/Affiliate').then(m => ({ default: m.Affiliate })));
+const Testers = lazy(() => import('./pages/Testers').then(m => ({ default: m.Testers })));
+const Integrations = lazy(() => import('./pages/Integrations').then(m => ({ default: m.Integrations })));
+const Terms = lazy(() => import('./pages/Terms').then(m => ({ default: m.Terms })));
+const Privacy = lazy(() => import('./pages/Privacy').then(m => ({ default: m.Privacy })));
+const Refunds = lazy(() => import('./pages/Refunds').then(m => ({ default: m.Refunds })));
+const Disclaimer = lazy(() => import('./pages/Disclaimer').then(m => ({ default: m.Disclaimer })));
+const Success = lazy(() => import('./pages/Success').then(m => ({ default: m.Success })));
+const Trial = lazy(() => import('./pages/Trial').then(m => ({ default: m.Trial })));
+const Learn = lazy(() => import('./pages/Learn').then(m => ({ default: m.Learn })));
+const Docs = lazy(() => import('./pages/Docs').then(m => ({ default: m.Docs })));
+const Strategies = lazy(() => import('./pages/Strategies').then(m => ({ default: m.Strategies })));
+const Videos = lazy(() => import('./pages/Videos').then(m => ({ default: m.Videos })));
+const Blog = lazy(() => import('./pages/Blog').then(m => ({ default: m.Blog })));
+const Downloads = lazy(() => import('./pages/Downloads').then(m => ({ default: m.Downloads })));
 
-const validPages: Page[] = ['home', 'pricing', 'features', 'about', 'contact', 'affiliate', 'testers', 'integrations', 'terms', 'privacy', 'refunds', 'disclaimer', 'success', 'trial', 'learn', 'docs', 'strategies', 'videos', 'blog', 'downloads'];
+type Page = 'home' | 'pricing' | 'features' | 'ai-oracle' | 'about' | 'contact' | 'affiliate' | 'testers' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'success' | 'trial' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads';
+
+const validPages: Page[] = ['home', 'pricing', 'features', 'ai-oracle', 'about', 'contact', 'affiliate', 'testers', 'integrations', 'terms', 'privacy', 'refunds', 'disclaimer', 'success', 'trial', 'learn', 'docs', 'strategies', 'videos', 'blog', 'downloads'];
 
 function App() {
   const getPageFromHash = (hash: string): Page => {
@@ -59,6 +61,17 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const promoteKitId = import.meta.env.VITE_PROMOTEKIT_ID;
+    if (promoteKitId) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.promotekit.com/promotekit.js';
+      script.async = true;
+      script.setAttribute('data-promotekit', promoteKitId);
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  useEffect(() => {
     trackPageView(currentPage);
   }, [currentPage]);
 
@@ -82,6 +95,8 @@ function App() {
         return <Pricing />;
       case 'features':
         return <Features />;
+      case 'ai-oracle':
+        return <AIOracle />;
       case 'about':
         return <About />;
       case 'contact':
@@ -128,7 +143,13 @@ function App() {
         setCurrentHash(page);
       }} />
       <main className="flex-grow">
-        {renderPage()}
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <div className="animate-pulse text-gray-400">Loading...</div>
+          </div>
+        }>
+          {renderPage()}
+        </Suspense>
       </main>
       <Footer setCurrentPage={(page) => {
         window.location.hash = page;

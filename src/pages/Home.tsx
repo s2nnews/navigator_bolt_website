@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '../components/Button';
 import { VideoModal } from '../components/VideoModal';
-import { BarChart3, Lock, Shield, Database, TrendingUp, Users, ArrowRight, Brain } from 'lucide-react';
+import { SubstackPostCard } from '../components/SubstackPostCard';
+import { fetchSubstackFeed, SubstackPost } from '../utils/substack';
+import { BarChart3, Lock, Shield, Database, TrendingUp, Users, ArrowRight, Brain, BookOpen, Rss } from 'lucide-react';
 
 export function Home() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [latestPosts, setLatestPosts] = useState<SubstackPost[]>([]);
+
+  useEffect(() => {
+    fetchSubstackFeed()
+      .then((feed) => setLatestPosts(feed.posts.slice(0, 3)))
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="w-full">
       <div className="block bg-gradient-to-r from-[#FF9500] to-[#FF7A00] py-3 md:py-4 text-center text-white font-semibold text-sm md:text-base shadow-lg">
-        <span className="text-base md:text-lg">S2N Navigator is currently in Alpha Testing</span>
+        <span className="text-base md:text-lg">S2N Navigator is currently in Beta as of (2026-01-21)</span>
       </div>
 
       <section className="relative bg-gradient-to-b from-[#1a1a1a] via-[#151515] to-[#0f0f0f] py-8 sm:py-12 md:py-16 lg:py-12 overflow-hidden">
@@ -26,20 +35,25 @@ export function Home() {
                 <span>Bias-Aware Framework</span>
               </div>
 
-              {/* Main headline - bigger on mobile */}
-              <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-10 sm:mb-12 order-2">
-                <span className="block text-white">Backtesting to</span>
+              {/* Main headline */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-4 order-2">
+                <span className="block text-white">Backtest to</span>
                 <span className="block text-white">Live Trading</span>
-                <span className="block bg-gradient-to-r from-[#FF9500] to-[#FF7A00] bg-clip-text text-transparent pb-2">with Edge</span>
+                <span className="block bg-gradient-to-r from-[#FF9500] to-[#FF7A00] bg-clip-text text-transparent pb-2">With Confidence</span>
               </h1>
 
+              {/* Subhead */}
+              <p className="text-2xl sm:text-3xl md:text-4xl text-gray-300 font-medium mb-3 order-3">
+                AI-powered research & automation framework for systematic traders.
+              </p>
+
               {/* Tagline */}
-              <p className="text-xl sm:text-2xl md:text-3xl text-[#FF9500] font-semibold mb-8 order-3">
+              <p className="text-xl sm:text-2xl md:text-3xl text-[#FF9500] font-semibold mb-8 order-4">
                 Don't be fooled by randomness.
               </p>
 
               {/* Image on mobile only - appears after tagline on mobile */}
-              <div className="lg:hidden relative mb-6 order-4">
+              <div className="lg:hidden relative mb-6 order-5">
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#FF9500] to-[#FF7A00] rounded-xl opacity-20 group-hover:opacity-40 blur transition-opacity duration-300"></div>
                   <div className="relative rounded-lg overflow-hidden shadow-2xl shadow-black/50 border border-[#3d3d3d]">
@@ -53,7 +67,7 @@ export function Home() {
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-6 justify-start order-5">
+              <div className="flex flex-col sm:flex-row gap-4 mb-6 justify-start order-6">
                 <Button
                   variant="primary"
                   className="group w-full sm:w-auto text-lg px-8 py-4 shadow-lg shadow-[#FF9500]/20 hover:shadow-[#FF9500]/40 transition-all duration-300"
@@ -71,27 +85,49 @@ export function Home() {
                 </Button>
               </div>
 
+              {/* 3-bullet micro-strip - hidden on mobile, visible on desktop */}
+              <div className="hidden lg:flex lg:gap-6 text-base text-gray-400 mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="text-[#FF9500]">•</span>
+                  <span>Backtest validation</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#FF9500]">•</span>
+                  <span>Live trade monitoring</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#FF9500]">•</span>
+                  <span>Portfolio robustness scoring</span>
+                </div>
+              </div>
+
               {/* Description paragraphs with better spacing */}
-              <div className="space-y-4 text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl lg:mx-0 mb-6 order-6">
-                <p>
-                  Navigator is a bias-aware, AI-enabled organisational framework designed to reduce the most common causes of trading failure — overfitting, fragmentation, and self-deception.
+              <div className="space-y-4 text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl lg:mx-0 mb-6 order-7">
+                <p className="text-gray-400">
+                  You have data. You have backtesting tools. You have brokerage connections. What you don't have is a validation layer tying it all together.
+                </p>
+                <p className="font-medium">
+                  Navigator connects your backtests, live trades, and portfolio performance into one research workflow — then stress-tests whether results are robust or curve-fit.
                 </p>
                 <p className="text-gray-400">
-                  By bringing research, strategy development, deployment, and monitoring under one roof, Navigator gives you a higher probability of long-term survival and compounding than chasing performance mirages.
+                  Navigator's Oracle AI tracks research behaviour, flags overfitting, and scores strategy durability — so you deploy what survives reality, not what looks good in simulation.
+                </p>
+                <p className="font-medium">
+                  From backtesting to live deployment, Navigator evaluates whether your edge is real — or an illusion.
                 </p>
               </div>
 
               {/* Key value proposition - styled differently */}
-              <div className="relative mb-6 order-7">
+              <div className="relative mb-6 order-8">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#FF9500] to-transparent"></div>
                 <p className="pl-6 text-base sm:text-lg md:text-xl text-white font-semibold leading-relaxed">
                   Navigator does not help you find the best strategy.<br className="hidden sm:block"/>
-                  <span className="text-gray-300">It helps you avoid the bad ones — and stay in the game.</span>
+                  <span className="text-gray-300">It helps you avoid the fragile ones — and stay in the game.</span>
                 </p>
               </div>
 
               {/* Trust badge */}
-              <p className="text-gray-500 text-sm sm:text-base flex items-center gap-2 justify-start order-8">
+              <p className="text-gray-500 text-sm sm:text-base flex items-center gap-2 justify-start order-9">
                 <Lock size={16} className="text-gray-600" />
                 <span>14-day free trial. No credit card required.</span>
               </p>
@@ -263,7 +299,7 @@ export function Home() {
 
             <div className="bg-[#2d2d2d] rounded-lg border border-[#3d3d3d] hover:border-[#FF9500] transition-colors overflow-hidden">
               <div className="h-32 sm:h-40 md:h-48 overflow-hidden">
-                <img src="/feature_images/Live trading.png" alt="Live Trading" className="w-full h-full object-cover" />
+                <img src="/feature_images/live_trading.png" alt="Live Trading" className="w-full h-full object-cover" />
               </div>
               <div className="p-4 md:p-6">
                 <h3 className="text-base md:text-xl font-semibold mb-2 md:mb-3">Monitoring & Feedback</h3>
@@ -284,11 +320,73 @@ export function Home() {
         </div>
       </section>
 
-      <section className="py-12 md:py-20 bg-[#0f0f0f] border-y border-[#2d2d2d]">
+      <section className="py-12 md:py-20 bg-[#0f0f0f] border-y border-[#2d2d2d] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.08),transparent_50%)]" />
+        <div className="relative max-w-6xl mx-auto px-4">
+          <div className="text-center mb-8 md:mb-12">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
+              <Brain size={16} className="text-cyan-400" />
+              <span className="text-cyan-400 text-xs md:text-sm font-medium">AI-Powered Trading Intelligence</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
+              Meet the <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">AI Oracle</span>
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+              An AI that doesn't just answer questions—it <span className="text-cyan-400 font-semibold">knows</span> your data, learns from every backtest, and gets smarter the more you trade.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
+            <div className="bg-gradient-to-br from-cyan-900/10 to-blue-900/10 border border-cyan-500/30 rounded-xl p-6 md:p-8 hover:border-cyan-400 transition-all duration-300">
+              <Database className="w-8 h-8 md:w-10 md:h-10 text-cyan-400 mb-4" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">Knows Your Data</h3>
+              <p className="text-sm md:text-base text-gray-400">
+                The Oracle sees exactly what's in your DataFarm and builds strategies that work with YOUR data—not hypothetical datasets you don't have.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-cyan-900/10 to-blue-900/10 border border-cyan-500/30 rounded-xl p-6 md:p-8 hover:border-cyan-400 transition-all duration-300">
+              <Brain className="w-8 h-8 md:w-10 md:h-10 text-cyan-400 mb-4" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">Learns From Every Backtest</h3>
+              <p className="text-sm md:text-base text-gray-400">
+                Every backtest teaches the Oracle about your trading style, risk tolerance, and what works for YOU. After 50 backtests, it anticipates your needs.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-cyan-900/10 to-blue-900/10 border border-cyan-500/30 rounded-xl p-6 md:p-8 hover:border-cyan-400 transition-all duration-300">
+              <Shield className="w-8 h-8 md:w-10 md:h-10 text-cyan-400 mb-4" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">Your Trading Co-Pilot</h3>
+              <p className="text-sm md:text-base text-gray-400">
+                The Oracle warns you when something doesn't look right—before you make a mistake. Because it remembers your history and knows what works for you.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-cyan-900/10 to-blue-900/10 border border-cyan-500/30 rounded-xl p-6 md:p-8 hover:border-cyan-400 transition-all duration-300">
+              <BookOpen className="w-8 h-8 md:w-10 md:h-10 text-cyan-400 mb-4" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">200+ Battle-Tested Strategies</h3>
+              <p className="text-sm md:text-base text-gray-400">
+                Deep knowledge of momentum, mean reversion, TAA, and more. Ask for any strategy type and get production-ready configs in seconds.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <a
+              href="#ai-oracle"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 shadow-lg shadow-cyan-500/30"
+            >
+              Discover the Oracle
+              <ArrowRight size={20} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 md:mb-6">Data & Broker Integrations</h2>
           <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-8 md:mb-12 max-w-3xl mx-auto">
-            Connect with leading data providers and brokers. Exclusive partner deals available for Navigator users.
+            Connect with leading data providers and brokers. More than 100 crypto exchanges and 100s of broker options. Exclusive partner deals are available for Navigator users.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-8 items-center justify-items-center mb-8">
             <div className="bg-[#2d2d2d] border border-[#3d3d3d] hover:border-[#FF9500] transition-colors rounded-lg p-4 md:p-6 w-full h-24 md:h-28 flex items-center justify-center">
@@ -353,6 +451,34 @@ export function Home() {
         </div>
       </section>
 
+      {latestPosts.length > 0 && (
+        <section className="py-12 md:py-20 bg-[#0f0f0f] border-y border-[#2d2d2d]">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Rss size={24} className="text-[#FF9500]" />
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">Latest from the Newsletter</h2>
+            </div>
+            <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-8 md:mb-12 max-w-2xl mx-auto">
+              Strategy breakdowns, live trading examples, and research insights published on Substack.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {latestPosts.map((post, idx) => (
+                <SubstackPostCard key={idx} post={post} variant="compact" />
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <button
+                onClick={() => { window.location.hash = 'blog'; window.scrollTo(0, 0); }}
+                className="inline-flex items-center gap-2 text-[#FF9500] hover:text-orange-400 font-semibold transition-colors text-lg"
+              >
+                View All Posts
+                <ArrowRight size={18} />
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 md:mb-4">Who Navigator Is For</h2>
@@ -397,7 +523,7 @@ export function Home() {
       <VideoModal
         isOpen={isVideoOpen}
         onClose={() => setIsVideoOpen(false)}
-        videoId="O4yB5NJUyuY"
+        videoId="BuwIiza2qnE"
       />
     </div>
   );

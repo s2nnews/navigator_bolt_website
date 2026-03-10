@@ -26,7 +26,7 @@ Deno.serve(async (req: Request) => {
       apiVersion: "2024-12-18.acacia",
     });
 
-    const { priceId, origin } = await req.json();
+    const { priceId, origin, referral } = await req.json();
 
     if (!priceId) {
       return new Response(
@@ -43,7 +43,7 @@ Deno.serve(async (req: Request) => {
 
     const baseUrl = origin || req.headers.get("origin") || req.headers.get("referer")?.replace(/\/$/, "") || "https://your-domain.com";
 
-    const session = await stripe.checkout.sessions.create({
+    const sessionParams: any = {
       line_items: [
         {
           price: priceId,
@@ -54,7 +54,15 @@ Deno.serve(async (req: Request) => {
       success_url: `${baseUrl}/#success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/#pricing`,
       allow_promotion_codes: true,
-    });
+    };
+
+    if (referral) {
+      sessionParams.metadata = {
+        promotekit_referral: referral,
+      };
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     return new Response(
       JSON.stringify({ sessionId: session.id, url: session.url }),

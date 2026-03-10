@@ -1,7 +1,8 @@
-import { BookOpen, Target, TrendingUp, Brain, FileText } from 'lucide-react';
+import { BookOpen, Target, TrendingUp, Brain, FileText, Play, Rss } from 'lucide-react';
 import { Button } from '../components/Button';
 import { ContentCard } from '../components/ContentCard';
 import { ArticleLayout } from '../components/ArticleLayout';
+import { VideoEmbed } from '../components/VideoEmbed';
 import { WhyMostBacktestsLieContent } from '../components/articles/WhyMostBacktestsLie';
 import { ResearchIntegrityInPracticeContent } from '../components/articles/ResearchIntegrityInPractice';
 import { SurvivorshipBiasContent } from '../components/articles/SurvivorshipBias';
@@ -11,6 +12,10 @@ import { ProbabilityOfBacktestOverfittingContent } from '../components/articles/
 import { MonitoringStrategyContent } from '../components/articles/MonitoringStrategy';
 import { SmoothEquityCurvesContent } from '../components/articles/SmoothEquityCurves';
 import { BrokenVsUnluckyContent } from '../components/articles/BrokenVsUnlucky';
+import { ParameterOptimisationRiskContent } from '../components/articles/ParameterOptimisationRisk';
+import { FounderIntroductionContent } from '../components/articles/FounderIntroduction';
+import { S2NScoreContent } from '../components/articles/S2NScore';
+import { PositionSizingRiskManagementContent } from '../components/articles/PositionSizingRiskManagement';
 import { articles } from '../data/articles';
 
 interface LearnProps {
@@ -30,6 +35,10 @@ export function Learn({ onNavigate, initialPath = '' }: LearnProps) {
     'monitoring-strategy': MonitoringStrategyContent,
     'smooth-equity-curves': SmoothEquityCurvesContent,
     'broken-vs-unlucky': BrokenVsUnluckyContent,
+    'parameter-optimisation-risk': ParameterOptimisationRiskContent,
+    'founder-introduction': FounderIntroductionContent,
+    's2n-score': S2NScoreContent,
+    'position-sizing-risk-management': PositionSizingRiskManagementContent,
   };
 
   let cleanPath = initialPath;
@@ -104,44 +113,6 @@ export function Learn({ onNavigate, initialPath = '' }: LearnProps) {
         </div>
 
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Choose Your Learning Path</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <ContentCard
-              icon={<BookOpen size={24} />}
-              title="User Guide"
-              description="New to backtesting? Start here to learn the fundamentals."
-              difficulty="Beginner"
-              duration="~2 hours"
-              onClick={() => onNavigate('docs/getting-started')}
-            />
-            <ContentCard
-              icon={<Brain size={24} />}
-              title="Advanced User"
-              description="Deep dive into the institutional grade tools available."
-              difficulty="Advanced"
-              duration="~5 hours"
-              onClick={() => onNavigate('docs/advanced')}
-            />
-            <ContentCard
-              icon={<FileText size={24} />}
-              title="Knowledge Base"
-              description="In-depth articles on backtesting, research integrity, and strategy validation."
-              difficulty="All Levels"
-              duration="8-10 min per article"
-              onClick={() => window.scrollTo({ top: document.getElementById('articles-section')?.offsetTop || 0, behavior: 'smooth' })}
-            />
-            <ContentCard
-              icon={<Target size={24} />}
-              title="Strategy Explorer"
-              description="Understand different trading strategies and when to use them."
-              difficulty="Intermediate"
-              duration="~3 hours"
-              onClick={() => onNavigate('strategies')}
-            />
-          </div>
-        </div>
-
-        <div className="mb-16">
           <h2 className="text-3xl font-bold mb-8 text-center">Quick Start</h2>
           <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-xl p-8">
             <div className="space-y-6">
@@ -194,6 +165,229 @@ export function Learn({ onNavigate, initialPath = '' }: LearnProps) {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center">Choose Your Learning Path</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <ContentCard
+              icon={<BookOpen size={24} />}
+              title="User Guide"
+              description="New to backtesting? Start here to learn the fundamentals."
+              difficulty="Beginner"
+              duration="~2 hours"
+              onClick={() => onNavigate('docs/getting-started')}
+            />
+            <ContentCard
+              icon={<Brain size={24} />}
+              title="Advanced User"
+              description="Deep dive into the institutional grade tools available."
+              difficulty="Advanced"
+              duration="~5 hours"
+              onClick={() => onNavigate('docs/advanced')}
+            />
+            <ContentCard
+              icon={<FileText size={24} />}
+              title="Knowledge Base"
+              description="In-depth articles on backtesting, research integrity, and strategy validation."
+              difficulty="All Levels"
+              duration="8-10 min per article"
+              onClick={() => window.scrollTo({ top: document.getElementById('articles-section')?.offsetTop || 0, behavior: 'smooth' })}
+            />
+            <ContentCard
+              icon={<Target size={24} />}
+              title="Strategy Explorer"
+              description="Understand different trading strategies and when to use them."
+              difficulty="Intermediate"
+              duration="~3 hours"
+              onClick={() => onNavigate('strategies')}
+            />
+            <ContentCard
+              icon={<Rss size={24} />}
+              title="Live Research & Notes"
+              description="Real-time strategy breakdowns, trading examples, and research notes on Substack."
+              difficulty="All Levels"
+              duration="Updated regularly"
+              onClick={() => onNavigate('blog')}
+            />
+          </div>
+        </div>
+
+        <div className="mb-16 bg-[#2d2d2d] border border-[#3d3d3d] rounded-xl p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <Play className="text-[#FF9500]" size={32} />
+            <h2 className="text-3xl font-bold">Video Tutorials</h2>
+          </div>
+          <p className="text-gray-300 mb-6">
+            Learn S2N Navigator through our video tutorial series. Watch step-by-step guides covering installation and strategy development.
+          </p>
+
+          <div className="mb-8">
+            <a
+              href="https://youtube.com/playlist?list=PLqxpQZLylH1fGXhhuAvvrh-WgdO3I0J3b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF9500] hover:bg-[#FF9500]/90 text-black font-semibold rounded-lg transition-colors"
+            >
+              <Play size={20} />
+              View Full Playlist on YouTube
+            </a>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a
+              href="https://youtube.com/playlist?list=PLqxpQZLylH1fGXhhuAvvrh-WgdO3I0J3b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#1a1a1a] rounded-lg overflow-hidden hover:ring-2 hover:ring-[#FF9500]/50 transition-all group block"
+            >
+              <div className="p-4 pb-3">
+                <h3 className="font-semibold text-gray-200 group-hover:text-[#FF9500] transition-colors">Getting Started with S2N Navigator</h3>
+              </div>
+              <div className="aspect-video bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a] relative overflow-hidden">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play size={28} className="text-black ml-1" fill="black" />
+                  </div>
+                </div>
+                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-white">
+                  7:53
+                </div>
+              </div>
+              <div className="p-4 pt-3">
+                <p className="text-sm text-gray-400">Introduction and setup guide</p>
+              </div>
+            </a>
+
+            <a
+              href="https://youtube.com/playlist?list=PLqxpQZLylH1fGXhhuAvvrh-WgdO3I0J3b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#1a1a1a] rounded-lg overflow-hidden hover:ring-2 hover:ring-[#FF9500]/50 transition-all group block"
+            >
+              <div className="p-4 pb-3">
+                <h3 className="font-semibold text-gray-200 group-hover:text-[#FF9500] transition-colors">A Step by Step Guide</h3>
+              </div>
+              <div className="aspect-video bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a] relative overflow-hidden">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play size={28} className="text-black ml-1" fill="black" />
+                  </div>
+                </div>
+                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-white">
+                  12:44
+                </div>
+              </div>
+              <div className="p-4 pt-3">
+                <p className="text-sm text-gray-400">Connect and manage data sources</p>
+              </div>
+            </a>
+
+            <a
+              href="https://youtube.com/playlist?list=PLqxpQZLylH1fGXhhuAvvrh-WgdO3I0J3b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#1a1a1a] rounded-lg overflow-hidden hover:ring-2 hover:ring-[#FF9500]/50 transition-all group block"
+            >
+              <div className="p-4 pb-3">
+                <h3 className="font-semibold text-gray-200 group-hover:text-[#FF9500] transition-colors">Navigating the Dashboard</h3>
+              </div>
+              <div className="aspect-video bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a] relative overflow-hidden">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play size={28} className="text-black ml-1" fill="black" />
+                  </div>
+                </div>
+                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-white">
+                  2:26
+                </div>
+              </div>
+              <div className="p-4 pt-3">
+                <p className="text-sm text-gray-400">A guide to our development tools</p>
+              </div>
+            </a>
+
+            <a
+              href="https://youtube.com/playlist?list=PLqxpQZLylH1fGXhhuAvvrh-WgdO3I0J3b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#1a1a1a] rounded-lg overflow-hidden hover:ring-2 hover:ring-[#FF9500]/50 transition-all group block"
+            >
+              <div className="p-4 pb-3">
+                <h3 className="font-semibold text-gray-200 group-hover:text-[#FF9500] transition-colors">Conducting Our First Backtest</h3>
+              </div>
+              <div className="aspect-video bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a] relative overflow-hidden">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play size={28} className="text-black ml-1" fill="black" />
+                  </div>
+                </div>
+                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-white">
+                  24:12
+                </div>
+              </div>
+              <div className="p-4 pt-3">
+                <p className="text-sm text-gray-400">A step-by-step guide</p>
+              </div>
+            </a>
+
+            <a
+              href="https://youtube.com/playlist?list=PLqxpQZLylH1fGXhhuAvvrh-WgdO3I0J3b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#1a1a1a] rounded-lg overflow-hidden hover:ring-2 hover:ring-[#FF9500]/50 transition-all group block"
+            >
+              <div className="p-4 pb-3">
+                <h3 className="font-semibold text-gray-200 group-hover:text-[#FF9500] transition-colors">Exploring Forward Simulation</h3>
+              </div>
+              <div className="aspect-video bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a] relative overflow-hidden">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play size={28} className="text-black ml-1" fill="black" />
+                  </div>
+                </div>
+                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-white">
+                  4:11
+                </div>
+              </div>
+              <div className="p-4 pt-3">
+                <p className="text-sm text-gray-400">Advanced validation techniques</p>
+              </div>
+            </a>
+
+            <a
+              href="https://youtube.com/playlist?list=PLqxpQZLylH1fGXhhuAvvrh-WgdO3I0J3b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#1a1a1a] rounded-lg overflow-hidden hover:ring-2 hover:ring-[#FF9500]/50 transition-all group block"
+            >
+              <div className="p-4 pb-3">
+                <h3 className="font-semibold text-gray-200 group-hover:text-[#FF9500] transition-colors">Creating a Virtual Trading Account</h3>
+              </div>
+              <div className="aspect-video bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a] relative overflow-hidden">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play size={28} className="text-black ml-1" fill="black" />
+                  </div>
+                </div>
+                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-white">
+                  5:53
+                </div>
+              </div>
+              <div className="p-4 pt-3">
+                <p className="text-sm text-gray-400">Live demo walkthrough</p>
+              </div>
+            </a>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Button
+              variant="secondary"
+              onClick={() => onNavigate('videos')}
+            >
+              View All Video Tutorials
+            </Button>
           </div>
         </div>
 

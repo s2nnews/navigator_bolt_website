@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Monitor, Download } from 'lucide-react';
+import { Monitor, Download, BookOpen } from 'lucide-react';
 import { Button } from '../components/Button';
 
 type OS = 'windows' | 'macos' | 'unknown';
@@ -18,6 +18,22 @@ export function Downloads() {
       setDetectedOS('macos');
     }
   }, []);
+
+  const trackDownload = async (platform: 'windows' | 'macos') => {
+    try {
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/track-download`;
+      await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ platform }),
+      });
+    } catch (error) {
+      console.error('Failed to track download:', error);
+    }
+  };
 
   return (
     <div className="w-full bg-[#1a1a1a]">
@@ -66,6 +82,7 @@ export function Downloads() {
               <a
                 href="https://downloads.s2n-navigator.com/releases/S2N_Navigator_Windows.zip"
                 className="block w-full"
+                onClick={() => trackDownload('windows')}
               >
                 <Button
                   variant="primary"
@@ -114,9 +131,13 @@ export function Downloads() {
 
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">macOS</h2>
               <p className="text-gray-400 text-center mb-1">macOS 12+ (Intel & Apple Silicon)</p>
-              <p className="text-gray-500 text-sm text-center mb-6">~350 MB</p>
+              <p className="text-gray-500 text-sm text-center mb-2">~350 MB</p>
 
-              <a
+              <div className="bg-[#FF9500]/10 border border-[#FF9500] rounded-lg px-4 py-2 mb-6">
+                <p className="text-[#FF9500] text-center font-bold text-sm">Coming Soon</p>
+              </div>
+
+              {/* <a
                 href="https://downloads.s2n-navigator.com/releases/S2N_Navigator_macOS.dmg"
                 className="block w-full"
               >
@@ -127,14 +148,23 @@ export function Downloads() {
                   <Download size={20} />
                   Download for macOS
                 </Button>
-              </a>
+              </a> */}
 
-              <button
+              <Button
+                variant="primary"
+                className="w-full text-lg py-4 flex items-center justify-center gap-2 opacity-50 cursor-not-allowed"
+                disabled
+              >
+                <Download size={20} />
+                Download for macOS
+              </Button>
+
+              {/* <button
                 onClick={() => setShowInstructions(showInstructions === 'macos' ? null : 'macos')}
                 className="w-full mt-4 text-[#FF9500] hover:text-orange-400 text-sm font-semibold transition-colors"
               >
                 {showInstructions === 'macos' ? 'Hide' : 'Show'} Installation Instructions
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -238,6 +268,32 @@ export function Downloads() {
           </div>
         </section>
       )}
+
+      {/* Getting Started Guide */}
+      <section className="py-12 md:py-16 bg-[#0f0f0f]">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="bg-gradient-to-br from-[#FF9500]/10 to-[#FF9500]/5 rounded-xl p-8 md:p-10 border-2 border-[#FF9500]/30">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-[#FF9500] rounded-full flex items-center justify-center">
+                  <BookOpen className="w-8 h-8 md:w-10 md:h-10 text-black" />
+                </div>
+              </div>
+              <div className="flex-grow text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Ready to Get Started?</h3>
+                <p className="text-gray-300 text-lg mb-4">
+                  Follow our comprehensive Getting Started guide to install and configure S2N Navigator
+                </p>
+                <a href="/#docs?doc=installation">
+                  <Button variant="primary" className="text-lg px-8 py-3">
+                    View Getting Started Guide
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Help Section */}
       <section className="py-12 md:py-16 bg-[#1a1a1a]">

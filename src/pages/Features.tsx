@@ -1,4 +1,4 @@
-import { BarChart3, TrendingUp, Database, Lock, Shield, Brain, FileText, Bookmark, Zap, LineChart, BookOpen, Layers } from 'lucide-react';
+import { BarChart3, TrendingUp, Database, Lock, Shield, Brain, FileText, Bookmark, Zap, LineChart, BookOpen, Layers, Sparkles, ArrowRight } from 'lucide-react';
 import { Button } from '../components/Button';
 
 export function Features() {
@@ -10,6 +10,71 @@ export function Features() {
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl">
             Everything under one roof: strategy development, data farming, research notes, journaling, workflow tracking, monitoring, and feedback. Designed to keep decisions observable, auditable, and connected over time.
           </p>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-20 bg-[#0f0f0f] border-y border-[#2d2d2d] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,217,255,0.08),transparent_50%)]" />
+        <div className="relative max-w-6xl mx-auto px-4">
+          <div className="text-center mb-8 md:mb-12">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
+              <Sparkles size={16} className="text-cyan-400" />
+              <span className="text-cyan-400 text-xs md:text-sm font-medium">AI-Powered Intelligence</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">AI Oracle</span>
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-2">
+              An AI that knows your data, learns from every backtest, and gets smarter the more you trade.
+            </p>
+            <p className="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
+              Not a generic chatbot—a true trading co-pilot deeply integrated into Navigator.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-10">
+            <div className="bg-gradient-to-br from-cyan-900/10 to-blue-900/10 border border-cyan-500/30 rounded-lg p-4 md:p-6 hover:border-cyan-400 transition-all duration-300">
+              <Database className="w-6 h-6 md:w-8 md:h-8 text-cyan-400 mb-3" />
+              <h3 className="text-base md:text-lg font-bold mb-2">Knows Your Data</h3>
+              <p className="text-xs md:text-sm text-gray-400">
+                Sees exactly what's in your DataFarm and builds configs that work with YOUR data.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-cyan-900/10 to-blue-900/10 border border-cyan-500/30 rounded-lg p-4 md:p-6 hover:border-cyan-400 transition-all duration-300">
+              <Brain className="w-6 h-6 md:w-8 md:h-8 text-cyan-400 mb-3" />
+              <h3 className="text-base md:text-lg font-bold mb-2">Learns Your Style</h3>
+              <p className="text-xs md:text-sm text-gray-400">
+                Builds a profile of your trading preferences and anticipates your needs.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-cyan-900/10 to-blue-900/10 border border-cyan-500/30 rounded-lg p-4 md:p-6 hover:border-cyan-400 transition-all duration-300">
+              <Shield className="w-6 h-6 md:w-8 md:h-8 text-cyan-400 mb-3" />
+              <h3 className="text-base md:text-lg font-bold mb-2">Prevents Mistakes</h3>
+              <p className="text-xs md:text-sm text-gray-400">
+                Warns you when something doesn't look right before you make a mistake.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-cyan-900/10 to-blue-900/10 border border-cyan-500/30 rounded-lg p-4 md:p-6 hover:border-cyan-400 transition-all duration-300">
+              <BookOpen className="w-6 h-6 md:w-8 md:h-8 text-cyan-400 mb-3" />
+              <h3 className="text-base md:text-lg font-bold mb-2">200+ Strategies</h3>
+              <p className="text-xs md:text-sm text-gray-400">
+                Deep knowledge of momentum, mean reversion, TAA, and factor strategies.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <a
+              href="#ai-oracle"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-sm md:text-base hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 shadow-lg shadow-cyan-500/30"
+            >
+              Learn More About the Oracle
+              <ArrowRight size={18} />
+            </a>
+          </div>
         </div>
       </section>
 

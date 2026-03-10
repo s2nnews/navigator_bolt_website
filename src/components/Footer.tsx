@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Mail, Twitter, Facebook, Youtube } from 'lucide-react';
+import { Mail, Twitter, Facebook, Youtube, MessageCircle, Linkedin } from 'lucide-react';
 
-type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'downloads';
+type Page = 'home' | 'pricing' | 'features' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'downloads' | 'learn' | 'aioracle';
 
 interface FooterProps {
   setCurrentPage: (page: Page) => void;
@@ -65,8 +65,9 @@ export function Footer({ setCurrentPage }: FooterProps) {
             <div>
               <h3 className="font-semibold mb-4 text-white">Connect</h3>
               <div className="flex gap-4">
-                <a href="https://x.com/s2n_navigator" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#FF9500] transition-colors"><Twitter size={20} /></a>
-                <a href="https://www.facebook.com/profile.php?id=61583609206314" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#FF9500] transition-colors"><Facebook size={20} /></a>
+                <a href="https://x.com/S2N_Navigator" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#FF9500] transition-colors"><Twitter size={20} /></a>
+                <a href="https://www.facebook.com/s2nnavigator/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#FF9500] transition-colors"><Facebook size={20} /></a>
+                <a href="https://linkedin.com/company/s2n-navigator" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#FF9500] transition-colors"><Linkedin size={20} /></a>
                 <a href="https://www.youtube.com/@S2N-Navigator" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#FF9500] transition-colors"><Youtube size={20} /></a>
                 <a href="mailto:support@s2n-navigator.com" className="text-gray-400 hover:text-[#FF9500] transition-colors"><Mail size={20} /></a>
               </div>
@@ -77,6 +78,7 @@ export function Footer({ setCurrentPage }: FooterProps) {
             <h3 className="font-semibold mb-4 text-white">Product</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><button onClick={() => handleNavClick('features')} className="hover:text-[#FF9500] transition-colors">Features</button></li>
+              <li><button onClick={() => handleNavClick('aioracle')} className="hover:text-[#FF9500] transition-colors">AI Oracle</button></li>
               <li><button onClick={() => handleNavClick('pricing')} className="hover:text-[#FF9500] transition-colors">Pricing</button></li>
               <li><button onClick={() => handleNavClick('integrations')} className="hover:text-[#FF9500] transition-colors">Integrations</button></li>
               <li><a href={import.meta.env.VITE_STRIPE_PORTAL_LOGIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#FF9500] transition-colors">Manage Subscription</a></li>
@@ -88,9 +90,10 @@ export function Footer({ setCurrentPage }: FooterProps) {
             <h3 className="font-semibold mb-4 text-white">Company</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><button onClick={() => handleNavClick('about')} className="hover:text-[#FF9500] transition-colors">About</button></li>
+              <li><button onClick={() => handleNavClick('learn')} className="hover:text-[#FF9500] transition-colors">Learn</button></li>
               <li><button onClick={() => handleNavClick('affiliate')} className="hover:text-[#FF9500] transition-colors">Affiliate</button></li>
               <li><button onClick={() => handleNavClick('contact')} className="hover:text-[#FF9500] transition-colors">Contact</button></li>
-              <li><a href="#" className="hover:text-[#FF9500] transition-colors">Blog</a></li>
+              <li><button onClick={() => handleNavClick('blog' as Page)} className="hover:text-[#FF9500] transition-colors">Blog & Newsletter</button></li>
             </ul>
           </div>
 
@@ -104,33 +107,70 @@ export function Footer({ setCurrentPage }: FooterProps) {
             </ul>
           </div>
 
-          <div className="col-span-2 md:col-span-4 max-w-md mx-auto">
-            <h3 className="font-semibold mb-2 text-white text-sm">Join 4,000+ subscribers to Michael Berman's free daily</h3>
-            <p className="text-xs text-gray-400 mb-3">Signal2Noise (S2N) Global Macro Newsletter</p>
-            <div id="footer-newsletter-embed" className="bg-[#1a1a1a] p-3 rounded-lg border border-[#FF9500]">
-              <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full px-3 py-2 bg-[#2d2d2d] border border-[#3d3d3d] rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#FF9500] disabled:opacity-50"
-                />
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-2 bg-[#FF9500] text-white rounded text-sm font-semibold hover:bg-[#ff8800] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          <div className="col-span-2 md:col-span-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              <div>
+                <h3 className="font-semibold mb-2 text-white text-sm">Join our community</h3>
+                <p className="text-xs text-gray-400 mb-3">Connect with fellow traders</p>
+                <a
+                  href="https://chat.whatsapp.com/GhE6cBv9T2e6ZGRJTzECUb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-3 bg-[#1a1a1a] border border-[#FF9500] rounded-lg p-4 text-white hover:text-[#FF9500] hover:bg-[#1f1f1f] transition-colors"
                 >
-                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-                </button>
-                {message && (
-                  <p className={`text-xs ${message.includes('Successfully') ? 'text-green-400' : 'text-red-400'}`}>
-                    {message}
-                  </p>
-                )}
-              </form>
+                  <MessageCircle size={24} />
+                  <span className="font-semibold">WhatsApp Group</span>
+                </a>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2 text-white text-sm">Join 4,000+ subscribers to Michael Berman's free daily</h3>
+                <p className="text-xs text-gray-400 mb-3">Signal2Noise (S2N) Global Macro Newsletter</p>
+                <div id="footer-newsletter-embed" className="bg-[#1a1a1a] p-4 rounded-lg border border-[#FF9500]">
+                  <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-3">
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 bg-[#2d2d2d] border border-[#3d3d3d] rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#FF9500] disabled:opacity-50"
+                    />
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 bg-[#FF9500] text-white rounded text-sm font-semibold hover:bg-[#ff8800] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                    </button>
+                    {message && (
+                      <p className={`text-xs ${message.includes('Successfully') ? 'text-green-400' : 'text-red-400'}`}>
+                        {message}
+                      </p>
+                    )}
+                  </form>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2 text-white text-sm">Trading & Backtesting Insights</h3>
+                <p className="text-xs text-gray-400 mb-3">Practical posts on strategy development & research</p>
+                <div className="rounded-lg border border-[#FF9500] overflow-hidden bg-[#1a1a1a]" style={{ minHeight: '140px' }}>
+                  <iframe
+                    src="https://s2nnavigator.substack.com/embed"
+                    width="100%"
+                    height="140"
+                    style={{
+                      border: 'none',
+                      background: '#1a1a1a'
+                    }}
+                    frameBorder="0"
+                    scrolling="no"
+                    title="Substack Newsletter Signup"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

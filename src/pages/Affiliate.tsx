@@ -1,5 +1,5 @@
 import { Button } from '../components/Button';
-import { TrendingUp, Users, DollarSign, CheckCircle, FileText, Target, Download } from 'lucide-react';
+import { TrendingUp, Users, DollarSign, CheckCircle, FileText, Target } from 'lucide-react';
 
 export function Affiliate() {
   return (
@@ -232,13 +232,13 @@ export function Affiliate() {
               Join the S2N Navigator Affiliate Program and start earning recurring commissions today.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" className="text-base md:text-lg px-8 py-4">
+            <div className="flex justify-center">
+              <Button
+                variant="primary"
+                className="text-base md:text-lg px-8 py-4"
+                onClick={() => window.open('https://navigator.promotekit.com/', '_blank')}
+              >
                 Apply to Become an Affiliate
-              </Button>
-              <Button variant="secondary" className="text-base md:text-lg px-8 py-4 flex items-center gap-2 justify-center">
-                <Download size={20} />
-                Download Affiliate Overview PDF
               </Button>
             </div>
           </div>
