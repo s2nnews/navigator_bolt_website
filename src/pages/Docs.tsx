@@ -2635,12 +2635,12 @@ DataFarm.sync()  # Takes ~1-2 minutes`}
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
           <li><strong>View Pricing</strong> - Opens the pricing page where you can purchase a Full or Pro license</li>
-          <li><strong>Start Free Trial</strong> - Opens the trial page to begin a free evaluation of S2N Navigator</li>
+          <li><strong>Start Free</strong> - Opens the free signup page to begin with Navigator's free plan</li>
         </ul>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">License Key Format</h2>
         <p className="text-gray-300 mb-4">
-          License keys are provided via email after purchase or trial registration. Make sure to:
+          License keys are provided via email after purchase or free signup. Make sure to:
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
           <li>Copy the entire license key exactly as provided</li>

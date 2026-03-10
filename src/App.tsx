@@ -27,9 +27,9 @@ const Videos = lazy(() => import('./pages/Videos').then(m => ({ default: m.Video
 const Blog = lazy(() => import('./pages/Blog').then(m => ({ default: m.Blog })));
 const Downloads = lazy(() => import('./pages/Downloads').then(m => ({ default: m.Downloads })));
 
-type Page = 'home' | 'pricing' | 'features' | 'ai-oracle' | 'about' | 'contact' | 'affiliate' | 'testers' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'success' | 'trial' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads';
+type Page = 'home' | 'pricing' | 'features' | 'ai-oracle' | 'about' | 'contact' | 'affiliate' | 'testers' | 'integrations' | 'terms' | 'privacy' | 'refunds' | 'disclaimer' | 'success' | 'trial' | 'free' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads';
 
-const validPages: Page[] = ['home', 'pricing', 'features', 'ai-oracle', 'about', 'contact', 'affiliate', 'testers', 'integrations', 'terms', 'privacy', 'refunds', 'disclaimer', 'success', 'trial', 'learn', 'docs', 'strategies', 'videos', 'blog', 'downloads'];
+const validPages: Page[] = ['home', 'pricing', 'features', 'ai-oracle', 'about', 'contact', 'affiliate', 'testers', 'integrations', 'terms', 'privacy', 'refunds', 'disclaimer', 'success', 'trial', 'free', 'learn', 'docs', 'strategies', 'videos', 'blog', 'downloads'];
 
 function App() {
   const getPageFromHash = (hash: string): Page => {
@@ -118,6 +118,7 @@ function App() {
       case 'success':
         return <Success />;
       case 'trial':
+      case 'free':
         return <Trial />;
       case 'learn':
         return <Learn key={currentHash} onNavigate={handleNavigate} initialPath={fullPath} />;

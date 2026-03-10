@@ -128,7 +128,7 @@ export function Learn({ onNavigate, initialPath = '' }: LearnProps) {
                     className="mt-3"
                     onClick={() => onNavigate('pricing')}
                   >
-                    Start Free Trial
+                    Start Free
                   </Button>
                 </div>
               </div>
@@ -479,5 +479,4 @@ export function Learn({ onNavigate, initialPath = '' }: LearnProps) {
     </div>
   );
 }
-
 

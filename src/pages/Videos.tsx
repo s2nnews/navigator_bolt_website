@@ -248,13 +248,13 @@ export function Videos({ onNavigate, selectedVideo }: VideosProps) {
           <h2 className="text-2xl font-bold mb-4">Ready to Start Backtesting?</h2>
           <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
             These videos will help you hit the ground running, but the best way to learn
-            is by doing. Start your free trial today.
+            is by doing. Start free today.
           </p>
           <Button
             variant="primary"
             onClick={() => onNavigate('pricing')}
           >
-            Start Free Trial
+            Start Free
           </Button>
         </div>
       </div>

@@ -261,9 +261,9 @@ export function About() {
             <Button
               variant="primary"
               className="w-full sm:w-auto"
-              onClick={() => window.location.hash = 'trial'}
+              onClick={() => window.location.hash = 'free'}
             >
-              Start Free Trial
+              Start Free
             </Button>
           </div>
         </div>

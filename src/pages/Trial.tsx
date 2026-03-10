@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '../components/Button';
 import { Loader, CheckCircle, Copy, Mail } from 'lucide-react';
 import { trackTrialStarted, trackTrialCompleted } from '../utils/analytics';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type Session } from '@supabase/supabase-js';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -15,6 +15,7 @@ export function Trial() {
     name: '',
   });
   const [loading, setLoading] = useState(false);
+  const [oauthLoading, setOauthLoading] = useState(false);
   const [result, setResult] = useState<{
     success: boolean;
     license_key: string;
@@ -26,6 +27,38 @@ export function Trial() {
 
   useEffect(() => {
     trackTrialStarted();
+  }, []);
+
+  const populateFormFromSession = (session: Session | null) => {
+    const user = session?.user;
+    if (!user?.email) return;
+
+    const fullName =
+      (typeof user.user_metadata?.full_name === 'string' && user.user_metadata.full_name) ||
+      (typeof user.user_metadata?.name === 'string' && user.user_metadata.name) ||
+      '';
+
+    setFormData(prev => ({
+      email: prev.email || user.email || '',
+      name: prev.name || fullName,
+    }));
+  };
+
+  useEffect(() => {
+    const initAuthSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      populateFormFromSession(data.session);
+    };
+
+    initAuthSession();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      populateFormFromSession(session);
+    });
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +84,7 @@ export function Trial() {
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        setError(data.message || data.error || 'Failed to start trial. Please try again.');
+        setError(data.message || data.error || 'Failed to create free account. Please try again.');
         return;
       }
 
@@ -87,6 +120,29 @@ export function Trial() {
     }
   };
 
+  const handleGoogleSignUp = async () => {
+    setError('');
+    setOauthLoading(true);
+
+    try {
+      const redirectTo = `${window.location.origin}/#free`;
+      const { error: oauthError } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo },
+      });
+
+      if (oauthError) {
+        console.error('Google sign-in error:', oauthError);
+        setError('Google sign-in is unavailable right now. Use email sign-up below.');
+      }
+    } catch (err) {
+      console.error('Unexpected Google sign-in error:', err);
+      setError('Google sign-in is unavailable right now. Use email sign-up below.');
+    } finally {
+      setOauthLoading(false);
+    }
+  };
+
   const copyToClipboard = async () => {
     if (result?.license_key) {
       try {
@@ -110,11 +166,11 @@ export function Trial() {
               </div>
 
               <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                Your Free Trial is Active!
+                Your Free Account is Active!
               </h1>
 
               <p className="text-lg text-gray-400 mb-8">
-                Your 14-day trial has started. Here's your license key:
+                Your free access is ready. Here's your license key:
               </p>
 
               <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-lg p-6 mb-6">
@@ -135,7 +191,7 @@ export function Trial() {
 
               <div className="grid md:grid-cols-2 gap-4 mb-8">
                 <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-lg p-4">
-                  <p className="text-sm text-gray-400 mb-1">Valid Until</p>
+                  <p className="text-sm text-gray-400 mb-1">Current Access Through</p>
                   <p className="text-lg font-semibold">{new Date(result.valid_until).toLocaleDateString()}</p>
                 </div>
 
@@ -207,7 +263,7 @@ export function Trial() {
                     <div>
                       <h3 className="font-semibold text-lg mb-2">Start Trading</h3>
                       <p className="text-gray-400 text-sm">
-                        Explore all features and start building your trading strategies!
+                        Start building strategies and validating your ideas with Navigator Free.
                       </p>
                     </div>
                   </div>
@@ -235,10 +291,10 @@ export function Trial() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Start Your Free 14-Day Trial
+              Create Your Free Navigator Account
             </h1>
             <p className="text-xl text-gray-400 mb-4">
-              Get instant access to all Pro features
+              Get instant access to Navigator Free
             </p>
             <div className="flex items-center justify-center gap-2 text-green-400">
               <CheckCircle size={20} />
@@ -260,23 +316,38 @@ export function Trial() {
                 <div className="bg-[#FF9500] text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 font-bold text-lg">
                   1
                 </div>
-                <p className="text-sm text-gray-400">Enter your email</p>
+                <p className="text-sm text-gray-400">Use Google or email</p>
               </div>
               <div className="text-center">
                 <div className="bg-[#FF9500] text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 font-bold text-lg">
                   2
                 </div>
-                <p className="text-sm text-gray-400">Get your license key</p>
+                <p className="text-sm text-gray-400">Get your free license key</p>
               </div>
               <div className="text-center">
                 <div className="bg-[#FF9500] text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 font-bold text-lg">
                   3
                 </div>
-                <p className="text-sm text-gray-400">Start trading</p>
+                <p className="text-sm text-gray-400">Start building strategies</p>
               </div>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              <button
+                type="button"
+                onClick={handleGoogleSignUp}
+                disabled={oauthLoading}
+                className="w-full bg-white text-black rounded px-4 py-3 text-base font-semibold hover:bg-gray-200 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {oauthLoading ? 'Connecting to Google...' : 'Continue with Google'}
+              </button>
+
+              <div className="flex items-center gap-3 text-xs uppercase tracking-wider text-gray-500">
+                <div className="h-px bg-[#3d3d3d] flex-1" />
+                <span>or continue with email</span>
+                <div className="h-px bg-[#3d3d3d] flex-1" />
+              </div>
+
               <div>
                 <label htmlFor="email" className="block text-base font-medium mb-2">
                   Email Address <span className="text-red-500">*</span>
@@ -317,20 +388,19 @@ export function Trial() {
               <Button
                 variant="primary"
                 className="w-full flex items-center justify-center gap-2 py-4 text-lg"
-                onClick={handleSubmit}
               >
                 {loading ? (
                   <>
                     <Loader size={20} className="animate-spin" />
-                    <span>Starting Trial...</span>
+                    <span>Creating Free Account...</span>
                   </>
                 ) : (
-                  <span>Start Free Trial</span>
+                  <span>Create Free Account</span>
                 )}
               </Button>
 
               <p className="text-sm text-gray-400 text-center">
-                By starting your trial, you agree to our{' '}
+                By creating your free account, you agree to our{' '}
                 <a href="#terms" className="text-[#FF9500] hover:underline">
                   Terms of Service
                 </a>{' '}
@@ -347,16 +417,16 @@ export function Trial() {
       <section className="py-12 md:py-20 bg-[#0f0f0f] border-y border-[#2d2d2d]">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            What's Included in Your Trial
+            What's Included in Navigator Free
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
               <div className="bg-[#FF9500] w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <CheckCircle className="text-white" size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Full Feature Access</h3>
+              <h3 className="text-xl font-semibold mb-3">Serious Core Access</h3>
               <p className="text-gray-400">
-                Access all Pro features including advanced backtesting, AI optimization, and live trading.
+                Data, strategy builder, analytics, and research tooling so you can do real work from day one.
               </p>
             </div>
 
@@ -364,9 +434,9 @@ export function Trial() {
               <div className="bg-[#FF9500] w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <CheckCircle className="text-white" size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">No Limitations</h3>
+              <h3 className="text-xl font-semibold mb-3">Purposeful Limits</h3>
               <p className="text-gray-400">
-                No feature restrictions, no data limits. Experience the full power of S2N Navigator.
+                Free includes practical usage limits so you can validate fit before moving to unlimited Premium.
               </p>
             </div>
 
@@ -374,9 +444,9 @@ export function Trial() {
               <div className="bg-[#FF9500] w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <CheckCircle className="text-white" size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Priority Support</h3>
+              <h3 className="text-xl font-semibold mb-3">Clear Upgrade Path</h3>
               <p className="text-gray-400">
-                Get help when you need it with priority email support throughout your trial.
+                Upgrade anytime to Premium monthly or annual billing when you need unlimited capacity.
               </p>
             </div>
           </div>

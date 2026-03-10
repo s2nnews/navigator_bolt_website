@@ -71,9 +71,9 @@ export function Home() {
                 <Button
                   variant="primary"
                   className="group w-full sm:w-auto text-lg px-8 py-4 shadow-lg shadow-[#FF9500]/20 hover:shadow-[#FF9500]/40 transition-all duration-300"
-                  onClick={() => window.location.hash = 'trial'}
+                  onClick={() => window.location.hash = 'free'}
                 >
-                  <span>Start Free Trial</span>
+                  <span>Start Free</span>
                   <ArrowRight className="inline ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                 </Button>
                 <Button
@@ -83,6 +83,19 @@ export function Home() {
                 >
                   Watch Demo
                 </Button>
+              </div>
+
+              <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-4 md:p-5 mb-6 order-7">
+                <p className="text-sm md:text-base text-white font-semibold mb-3">Powerful free plan includes:</p>
+                <div className="grid sm:grid-cols-2 gap-2 text-sm text-gray-300">
+                  <p>• 50+ GB free market data</p>
+                  <p>• Strategy Builder + analytics</p>
+                  <p>• Curated strategy library</p>
+                  <p>• Limited backtesting + live paper accounts</p>
+                </div>
+                <p className="text-xs md:text-sm text-gray-400 mt-3">
+                  Upgrade anytime to Premium with monthly or annual billing (annual = 10x monthly).
+                </p>
               </div>
 
               {/* 3-bullet micro-strip - hidden on mobile, visible on desktop */}
@@ -102,7 +115,7 @@ export function Home() {
               </div>
 
               {/* Description paragraphs with better spacing */}
-              <div className="space-y-4 text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl lg:mx-0 mb-6 order-7">
+              <div className="space-y-4 text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl lg:mx-0 mb-6 order-8">
                 <p className="text-gray-400">
                   You have data. You have backtesting tools. You have brokerage connections. What you don't have is a validation layer tying it all together.
                 </p>
@@ -118,7 +131,7 @@ export function Home() {
               </div>
 
               {/* Key value proposition - styled differently */}
-              <div className="relative mb-6 order-8">
+              <div className="relative mb-6 order-9">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#FF9500] to-transparent"></div>
                 <p className="pl-6 text-base sm:text-lg md:text-xl text-white font-semibold leading-relaxed">
                   Navigator does not help you find the best strategy.<br className="hidden sm:block"/>
@@ -127,9 +140,9 @@ export function Home() {
               </div>
 
               {/* Trust badge */}
-              <p className="text-gray-500 text-sm sm:text-base flex items-center gap-2 justify-start order-9">
+              <p className="text-gray-500 text-sm sm:text-base flex items-center gap-2 justify-start order-10">
                 <Lock size={16} className="text-gray-600" />
-                <span>14-day free trial. No credit card required.</span>
+                <span>Free plan available now. No credit card required.</span>
               </p>
             </div>
 
@@ -512,9 +525,9 @@ export function Home() {
             <Button
               variant="primary"
               className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
-              onClick={() => window.location.hash = 'trial'}
+              onClick={() => window.location.hash = 'free'}
             >
-              Start Free Trial <ArrowRight className="inline ml-2" size={20} />
+              Start Free <ArrowRight className="inline ml-2" size={20} />
             </Button>
           </div>
         </div>

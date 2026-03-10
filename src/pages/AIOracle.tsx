@@ -23,7 +23,7 @@ export function AIOracle() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="#trial"
+                href="#free"
                 className="group bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-cyan-500/50"
               >
                 Experience the Oracle
@@ -394,10 +394,10 @@ export function AIOracle() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <a
-              href="#trial"
+              href="#free"
               className="group bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-10 py-5 rounded-lg font-semibold text-xl hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 flex items-center gap-2 shadow-2xl shadow-cyan-500/50"
             >
-              Start Free Trial
+              Start Free
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </a>
             <button className="border-2 border-cyan-500/50 text-cyan-400 px-10 py-5 rounded-lg font-semibold text-xl hover:bg-cyan-500/10 transition-all duration-300">

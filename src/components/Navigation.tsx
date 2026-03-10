@@ -1,7 +1,7 @@
 import { Menu, X, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 
-type Page = 'home' | 'pricing' | 'features' | 'ai-oracle' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads';
+type Page = 'home' | 'pricing' | 'features' | 'ai-oracle' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads' | 'free' | 'trial';
 
 interface NavigationProps {
   currentPage: Page;
@@ -60,7 +60,7 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
             onClick={() => handleNavClick('pricing')}
             className="bg-[#FF9500] text-black px-6 py-2 rounded font-semibold hover:bg-orange-600 transition-colors"
           >
-            Start Free Trial
+            Start Free
           </button>
         </div>
 
@@ -97,7 +97,7 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
               onClick={() => handleNavClick('pricing')}
               className="w-full bg-[#FF9500] text-black px-6 py-2 rounded font-semibold hover:bg-orange-600 transition-colors"
             >
-              Start Free Trial
+              Start Free
             </button>
           </div>
         </div>

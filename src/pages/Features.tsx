@@ -492,9 +492,9 @@ export function Features() {
           <div className="bg-gradient-to-r from-[#2d2d2d] to-[#3d3d3d] p-8 md:p-12 rounded-lg border border-[#FF9500] text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Surveillance and Self-Awareness</h2>
             <p className="text-sm md:text-base text-gray-300 mb-6 max-w-2xl mx-auto">
-              Navigator provides rear-view mirrors so you can see when assumptions break, when behavior drifts, and when confidence is no longer justified. Start your intentionally limited trial.
+              Navigator provides rear-view mirrors so you can see when assumptions break, when behavior drifts, and when confidence is no longer justified. Start free, then scale when needed.
             </p>
-            <Button variant="primary" className="w-full sm:w-auto" onClick={() => window.location.hash = 'trial'}>Start Free Trial</Button>
+            <Button variant="primary" className="w-full sm:w-auto" onClick={() => window.location.hash = 'free'}>Start Free</Button>
           </div>
         </div>
       </section>
