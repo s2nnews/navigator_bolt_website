@@ -135,7 +135,7 @@ export function DeflatedSharpeRatioContent() {
       <ul className="space-y-3 my-8">
         <li className="flex items-start gap-3">
           <span className="text-[#FF9500] mt-1">•</span>
-          <span>the number of trials,</span>
+          <span>the number of tests performed,</span>
         </li>
         <li className="flex items-start gap-3">
           <span className="text-[#FF9500] mt-1">•</span>

@@ -26,7 +26,7 @@ export function AIOracle() {
                 href="#free"
                 className="group bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-cyan-500/50"
               >
-                Experience the Oracle
+                Start Free
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <button className="border-2 border-cyan-500/50 text-cyan-400 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-cyan-500/10 transition-all duration-300">

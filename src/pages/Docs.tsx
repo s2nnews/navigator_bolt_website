@@ -127,12 +127,12 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
           Navigate to the <strong>Pricing</strong> page and choose one of the three available options:
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
-          <li><strong>Free Trial</strong></li>
+          <li><strong>Free</strong></li>
           <li><strong>Launch Special Price</strong></li>
           <li><strong>Pro License</strong></li>
         </ul>
         <p className="text-gray-300 mb-4">
-          Most users will begin with the <strong>Free Trial</strong>.
+          Most users will begin with the <strong>Free</strong> option.
         </p>
         <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
           <img
@@ -340,12 +340,12 @@ const docContent: Record<string, { title: string; content: JSX.Element }> = {
           Navigate to the <strong>Pricing</strong> page and choose one of the three available options:
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
-          <li><strong>Free Trial</strong></li>
+          <li><strong>Free</strong></li>
           <li><strong>Launch Special Price</strong></li>
           <li><strong>Pro License</strong></li>
         </ul>
         <p className="text-gray-300 mb-4">
-          Most users will begin with the <strong>Free Trial</strong>.
+          Most users will begin with the <strong>Free</strong> option.
         </p>
         <div className="bg-[#2d2d2d] rounded-lg p-4 my-6">
           <img
@@ -2602,7 +2602,7 @@ DataFarm.sync()  # Takes ~1-2 minutes`}
           The License tab displays your current license information:
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
-          <li><strong>License Type</strong> - Shows whether you have a Trial or Full license</li>
+          <li><strong>License Type</strong> - Shows whether you have a Free or Premium license</li>
           <li><strong>Expiry Date</strong> - The date your current license expires</li>
           <li><strong>Days Remaining</strong> - Color-coded indicator showing time left on your license
             <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
@@ -2635,7 +2635,7 @@ DataFarm.sync()  # Takes ~1-2 minutes`}
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
           <li><strong>View Pricing</strong> - Opens the pricing page where you can purchase a Full or Pro license</li>
-          <li><strong>Start Free</strong> - Opens the free signup page to begin with Navigator's free plan</li>
+          <li><strong>Start Free</strong> - Opens the free signup page to begin a free evaluation of S2N Navigator</li>
         </ul>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">License Key Format</h2>
@@ -3022,7 +3022,7 @@ DataFarm.sync()  # Takes ~1-2 minutes`}
         <h2 className="text-2xl font-bold mt-8 mb-4">🔒 Privacy & Backup</h2>
         <ul className="list-disc list-inside space-y-2 text-gray-300 mb-6">
           <li><strong>Private:</strong> Journal entries stored locally in your Cockpit database</li>
-          <li><strong>Exportable:</strong> Settings → Export/Import → Select "Cockpit" to backup journal</li>
+          <li><strong>Exportable:</strong> Settings → Export/Import → Select "Cockpit\" to backup journal</li>
           <li><strong>Encrypted:</strong> Optional password protection on exports</li>
         </ul>
 
@@ -4009,7 +4009,7 @@ Emotion: Felt good about patience, frustrated about early exit.
         <div className="bg-[#2d2d2d] p-6 rounded-lg mb-6 border border-[#3d3d3d]">
           <h3 className="text-lg font-semibold mb-3">Deflated Sharpe Ratio (DSR)</h3>
           <p className="text-gray-400 text-sm mb-3">
-            Adjusts Sharpe Ratio based on how many trials were conducted. The more parameter
+            Adjusts Sharpe Ratio based on how many tests were conducted. The more parameter
             combinations you test, the more the DSR penalizes the results.
           </p>
           <p className="text-sm text-[#FF9500]">

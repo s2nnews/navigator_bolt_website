@@ -13,7 +13,7 @@
 The AI that doesn't just answer questions—it *knows* you, learns from every backtest you run, and gets smarter the more you trade.
 
 ## Hero CTA
-"Experience the Oracle" → Free Trial
+"Experience the Oracle" → Free
 
 ---
 
@@ -210,7 +210,7 @@ Complete JSON config that works with YOUR data—drag, drop, backtest
 Join the traders who've discovered what a *real* AI assistant feels like.
 
 ## CTA Buttons
-- **Primary:** "Start Free Trial" 
+- **Primary:** "Start Free"
 - **Secondary:** "See It In Action" → Demo Video
 
 ## Trust Badges

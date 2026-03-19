@@ -208,7 +208,7 @@ export function WhyMostBacktestsLieContent() {
         </li>
         <li className="flex items-start gap-3">
           <span className="text-[#FF9500] mt-1">•</span>
-          <span>How much trial-and-error preceded this result?</span>
+          <span>How much experimentation preceded this result?</span>
         </li>
         <li className="flex items-start gap-3">
           <span className="text-[#FF9500] mt-1">•</span>

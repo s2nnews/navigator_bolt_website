@@ -1,7 +1,13 @@
 import { BarChart3, TrendingUp, Database, Lock, Shield, Brain, FileText, Bookmark, Zap, LineChart, BookOpen, Layers, Sparkles, ArrowRight } from 'lucide-react';
+import { useEffect } from 'react';
 import { Button } from '../components/Button';
+import { UpgradeCta } from '../components/UpgradeCta';
+import { trackFunnelEvent } from '../utils/funnel';
 
 export function Features() {
+  useEffect(() => {
+    trackFunnelEvent('landing_view', 'features');
+  }, []);
   return (
     <div className="w-full">
       <section className="py-12 md:py-20 bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]">
@@ -235,6 +241,16 @@ export function Features() {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="py-8 md:py-12 bg-[#1a1a1a]">
+        <div className="max-w-6xl mx-auto px-4">
+          <UpgradeCta
+            context="features_mid"
+            headline="Unlimited Virtual Accounts & Backtesting"
+            description="Free plan includes limited virtual accounts. Upgrade for unlimited forward testing, 100+ strategies, and full analytics."
+          />
         </div>
       </section>
 
@@ -494,7 +510,7 @@ export function Features() {
             <p className="text-sm md:text-base text-gray-300 mb-6 max-w-2xl mx-auto">
               Navigator provides rear-view mirrors so you can see when assumptions break, when behavior drifts, and when confidence is no longer justified. Start free, then scale when needed.
             </p>
-            <Button variant="primary" className="w-full sm:w-auto" onClick={() => window.location.hash = 'free'}>Start Free</Button>
+            <Button variant="primary" className="w-full sm:w-auto" onClick={() => { trackFunnelEvent('free_cta_click', 'features_bottom'); window.location.hash = 'free'; }}>Start Free</Button>
           </div>
         </div>
       </section>

@@ -25,7 +25,7 @@ export function About() {
             </p>
             <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start mb-6 md:mb-8">
               <img
-                src="/profile_pics/Mike Portrait thinner.png"
+                src="/profile_pics/mike_portrait_thinner.png"
                 alt="Michael Berman, PhD"
                 className="w-48 md:w-64 h-auto rounded-lg shadow-xl border-2 border-[#FF9500] mx-auto md:mx-0 md:flex-shrink-0"
               />

@@ -1,9 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+import { supabase } from '../lib/supabase';
 
 declare global {
   interface Window {
@@ -80,22 +75,22 @@ export const trackCheckoutInitiated = (plan: string, price: string) => {
   });
 };
 
-export const trackTrialStarted = () => {
-  trackEvent('trial_started', {
+export const trackFreeStarted = () => {
+  trackEvent('free_started', {
     event_category: 'engagement',
-    event_label: 'Free Trial Form Viewed',
+    event_label: 'Free Form Viewed',
   });
 
   pushToDataLayer({
-    event: 'trial_page_viewed',
-    page_type: 'trial_signup',
+    event: 'free_page_viewed',
+    page_type: 'free_signup',
   });
 };
 
-export const trackTrialCompleted = (email: string) => {
-  trackEvent('trial_completed', {
+export const trackFreeCompleted = (email: string) => {
+  trackEvent('free_completed', {
     event_category: 'conversion',
-    event_label: 'Free Trial Signup Success',
+    event_label: 'Free Signup Success',
   });
 
   trackEvent('generate_lead', {
@@ -104,14 +99,14 @@ export const trackTrialCompleted = (email: string) => {
   });
 
   pushToDataLayer({
-    event: 'trial_signup',
+    event: 'free_signup',
     user_email: email,
     lead_value: 990,
-    conversion_type: 'trial',
+    conversion_type: 'free',
   });
 
   pushToDataLayer({
-    event: 's2n_trial_created',
+    event: 's2n_free_created',
     user_email: email,
     source: 'navigator_website',
   });

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Monitor, Download, BookOpen } from 'lucide-react';
 import { Button } from '../components/Button';
+import { trackFunnelEvent } from '../utils/funnel';
 
 type OS = 'windows' | 'macos' | 'unknown';
 
@@ -82,7 +83,7 @@ export function Downloads() {
               <a
                 href="https://downloads.s2n-navigator.com/releases/S2N_Navigator_Windows.zip"
                 className="block w-full"
-                onClick={() => trackDownload('windows')}
+                onClick={() => { trackDownload('windows'); trackFunnelEvent('download_click', 'downloads', { platform: 'windows' }); }}
               >
                 <Button
                   variant="primary"
@@ -284,7 +285,7 @@ export function Downloads() {
                 <p className="text-gray-300 text-lg mb-4">
                   Follow our comprehensive Getting Started guide to install and configure S2N Navigator
                 </p>
-                <a href="/#docs?doc=installation">
+                <a href="/#docs?doc=installation" onClick={() => trackFunnelEvent('install_guide_view', 'downloads')}>
                   <Button variant="primary" className="text-lg px-8 py-3">
                     View Getting Started Guide
                   </Button>

@@ -211,7 +211,7 @@ export function Strategies({ onNavigate, initialStrategy }: StrategiesProps) {
               <h3 className="text-2xl font-bold mb-4">Try This Strategy in Navigator</h3>
               <p className="text-gray-300 mb-6">
                 Ready to backtest this strategy with real historical data? Get started
-                with S2N Navigator's free plan.
+                with S2N Navigator's free access.
               </p>
               <button
                 onClick={() => onNavigate('pricing')}

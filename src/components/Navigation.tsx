@@ -1,7 +1,8 @@
 import { Menu, X, Sparkles } from 'lucide-react';
 import { useState } from 'react';
+import { trackFunnelEvent } from '../utils/funnel';
 
-type Page = 'home' | 'pricing' | 'features' | 'ai-oracle' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads' | 'free' | 'trial';
+type Page = 'home' | 'pricing' | 'features' | 'ai-oracle' | 'about' | 'contact' | 'affiliate' | 'integrations' | 'learn' | 'docs' | 'strategies' | 'videos' | 'blog' | 'downloads' | 'free';
 
 interface NavigationProps {
   currentPage: Page;
@@ -21,7 +22,6 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
     { label: 'Integrations', page: 'integrations' as Page },
     { label: 'About', page: 'about' as Page },
     { label: 'Affiliate', page: 'affiliate' as Page },
-    { label: 'Contact', page: 'contact' as Page },
   ];
 
   const handleNavClick = (page: Page) => {
@@ -57,7 +57,7 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
             </button>
           ))}
           <button
-            onClick={() => handleNavClick('pricing')}
+            onClick={() => { trackFunnelEvent('free_cta_click', 'nav'); handleNavClick('free'); }}
             className="bg-[#FF9500] text-black px-6 py-2 rounded font-semibold hover:bg-orange-600 transition-colors"
           >
             Start Free
@@ -94,7 +94,7 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
               </button>
             ))}
             <button
-              onClick={() => handleNavClick('pricing')}
+              onClick={() => { trackFunnelEvent('free_cta_click', 'nav_mobile'); handleNavClick('free'); }}
               className="w-full bg-[#FF9500] text-black px-6 py-2 rounded font-semibold hover:bg-orange-600 transition-colors"
             >
               Start Free

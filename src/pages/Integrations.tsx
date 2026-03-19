@@ -264,7 +264,7 @@ export function Integrations() {
             <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6">
               <h3 className="text-lg font-semibold mb-3 text-[#FF9500]">Exclusive Deals</h3>
               <p className="text-sm text-gray-400">
-                Navigator users get special pricing, extended trials, and premium features from our partners.
+                Navigator users get special pricing, extended access, and premium features from our partners.
               </p>
             </div>
             <div className="bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-6 sm:col-span-2 md:col-span-1">

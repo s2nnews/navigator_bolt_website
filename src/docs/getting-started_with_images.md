@@ -12,11 +12,11 @@ The first step is to obtain S2N Navigator from the website.
 
 Navigate to the **Pricing** page and choose one of the three available options:
 
-- **Free Trial**
+- **Free**
 - **Launch Special Price**
 - **Pro License**
 
-Most users will begin with the **Free Trial**.
+Most users will begin with the **Free** option.
 
 ---
 

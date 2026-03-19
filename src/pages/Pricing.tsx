@@ -1,21 +1,19 @@
 import { Button } from '../components/Button';
-import { Check, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { Check, X, ChevronDown } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { trackCheckoutInitiated } from '../utils/analytics';
-
-type BillingCycle = 'monthly' | 'annual';
-
-const PREMIUM_MONTHLY_PRICE = 150;
-const PREMIUM_ANNUAL_PRICE = PREMIUM_MONTHLY_PRICE * 10;
-const PREMIUM_MONTHLY_STRIPE_PRICE_ID = import.meta.env.VITE_STRIPE_PRICE_PREMIUM_MONTHLY;
-const PREMIUM_ANNUAL_STRIPE_PRICE_ID =
-  import.meta.env.VITE_STRIPE_PRICE_PREMIUM_ANNUAL || 'price_1SqoCfRgf0gOK6k56ubtiqf5';
+import { trackFunnelEvent } from '../utils/funnel';
 
 export function Pricing() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-  const [billingCycle, setBillingCycle] = useState<BillingCycle>('monthly');
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+
+  useEffect(() => {
+    trackFunnelEvent('pricing_view', 'pricing');
+  }, []);
 
   const handleCheckout = async (priceId: string, planName?: string, planPrice?: string) => {
+    trackFunnelEvent('upgrade_cta_click', 'pricing', { plan: planName, price: planPrice });
     if (planName && planPrice) {
       trackCheckoutInitiated(planName, planPrice);
     }
@@ -32,7 +30,7 @@ export function Pricing() {
         body: JSON.stringify({
           priceId,
           origin: window.location.origin,
-          referral: promotekit_referral
+          referral: promotekit_referral,
         }),
       });
 
@@ -57,83 +55,112 @@ export function Pricing() {
     }
   };
 
-  const premiumPrice = billingCycle === 'monthly' ? PREMIUM_MONTHLY_PRICE : PREMIUM_ANNUAL_PRICE;
-  const premiumPeriod = billingCycle === 'monthly' ? '/month' : '/year';
-  const premiumStripePriceId = billingCycle === 'monthly'
-    ? PREMIUM_MONTHLY_STRIPE_PRICE_ID
-    : PREMIUM_ANNUAL_STRIPE_PRICE_ID;
+  const handleFreeSignup = () => {
+    trackFunnelEvent('free_cta_click', 'pricing');
+    window.location.hash = 'free';
+  };
 
   const tiers = [
     {
-      name: 'Navigator Free',
-      price: '$0',
-      period: '/month',
-      description: 'Powerful core platform with practical limits',
-      badge: 'No credit card required',
+      name: 'Free',
+      monthlyPrice: '$0',
+      yearlyPrice: '$0',
+      period: '',
+      description: 'Forever free access',
+      badge: null,
       features: [
-        { name: '50+ GB free market data', included: true },
-        { name: 'Curated core strategy library', included: true },
-        { name: 'Limited backtesting allocation', included: true },
-        { name: 'Strategy Builder with guardrails', included: true },
-        { name: 'Advanced analytics dashboard', included: true },
-        { name: 'Limited live paper trading accounts', included: true },
+        { name: 'No credit card required', included: true },
+        { name: '50+ GB FREE DATA', included: true },
+        { name: 'Access to basic strategies', included: true },
+        { name: 'Limited backtesting', included: true },
+        { name: 'Strategy Builder', included: true },
+        { name: 'Advanced analytics', included: true },
+        { name: 'Limited live trading virtual accounts', included: true },
         { name: 'Community support', included: true },
+        { name: 'Use your own AI keys', included: true },
       ],
-      cta: 'Create Free Account',
+      cta: 'Start Free',
       ctaVariant: 'secondary' as const,
-      action: 'free' as const,
     },
     {
-      name: 'Navigator Premium',
-      price: `$${premiumPrice}`,
-      period: premiumPeriod,
-      description: billingCycle === 'monthly'
-        ? 'Full platform access billed monthly'
-        : 'Full platform access billed annually',
-      badge: 'Most Popular',
-      stripePriceId: premiumStripePriceId,
+      name: 'Early Adopter Special',
+      monthlyPrice: '$35',
+      yearlyPrice: '$350',
+      monthlyPriceId: 'price_1T9NnZRgf0gOK6k5SiT2DasX',
+      yearlyPriceId: 'price_1SqoFERgf0gOK6k5rVYNJ0ez',
+      description: 'Price locked forever',
+      badge: 'Ends June 30, 2026',
       features: [
-        { name: 'Everything in Navigator Free', included: true },
+        { name: 'Everything in Free', included: true },
         { name: '100+ robust trading strategies', included: true },
         { name: 'Unlimited backtesting', included: true },
-        { name: 'Unlimited live paper trading accounts', included: true },
-        { name: 'AI key usage with no platform caps', included: true },
+        { name: 'Strategy Builder', included: true },
+        { name: 'Advanced analytics', included: true },
+        { name: 'Unlimited live trading virtual accounts', included: true },
+        { name: 'Use your own AI keys (unlimited)', included: true },
         { name: 'Priority support', included: true },
-        { name: 'All future premium features included', included: true },
+        { name: 'All future features included', included: true },
+        { name: 'Price locked in forever', included: true },
       ],
-      cta: billingCycle === 'monthly' ? 'Start Premium Monthly' : 'Start Premium Annual',
+      cta: 'Get Started',
       ctaVariant: 'primary' as const,
-      subtext: billingCycle === 'monthly'
-        ? `Annual is $${PREMIUM_ANNUAL_PRICE}/year (2 months free)`
-        : `Annual = 10x monthly ($${PREMIUM_MONTHLY_PRICE}/month equivalent)`,
-      action: 'checkout' as const,
+    },
+    {
+      name: 'Pro',
+      monthlyPrice: '$150',
+      yearlyPrice: '$1,500',
+      monthlyPriceId: 'price_1T9Np3Rgf0gOK6k5QvQNYqzr',
+      yearlyPriceId: 'price_1SqoCfRgf0gOK6k56ubtiqf5',
+      description: 'Standard pricing',
+      badge: null,
+      features: [
+        { name: 'Everything in Free', included: true },
+        { name: '100+ robust trading strategies', included: true },
+        { name: 'Unlimited backtesting', included: true },
+        { name: 'Strategy Builder', included: true },
+        { name: 'Advanced analytics', included: true },
+        { name: 'Unlimited live trading virtual accounts', included: true },
+        { name: 'Use your own AI keys (unlimited)', included: true },
+        { name: 'Priority support', included: true },
+        { name: 'All future features included', included: true },
+      ],
+      cta: 'Get Started',
+      ctaVariant: 'secondary' as const,
     },
   ];
 
   const faqs = [
     {
       question: "What's included in the free plan?",
-      answer: 'Navigator Free includes a serious working environment: 50+ GB market data, curated strategies, strategy builder, analytics, and limited backtesting/live paper accounts. You can run meaningful research without paying.',
+      answer: 'The free plan gives you forever access to basic strategies, limited backtesting, Strategy Builder, advanced analytics, 50+ GB of free data, and limited live trading virtual accounts. No credit card required, no time limit.',
     },
     {
-      question: 'How does monthly vs annual billing work?',
-      answer: `Premium can be billed monthly or annually. Monthly is $${PREMIUM_MONTHLY_PRICE}/month. Annual is $${PREMIUM_ANNUAL_PRICE}/year, which is exactly 10x the monthly rate.`,
+      question: 'What are the three pricing tiers?',
+      answer: 'Navigator offers three tiers: Free (forever free with basic features), Early Adopter Special ($35/month or $350/year with price locked forever - ends June 30, 2026), and Pro ($150/month or $1,500/year). Both paid tiers include unlimited features, but only Early Adopters get their price locked in forever.',
+    },
+    {
+      question: 'Can I pay monthly or yearly?',
+      answer: 'Yes, both paid tiers offer monthly and yearly billing. Annual plans save you 2 months (10 months for the price of 12). Early Adopter pricing ($35/month or $350/year) locks in forever for both billing cycles.',
     },
     {
       question: 'Do I need a credit card for the free plan?',
-      answer: 'No. You can create your free account with no payment details.',
+      answer: 'No, absolutely not. You can start using the free plan without providing any payment information. Upgrade to paid tiers anytime.',
     },
     {
-      question: 'Can I upgrade from Free to Premium later?',
-      answer: 'Yes. You can start free, validate fit, then upgrade to Premium whenever you need unlimited capacity.',
+      question: 'What happens when I renew?',
+      answer: 'Monthly subscriptions renew automatically each month. Annual subscriptions renew yearly. Early adopters who purchase before June 30, 2026 keep their locked-in pricing ($35/month or $350/year) forever. Standard Pro pricing is $150/month or $1,500/year.',
     },
     {
       question: 'Do I need my own AI API keys?',
-      answer: 'Yes. Navigator supports your own AI keys (OpenAI, Anthropic, and others) so usage and spend remain transparent and under your control.',
+      answer: 'Yes, Navigator allows you to use your own AI API keys (OpenAI, Anthropic, etc.). This gives you unlimited AI queries without restrictions and keeps your costs transparent.',
     },
     {
-      question: 'Can I cancel Premium?',
-      answer: 'Yes. You can manage or cancel your subscription from the customer portal at any time.',
+      question: 'Can I export my strategies?',
+      answer: 'Yes, you can export strategies and backtest results in multiple formats for use elsewhere or archival.',
+    },
+    {
+      question: 'What are live trading virtual accounts?',
+      answer: 'Virtual accounts let you test your strategies in live market conditions without risking real capital. Track performance in real-time and gain confidence before going live.',
     },
   ];
 
@@ -141,116 +168,113 @@ export function Pricing() {
     <div className="w-full">
       <section className="py-12 md:py-20 bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]">
         <div className="max-w-6xl mx-auto px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 md:mb-6">
-            Start Free. Upgrade When You Need More.
-          </h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 md:mb-6">Institutional-Grade Framework</h1>
           <p className="text-lg sm:text-xl md:text-2xl text-[#FF9500] font-semibold text-center mb-3 md:mb-4">
-            A powerful free plan, then Premium when your workflow scales.
+            Don't be fooled by randomness.
           </p>
-          <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-8 max-w-3xl mx-auto">
-            Navigator gives you a serious free starting point, not a throwaway demo. Premium is available monthly or annually, and annual pricing is set to exactly 10x monthly.
+          <p className="text-center text-gray-400 text-sm sm:text-base md:text-lg mb-6 max-w-3xl mx-auto">
+            Navigator is opinionated and curated. The free plan is intentionally limited to prevent misuse and false confidence. These constraints exist for your protection.
           </p>
 
-          <div className="flex justify-center mb-8 md:mb-12">
-            <div className="inline-flex bg-[#2d2d2d] border border-[#3d3d3d] rounded-lg p-1">
-              <button
-                onClick={() => setBillingCycle('monthly')}
-                className={`px-4 md:px-6 py-2 rounded text-sm md:text-base font-semibold transition-colors ${
-                  billingCycle === 'monthly'
-                    ? 'bg-[#FF9500] text-black'
-                    : 'text-gray-300 hover:text-white'
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setBillingCycle('annual')}
-                className={`px-4 md:px-6 py-2 rounded text-sm md:text-base font-semibold transition-colors ${
-                  billingCycle === 'annual'
-                    ? 'bg-[#FF9500] text-black'
-                    : 'text-gray-300 hover:text-white'
-                }`}
-              >
-                Annual (2 months free)
-              </button>
-            </div>
+          <div className="flex items-center justify-center gap-4 mb-8 md:mb-12">
+            <button
+              onClick={() => setBillingCycle('monthly')}
+              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+                billingCycle === 'monthly'
+                  ? 'bg-[#FF9500] text-black'
+                  : 'bg-[#2d2d2d] text-gray-400 hover:text-white'
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setBillingCycle('yearly')}
+              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+                billingCycle === 'yearly'
+                  ? 'bg-[#FF9500] text-black'
+                  : 'bg-[#2d2d2d] text-gray-400 hover:text-white'
+              }`}
+            >
+              Yearly
+              <span className="ml-2 text-xs bg-green-500 text-white px-2 py-0.5 rounded">Save 2 months</span>
+            </button>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8 max-w-5xl mx-auto">
-            {tiers.map((tier, index) => {
-              const isPremium = tier.action === 'checkout';
-              const isCheckoutDisabled = isPremium && !tier.stripePriceId;
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8 max-w-5xl mx-auto">
+            {tiers.map((tier, index) => (
+              <div
+                key={index}
+                className={`rounded-lg border transition-all ${
+                  tier.badge
+                    ? 'border-[#FF9500] bg-[#2d2d2d] shadow-xl shadow-orange-500/20 relative'
+                    : 'border-[#3d3d3d] bg-[#1a1a1a] hover:border-[#FF9500]'
+                }`}
+              >
+                {tier.badge && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FF9500] text-black px-3 py-1 rounded-full text-sm font-semibold whitespace-nowrap">
+                    {tier.badge}
+                  </div>
+                )}
 
-              return (
-                <div
-                  key={index}
-                  className={`rounded-lg border transition-all ${
-                    isPremium
-                      ? 'border-[#FF9500] bg-[#2d2d2d] shadow-xl shadow-orange-500/20 relative'
-                      : 'border-[#3d3d3d] bg-[#1a1a1a] hover:border-[#FF9500]'
-                  }`}
-                >
-                  {tier.badge && (
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FF9500] text-black px-3 py-1 rounded-full text-sm font-semibold whitespace-nowrap">
-                      {tier.badge}
-                    </div>
+                <div className="p-6 md:p-8 text-center">
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">{tier.name}</h3>
+                  <p className="text-gray-400 text-xs md:text-sm mb-4 md:mb-6">{tier.description}</p>
+
+                  <div className="mb-2">
+                    <span className="text-3xl md:text-4xl font-bold">
+                      {billingCycle === 'monthly' ? tier.monthlyPrice : tier.yearlyPrice}
+                    </span>
+                    <span className="text-gray-400">
+                      {tier.name !== 'Free' && (billingCycle === 'monthly' ? '/month' : '/year')}
+                    </span>
+                  </div>
+                  {tier.name !== 'Free' && billingCycle === 'yearly' && (
+                    <p className="text-xs md:text-sm text-green-500 mb-3 md:mb-4">Save 2 months with annual billing</p>
                   )}
 
-                  <div className="p-6 md:p-8 text-center">
-                    <h3 className="text-xl md:text-2xl font-bold mb-2">{tier.name}</h3>
-                    <p className="text-gray-400 text-xs md:text-sm mb-4 md:mb-6">{tier.description}</p>
+                  <Button
+                    variant={tier.ctaVariant}
+                    className="w-full mb-6 md:mb-8 py-3"
+                    onClick={() => {
+                      if (tier.name === 'Free') {
+                        handleFreeSignup();
+                      } else {
+                        const priceId = billingCycle === 'monthly' ? tier.monthlyPriceId : tier.yearlyPriceId;
+                        const displayPrice = billingCycle === 'monthly' ? tier.monthlyPrice : tier.yearlyPrice;
+                        handleCheckout(priceId, tier.name, displayPrice);
+                      }
+                    }}
+                  >
+                    {tier.cta}
+                  </Button>
 
-                    <div className="mb-2">
-                      <span className="text-3xl md:text-4xl font-bold">{tier.price}</span>
-                      <span className="text-gray-400">{tier.period}</span>
-                    </div>
-                    {'subtext' in tier && tier.subtext && (
-                      <p className="text-xs md:text-sm text-gray-500 mb-3 md:mb-4">{tier.subtext}</p>
-                    )}
-
-                    <Button
-                      variant={tier.ctaVariant}
-                      className="w-full mb-3 md:mb-4 py-3"
-                      disabled={isCheckoutDisabled}
-                      onClick={() => {
-                        if (tier.action === 'free') {
-                          window.location.hash = 'free';
-                          return;
-                        }
-                        if (tier.stripePriceId) {
-                          handleCheckout(tier.stripePriceId, tier.name, tier.price);
-                        }
-                      }}
-                    >
-                      {tier.cta}
-                    </Button>
-
-                    {isCheckoutDisabled && (
-                      <p className="text-xs text-amber-400 mb-3 md:mb-4">
-                        Monthly checkout is being finalized. Select annual to subscribe now.
-                      </p>
-                    )}
-
-                    <div className="space-y-3 md:space-y-4 text-left">
-                      {tier.features.map((feature, fIdx) => (
-                        <div key={fIdx} className="flex gap-2 md:gap-3">
+                  <div className="space-y-3 md:space-y-4 text-left">
+                    {tier.features.map((feature, fIdx) => (
+                      <div key={fIdx} className="flex gap-2 md:gap-3">
+                        {feature.included ? (
                           <Check size={18} className="md:hidden text-[#00C853] flex-shrink-0" />
+                        ) : (
+                          <X size={18} className="md:hidden text-gray-600 flex-shrink-0" />
+                        )}
+                        {feature.included ? (
                           <Check size={20} className="hidden md:block text-[#00C853] flex-shrink-0" />
-                          <span className="text-sm md:text-base text-gray-300">
-                            {feature.name}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                        ) : (
+                          <X size={20} className="hidden md:block text-gray-600 flex-shrink-0" />
+                        )}
+                        <span className={`text-sm md:text-base ${feature.included ? 'text-gray-300' : 'text-gray-500'}`}>
+                          {feature.name}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
 
           <div className="bg-[#2d2d2d] border border-[#3d3d3d] p-6 md:p-8 rounded-lg">
             <p className="text-center text-gray-300 text-sm md:text-base">
-              <span className="text-[#FF9500] font-semibold">All plans include:</span> scientific bias detection, an end-to-end organizational framework, continuous monitoring, and curated strategy design guardrails.
+              <span className="text-[#FF9500] font-semibold">All plans include:</span> Scientific bias detection, Organizational framework under one roof, Rear-view mirrors for continuous monitoring, Institutional-grade structure, Curated strategies designed to avoid common failure modes
             </p>
           </div>
         </div>
@@ -314,14 +338,14 @@ export function Pricing() {
           <div className="bg-gradient-to-r from-[#2d2d2d] to-[#3d3d3d] p-6 sm:p-8 md:p-12 rounded-lg border border-[#FF9500] text-center">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4">A Framework for Survival</h2>
             <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 max-w-2xl mx-auto">
-              Navigator does not maximize returns. It maximizes the probability of long-term survival and slightly above-average outcomes. Start with the free plan, then scale when ready.
+              Navigator does not maximize returns. It maximizes the probability of long-term survival and slightly above-average outcomes. Start free, then scale when needed.
             </p>
             <Button
               variant="primary"
               className="px-6 md:px-8 py-3 md:py-4"
-              onClick={() => window.location.hash = 'free'}
+              onClick={handleFreeSignup}
             >
-              Create Free Account
+              Start Free
             </Button>
           </div>
         </div>
